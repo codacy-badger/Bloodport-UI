@@ -1,0 +1,585 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	
+/*----------------------------------CSS realted to navbar starts here------------------------------------------*/
+.nav-wrapper .heading1
+{
+	font-size: 18px;
+}
+/*----------------------------------CSS realted to navbar ends here------------------------------------------*/
+
+
+
+/*----------------------------------Css related to Landing page starts here-----------------------------------------*/	
+.welcome{
+	font-size: 6.5vw;
+	margin-top: 40vw;
+}
+
+.typewriter_effect p a{
+  font-size: 3.5vw;
+}
+
+.slide1_p{
+	font-size: 30px;
+	margin-top: 160px;
+}
+
+.content1{
+	border-right:none;
+}
+
+.content2{
+	border-left: none;
+}
+
+
+/*----------------------------------Css related to Landing page ends here-----------------------------------------*/
+
+
+/*-------------------------------css related to request blood starts here-----------------------------------------*/
+
+.container_help .req_heading
+{
+	font-size: 18px;
+}
+/*-------------------------------css related to request blood ends here-----------------------------------------*/
+
+
+/*-------------------------------css related to functionality starts here-----------------------------------------*/
+
+.bloodgrp .our_serv
+{
+  font-size:30px
+}
+.bloodgrp .our_serv_text
+{
+  font-size:18px;
+}
+
+.text
+{
+  position: relative;
+  top:-28px;
+  left:-59px;
+}
+.text h2
+{
+  color:white;
+  font-weight: bold;
+  font-size: 34px;
+}
+.text1
+{
+  position: relative;
+  top:-28px;
+  left:-65px;
+}
+.text1 h2
+{
+  color:white;
+  font-weight: bold;
+  font-size: 34px;
+}
+
+/*-------------------------------css related to functionality starts here-----------------------------------------*/
+/*----------------------------------Css related to play the video section starts here-----------------------------------------*/
+
+.video_text{
+	padding-top: 20%;
+}
+/*----------------------------------Css related to play the video section ends here-----------------------------------------*/
+
+/*----------------------------------Css related to donation section starts here-----------------------------------------*/
+.bloodgrp p{
+	font-size: 30px;
+}
+.bloodgrp h5{
+	font-size: 18px;
+}
+
+
+
+/*----------------------------------Css related to donation section ends here-----------------------------------------*/
+
+/*------------------------------------CSS realated to testimonials starts here------------------------------------------*/
+
+.testimonials_card .test_card h3
+{
+  font-size:24px;
+}
+
+.testimonials_card .test_card p
+{
+  font-size: 18px;
+}
+/*----------------------------------Css realted to Footer strts here-----------------------------------------------*/
+
+.foota{
+	padding-left: 5vw;
+	font-size: 10px; 
+}
+
+.foot_next{
+	font-size: 10px;
+	padding-left: 4vw;
+}
+
+.fa{
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+	padding: 4px;
+}
+
+/*----------------------------------Css realted to Footer ends here-----------------------------------------------*/
+
+
+/*----------------------------------CSS related to event section-----------------------------------------------------*/
+
+.bloodgrp .our_serv_text
+{
+  font-size:18px;
+}
+
+.date{
+  border-bottom: 4px solid #c62828; 
+  border-right: 4px solid #c62828;
+  background-color: white; 
+  position: absolute;
+  height: 60px;
+  top: 60vw;
+  
+}
+
+.date p{
+  font-size: 4vw;
+  color: #c62828;
+  padding-top: 1vw;
+  text-align: justify;
+}
+.detail .time{
+  font-size: 2.5vw; 
+}
+
+
+
+/*----------------------------------CSS related to event section-----------------------------------------------------*/
+}
+
+/*---------------------------------------------------------------------------------------------------------------------*/
+
+
+@media only screen and (max-width : 320px) {
+
+/*----------------------------------Css related to Landing page starts here-----------------------------------------*/
+.welcome{
+	font-size: 7vw;
+	margin-top: 55vw;
+}
+
+.typewriter_effect p a{
+  font-size: 4.5vw;
+}
+
+.slide1_p{
+	font-size: 18px;
+	margin-top: 90px;
+}
+
+.slide1_text{
+	font-size: 11px;
+}
+
+.content1{
+	border-right:none;
+}
+
+.content2{
+	border-left: none;
+}
+/*----------------------------------Css related to Landing page ends here-----------------------------------------*/
+
+/*----------------------------------Css related to play the video section starts here-----------------------------------------*/
+
+.play{
+	font-size: 30px;
+}
+
+.video_text{
+	padding-top: 26%;
+}
+}
+/*----------------------------------Css related to play the video section ends here-----------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width : 320px) {
+
+/*----------------------------------Css related to Landing page starts here-----------------------------------------*/
+.welcome{
+	font-size: 7vw;
+	margin-top: 55vw;
+}
+
+.typewriter_effect p a{
+  font-size: 4.5vw;
+}
+
+.slide1_p{
+	font-size: 18px;
+	margin-top: 90px;
+}
+
+.slide1_text{
+	font-size: 11px;
+}
+
+.content1{
+	border-right:none;
+}
+
+.content2{
+	border-left: none;
+}
+/*----------------------------------Css related to Landing page ends here-----------------------------------------*/
+
+/*----------------------------------Css related to play the video section starts here-----------------------------------------*/
+
+.play{
+	font-size: 30px;
+}
+
+.video_text{
+	padding-top: 26%;
+}
+/*----------------------------------Css related to play the video section ends here-----------------------------------------*/
+
+/*----------------------------------Css related to donation section starts here-----------------------------------------*/
+
+.bloodgrp p{
+  font-size: 13px;
+}
+
+.bloodgrp h5{
+	font-size: 8px;
+}
+
+.step1{
+	top: -51px;
+	height:25vw;
+}
+
+.step1 h3{
+	font-size: 20px;
+}
+
+.dp_card h4{
+	font-size: 20px;
+}
+
+.dp_card p{
+	font-size: 12px;
+}
+/*----------------------------------Css related to donation section ends here-----------------------------------------*/
+
+/*----------------------------------Css related to footer section ends here-----------------------------------------*/
+.foot h5{
+	font-size: 15px;
+}
+
+.foot h6{
+	font-size: 10px;
+}
+
+.foota{
+	padding-left: 1vw;
+	font-size: 10px; 
+}
+
+.foot_next{
+	font-size: 10px;
+	padding-left: 4vw;
+}
+
+.fa{
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+	padding: 4px;
+}
+
+/*----------------------------------Css related to footer section ends here-----------------------------------------*/
+}
+
+
+
+
+
+
+@media only screen and (min-device-width : 480px) and (max-device-width : 768px){
+	
+
+.nav-wrapper .heading1
+{
+	font-size: 30px;
+}
+/*----------------------------------Css related to Landing page starts here-----------------------------------------*/
+.welcome{
+	font-size: 6vw;
+	margin-top: 15vw;
+}
+
+.typewriter_effect p a{
+  font-size: 2.5vw;
+}
+
+.slide1_p{
+	font-size: 6.5vw;
+	margin-top: 140px;
+}
+
+.content1{
+	border-right:none;
+}
+
+.content2{
+	border-left: none;
+}
+
+/*----------------------------------Css related to Landing page ends here-----------------------------------------*/
+
+/*----------------------------------Css related to play the video section starts here-----------------------------------------*/
+
+.video_text{
+	padding-top: 25%;
+}
+/*----------------------------------Css related to play the video section ends here-----------------------------------------*/
+
+
+/*----------------------------------Css related to donation section starts here-----------------------------------------*/
+
+.bloodgrp p{
+  font-size: 23px;
+}
+
+.bloodgrp h5{
+	font-size: 16px;
+}
+
+.step1{
+	top: -129px;
+	height:25vw;
+}
+
+.step1 h3{
+	font-size: 70px;
+}
+
+.dp_card h4{
+	font-size: 40px;
+}
+
+.dp_card p{
+	font-size: 22px;
+}
+/*----------------------------------Css related to donation section ends here-----------------------------------------*/
+}
+
+/*----------------------------------Css related to footer section ends here-----------------------------------------*/
+.foot h5{
+	font-size: 15px;
+}
+
+.foot h6{
+	font-size: 10px;
+}
+
+.foota{
+	padding-left: 1vw;
+	font-size: 10px; 
+}
+
+.foot_next{
+	font-size: 10px;
+	padding-left: 4vw;
+}
+
+.fa{
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+	padding: 4px;
+}
+
+/*----------------------------------Css related to footer section ends here-----------------------------------------*/
+
+}
+
+
+
+
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 992px){
+
+.nav-wrapper .heading1
+{
+	font-size: 45px;
+}
+
+/*----------------------------------Css related to Landing page starts here-----------------------------------------*/
+.welcome{
+	font-size: 6vw;
+	margin-top: 13vw;
+}
+
+.slide1_p{
+	font-size: 5.5vw;
+	margin-top: 100px;
+}
+
+.content1{
+	border-right:none;
+}
+
+.content2{
+	border-left: none;
+}
+/*----------------------------------Css related to Landing page ends here-----------------------------------------*/
+
+/*----------------------------------Css related to play the video section starts here-----------------------------------------*/
+
+.video_text{
+	padding-top: 8%;
+}
+/*----------------------------------Css related to play the video section ends here-----------------------------------------*/
+
+/*----------------------------------Css related to donation section starts here-----------------------------------------*/
+
+.bloodgrp p{
+  font-size: 13px;
+}
+
+.bloodgrp h5{
+	font-size: 8px;
+}
+
+.step1{
+	top: -121px;
+	height:35vw;
+}
+
+.step1 h3{
+	font-size: 20px;
+}
+
+.dp_card h4{
+	font-size: 10px;
+}
+
+.dp_card p{
+	font-size: 12px;
+}
+
+}
+/*----------------------------------Css related to donation section ends here-----------------------------------------*/
+
+
+/*----------------------------------Css related to footer section ends here-----------------------------------------*/
+.foot h5{
+	font-size: 25px;
+}
+
+.foot h6{
+	font-size: 16px;
+}
+
+.foota{
+	padding-left: 1vw;
+	font-size: 10px; 
+}
+
+.foot_next{
+	font-size: 10px;
+	padding-left: 4vw;
+}
+
+.fa{
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+	padding: 4px;
+}
+
+/*----------------------------------Css related to footer section ends here-----------------------------------------*/
+
+/*----------------------------------CSS related to video is here----------------------------------------------------*/
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 380px){
+
+video { 
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-79%) translateY(-50%);   
+    background-size: cover;
+    transition: 1s opacity;
+    overflow: hidden;
+}
+
+.vsec{
+  z-index: 2;
+  height:90vh;
+  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
+}
+
+}
+
+@media only screen and (min-device-width : 380px) and (max-device-width : 420px){
+
+	video { 
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-79%) translateY(-50%);   
+    background-size: cover;
+    transition: 1s opacity;
+    overflow: hidden;
+}
+.vsec{
+  z-index: 2;
+  height:90vh;
+  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
+}
+
+}
+/*--------------------------------------CSS related to forgot password is here--------------------------*/
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+
+.mycard
+{
+	margin-top: 40%;
+}
+}

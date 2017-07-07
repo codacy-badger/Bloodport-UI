@@ -1,0 +1,702 @@
+body{
+  font-family: 'Dosis', sans-serif;
+}
+
+/*----------------------------------Css related to navbar starts here-----------------------------------------*/
+
+
+
+.main_menu{
+  padding-right:5vw;
+}
+.nav1
+{ 
+   
+  box-shadow: none;
+
+  background-color: transparent;
+  transition:background-color 1s;
+  position: fixed; 
+  z-index: 4;
+}
+
+
+
+.nav-wrapper .heading1
+{
+  margin-left: 6vw;
+  color: white;  
+  font-size: 2vw;
+  font-weight: bold;
+  margin-top: 0.5vw;
+}
+
+nav ul li a
+{
+  color:white;
+}
+
+
+/*----------------------------------Css related to navbar ends here-----------------------------------------*/
+
+
+
+/*----------------------------------Css related to Carousel starts here-----------------------------------------*/
+
+.carousel .carousel-item
+{
+  height:90vh !important;
+}
+
+.carousel .indicators .indicator-item {
+  background-color: #c62828;
+  transition: background-color .3s;
+  border-radius: 50%;
+  margin-top: 500px;
+}
+
+.carousel .indicators .indicator-item.active {
+  background-color: white;
+}
+
+.carousel .img1
+{
+  background: url(../img/img4.jpg) fixed no-repeat;
+  background-size: cover;
+
+}
+
+.slide1{
+  font-size: 125vw;
+}
+
+
+/*----------------------------------Css related to Carousel ends here-----------------------------------------*/
+
+
+
+
+
+/*----------------------------------Css related to Landing page starts here-----------------------------------------*/
+
+video { 
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);   
+    background-size: cover;
+    transition: 1s opacity;
+    overflow: hidden;
+}
+
+.welcome{
+  margin-top: 50px;
+  color:white;
+  font-size: 5vw;
+}
+
+
+.vsec{
+  z-index: 2;
+  height:98vh;
+  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
+}
+
+.content
+{
+    margin-top: 10vw;
+    width:100%;
+}
+.content h1
+{
+  font-family: heading;
+}
+.content1
+{
+  margin-top: 10vw;
+  height:300px;
+  border-right:8px solid white;
+}
+
+.content2
+{
+  margin-top: 10vw;
+  height:300px;
+   border-left:8px solid white;  
+}
+.content2 h1
+{
+  font-family: heading;
+}
+
+.content3
+{
+  margin-top: 10vw;
+  height:300px;
+}
+.content h1
+{
+  font-family: heading;
+}
+
+
+
+.scroll
+{
+  color:white;
+  position: relative;
+  -webkit-animation: mymove 5s infinite; 
+  animation: mymove 5s infinite;
+  transition-timing-function: ease-in-out;
+}
+
+@keyframes mymove {
+    0%   {top: 0px;}
+    25%  {top: 35px;}
+    50%  {top: 0px;}
+    99%  {top: 35px;}
+    100% {top:0px;}
+  }
+
+.typewriter_effect{
+  color:white;
+  margin-top: 3vw;
+}
+.typewriter_effect p a{
+  font-size: 2vw;
+  font-weight: bold;
+}
+.emergency_btn{
+  padding-top: 2vw; 
+}
+
+
+/*----------------------------------Css related to Landing page ends here-----------------------------------------*/
+
+
+/*----------------------------------Css related to request blood starts here-----------------------------------------*/
+.request
+{
+  background-color: #f8f9fa;
+}
+.container_help
+{
+  padding-top:2%;
+  padding-left: 5%;
+}
+.request_button
+{
+  padding:10%;
+  width:100%;
+  
+}
+
+.request_button a
+{
+  width:80%;
+  background-color: #c62828;
+  border:3px solid  #c62828;
+}
+.request_button a:hover
+{
+  background-color: white;
+  color:black;
+}
+
+/*----------------------------------Css related to request blood ends here-----------------------------------------*/
+
+
+
+/*----------------------------------Css related to functionality starts here-----------------------------------------*/
+.bloodgrp{
+  margin-top: 1vw;
+  color:#c62828;
+}
+
+.bloodgrp p{
+  font-size: 30px;
+}
+
+.mycontainer
+{
+  width:100%;
+}
+
+.card_div
+{
+  margin: 10px 10px 10px 10px;
+  background-color: #c62828;
+}
+
+
+.horizontal
+{
+  height:230px !important;
+}
+.text
+{
+  position: relative;
+  top:-28px;
+  left:-80px;
+}
+.text1
+{
+  position: relative;
+  top:-28px;
+  left:-90px;
+}
+.text h2
+{
+  color:white;
+  font-weight: bold;
+}
+.text1 h2
+{
+  color:white;
+  font-weight: bold;
+}
+
+.myimg
+{
+  
+  width:50px;
+  margin-left:20px;
+  margin-top: 120px;
+}
+
+.functionality .card
+{
+  border:none;
+  box-shadow: none;
+  border-bottom:4px solid #c62828;
+
+
+}
+.bloodgrp .our_serv
+{
+  font-size:40px;
+}
+
+
+/*----------------------------------Css related to functionality  ends here-----------------------------------------*/
+
+
+
+/*----------------------------------Css related to play the video starts here-----------------------------------------*/
+.video_sec{
+  background: url('../img/play_vid.jpg') fixed no-repeat;
+  background-size: cover;
+  height: 300px;
+  margin-top: 10%;
+}
+
+.video_text{
+  color: #c62828;
+  padding-top:5%;
+}
+
+.video_text i{
+  color: #c62828;
+}
+.play_vid_tint
+{
+ background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+  height: 300px;
+}
+.modal{
+  height: 100%;
+  width:48%;
+  border: 5px solid #c62828 ;
+}
+
+
+
+/*----------------------------------Css related to Play the video ends here-----------------------------------------*/
+
+
+/*----------------------------------Css related to donation process starts here-----------------------------------------*/
+
+.donation_process{
+  height: 100%;
+  padding-bottom: 4%;
+}
+
+.donation_process .card
+{
+  border: none;
+  box-shadow: none;
+}
+
+.dp_card{
+  background-color: #f8f9fa;
+ 
+}
+.donation_process .card-content
+{
+  padding-top:15px;
+}
+
+.dp_card h4
+{
+  font-size: 28px;
+}
+
+.step1{
+  position: relative;
+  top:-5.5vw;
+  height: 5.5vw;
+  background: linear-gradient(rgba(198, 40, 40, 0.8),rgba(198, 40, 40, 0.8));
+}
+
+
+/*----------------------------------Css related to donation process ends here-----------------------------------------*/
+
+/*----------------------------------Css related to events section starts here-----------------------------------------*/
+
+.events{
+  padding-top: 10px;
+  margin-bottom: 50px;
+  height:100%;
+  
+}
+
+
+#hid_div
+{
+  display: none;
+}
+
+.event1_card{
+ 
+  box-shadow: none;
+}
+.bloodgrp .our_serv
+{
+  font-size:40px;
+}
+.container2{
+  width: 70%;
+}
+
+.date{
+  border-bottom: 4px solid #c62828; 
+  border-right: 4px solid #c62828;
+  background-color: white; 
+  position: absolute;
+  height: 140px;
+  top: 18vw;
+}
+
+.date p{
+  font-size: 2vw;
+  color: #c62828;
+  padding-top: 1vw;
+  text-align: justify;
+}
+
+.detail p{
+  font-size: 18px;
+  color: #c62828;
+}
+
+.detail .time{
+  font-size: 0.8vw; 
+}
+
+
+
+.load_event{
+  background-color:  white;
+  color: #c62828;
+  border: 1px solid silver;
+}
+
+.events .card
+{
+  border:none;
+  box-shadow: none;
+  border-bottom:4px solid #c62828;
+
+
+}
+/*----------------------------------Css related to events section ends here-----------------------------------------*/
+
+
+
+/*----------------------------------Css related to Counter starts here-----------------------------------------*/
+.mycounter
+{
+  background: url('../img/counter.jpg') fixed no-repeat;
+  background-size: cover;
+  height:100%;
+ 
+}
+.mycounter .card
+{
+  border:none;
+  height:230px;
+  border-radius: 0px;
+  width: 98%;
+}
+
+.mycounter_tint
+{
+  background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+  height: 100%;
+}
+.counter_container
+{
+  width:95%;
+  padding: 5vw;
+}
+.mycounter1 i
+{
+  font-size: 70px;
+  color:#bdbdbd;
+}
+
+
+
+/*----------------------------------Css related to counter ends here-----------------------------------------*/
+
+
+/*----------------------------------Css related to testimonials starts here-----------------------------------------*/
+
+.testimonials
+{
+  background:url('../img/testimonials.jpg') fixed no-repeat;
+  background-size: cover;
+  height:100%;
+}
+.testimonials_tint
+{
+  background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+  height:100%;
+}
+
+.testimonials_card
+{
+  padding-top:5%;
+  padding-bottom: 5%;
+  height:100%;
+}
+
+.testimonials_card .test_card h3
+{
+  font-size: 30px;
+}
+
+.testimonials_card .test_card p
+{
+  font-size: 22px;
+}
+.slides li
+{
+  background-color:#f8f9fa;
+}
+.slides h3
+{
+  color:#c62828;
+  font-size: 24px;
+}
+
+.slides p
+{
+  font-size: 18px;
+}
+/*----------------------------------Css related to testimonials ends here-----------------------------------------*/
+
+
+
+
+/*----------------------------------Css related to Photo gallery starts here-----------------------------------------*/
+.photos{
+  height: 100%;
+  background-color:  #f8f9fa;
+}
+.photos .card
+{
+  border: none;
+  box-shadow: none;
+}
+
+.photos h6{
+  color: silver;
+}
+
+.grid {
+  margin-top: 3vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 5vw;
+}
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-sizer,
+.grid-item {
+  width: 25%;
+}
+
+.grid-item{
+  border:5px solid white;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+.ph1{
+  height:480px;
+}
+
+.materialboxed:hover:not(.active) {
+  opacity: .5;
+}
+
+
+.materialboxed.active {
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
+}
+
+.ph2{
+  height:300px;
+}
+
+.ph3{
+  width: 320px ; 
+  height:250px;
+}
+
+.ph4{
+  height: 250px;
+}
+
+.ph5{
+  width: 500px ;
+  height: 240px;
+}
+
+.ph6{
+  height: 300px;
+}
+
+.ph7{
+  height: 320px;
+  margin-top: -79px;
+  width: 400px;
+}
+
+.ph8{
+  height: 500px;
+  margin-top: -260px;
+}
+
+.ph9{
+  height: 300px;
+  margin-top: -60px;
+}
+
+.ph10{
+  height: 240px;
+}
+/*----------------------------------Css related to photo gallery ends here-----------------------------------------*/
+
+
+
+
+
+
+/*----------------------------------Css related to footer starts  here-----------------------------------------*/
+footer
+{
+  background-color: #c62828;
+}
+
+.foot{
+  margin-top: 3vw;
+  margin-bottom: 6vw;
+  text-align: center;
+}
+
+.pgfoot{
+  background: url(img/back1.jpg);
+}
+
+.foota{
+  padding: 0.5vw;
+}
+
+.fa{
+    padding: 10px;
+    font-size: 30px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-facebook:hover{
+  background-color: white;
+  color: blue;
+}
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-twitter:hover{
+  background-color: white;
+  color: blue;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-google:hover{
+  background-color: white;
+  color:red;
+}
+
+.page-footer{
+  background-color: #c62828;
+}
+
+.footer-copyright{
+  border:none;
+  box-shadow: none;
+  background: linear-gradient(rgba(255,0,0,0),rgba(255,0,0,0));
+}
+
+/*----------------------------------Css related to footer ends here-----------------------------------------*/
+
+
+
+
+
+
+
+
