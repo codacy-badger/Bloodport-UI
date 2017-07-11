@@ -5,7 +5,7 @@ app.controller('signupController',function($scope,$http){
 
 		$http({
 			method:'POST',
-			url:'http://localhost:8000/register/signup',
+			url:'http://localhost:8080/register/signup',
 			data:{
 				user_name:$scope.user_name,
 				user_mobile_no:$scope.user_mobile_no,
@@ -31,7 +31,6 @@ app.controller('signupController',function($scope,$http){
 			console.log(true);
 			return true;
 		}
-
 		else
 		{
 			console.log(false);
@@ -39,4 +38,25 @@ app.controller('signupController',function($scope,$http){
 		}
 	}
 	
+});
+
+//loginController
+
+app.controller('loginController',function($scope,$http){
+	var loggedIn=false;
+	$scope.login =function(){
+		
+		$http({
+		method: 'POST',
+		url: 'http://localhost:8080/register/login_user',
+		data:{
+			user_email: $scope.user_email,
+			user_password: $scope.user_password
+		}
+		}).then(function(res){
+			loggedIn=true;
+			var toastContent = res.data;
+  			Materialize.toast(toastContent, 7000,'red darken-3');
+		});
+	}
 });

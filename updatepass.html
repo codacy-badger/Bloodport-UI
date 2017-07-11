@@ -1,0 +1,27 @@
+<form ng-controller="updatePasswordController" ng-submit="updatebtn()" novalidate>
+  <div class="offset-m3 col s12 m6 mycard">
+    <div class="card white ">
+      <div class="card-content grey-text">
+        <span class="card-title center" style="color: teal;">UPDATE PASSWORD</span>
+        <p class="center textline">Reset your password</p>
+        <div class="row">
+            <div class="input-field offset-m1 col m10 s12">
+              <input type="password" class="validate" placeholder="Enter your new password" ng-model="user_password" required>
+            </div>
+
+            <div class="input-field offset-m1 col m10 s12">
+              <input type="password" class="validate" placeholder="Re-Enter your new password" ng-model="user_confirm_password" required>
+            </div>
+
+            <div class="col s10 offset-s1 m10 offset-m1">
+              <p class="center" style="color: teal;"><b>{{response}}</b></p>
+            </div>
+      </div>
+    </div>
+          
+    <div class="card-action center">
+      <button class="btn waves-effect waves-light btn btn-large submit_btn" type="submit" name="action" style="background-color:#c62828;border:2px solid #c62828"><span style="font-weight:bolder;color:white">Reset your password</button>
+    </div>
+  </div>
+  </div>
+</form>

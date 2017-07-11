@@ -22,6 +22,8 @@
 
   <div class="container">
     <div class="row main_div">
+    <div class="topBorder"></div>
+    <div class="sideBorder"></div>
       <div class="col s12 m8 white">
         <div class="row icons">
           <div class="col s12 m4">
@@ -35,24 +37,14 @@
           </div>
         </div>
 
-      <form name="signupForm" ng-controller="signupController" ng-submit="callsignUp()">
+      <form name="signupForm" ng-controller="signupController" ng-submit="callsignUp()" novalidate>
         <div class="container container1" >
         <div class="row">
           <div class="col s12 m12">
             <div class="input-field valign-wrapper">
               <i class="material-icons prefix name" style="color: #c62828;" >account_circle</i>
               <input id="icon_prefix" type="text" class="validate name_ip" ng-model="user_name" required>
-              <label for="icon_prefix" style="color:#c62828;">Your Name</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col s12 m12">
-            <div class="input-field valign-wrapper">
-              <i class="material-icons prefix tel" style="color: #c62828;" >phone</i>
-              <input id="icon_telephone" type="tel" class="validate tel_ip" ng-model="user_mobile_no" required>
-              <label for="icon_telephone" style="color:#c62828;">Mobile</label>
+              <label for="icon_prefix" style="color:#c62828;">Name</label>
             </div>
           </div>
         </div>
@@ -62,7 +54,18 @@
             <div class="input-field valign-wrapper">
               <i class="material-icons prefix mail" style="color: #c62828;" >email</i>
               <input id="icon_email" type="email" class="validate mail_ip" ng-model="user_email" required>
-              <label for="icon_email" style="color: #c62828;">Your Email</label>
+              <label for="icon_email" style="color: #c62828;">Email</label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="input-field valign-wrapper">
+              <i class="material-icons prefix tel" style="color: #c62828;">phone</i>
+              <input id="icon_telephone" type="tel" class="validate tel_ip" ng-model="user_mobile_no" required>
+              <label for="icon_telephone" style="color:#c62828;">Mobile No</label>
             </div>
           </div>
         </div>
@@ -90,7 +93,7 @@
         <div class="row">
           <div class="col s12 m12">
             <!--<a type="submit" class="waves-effect waves-light btn submit_btn" value="submit">SIGN UP</a>-->
-           <button class="btn waves-effect waves-light btn submit_btn" type="submit" name="action" ng-disabled="signupForm.$invalid || cmprPass()" ng-click="signup">Signup</button>
+           <button class="btn waves-effect waves-light btn submit_btn" type="submit" name="action" ng-disabled="signupForm.$invalid || cmprPass()">Signup</button>
           </div>
         </div>
         </div>
@@ -98,6 +101,7 @@
       </div>
 
       <div class="col s12 m4 login_sec">
+      <form name="login_form" ng-controller="loginController" ng-submit="login()" novalidate>
           <div class="row center">
             <div class="col s12 offset-m4 m4 ">
               <h4 class="login white-text">LOGIN</h4>
@@ -108,7 +112,7 @@
             <div class="col offset-s1 s10 offset-m1 m10">
               <div class="input-field valign-wrapper">
                 <i class="material-icons prefix white-text">email</i>
-                <input id="icon_email" type="email" class="validate login_mail_ip" >
+                <input id="icon_email" type="email" class="validate login_mail_ip" ng-model="user_email" required>
                 <label for="icon_email" style="color: white;">Your Email</label>
               </div>
             </div>
@@ -118,7 +122,7 @@
             <div class="col offset-s1 s10 offset-m1 m10">
               <div class="input-field valign-wrapper">
                 <i class="material-icons prefix white-text">lock</i>
-                <input id="icon_password" type="password" class="validate login_pass_ip">
+                <input id="icon_password" type="password" class="validate login_pass_ip" ng-model="user_password" required>
                 <label for="icon_password" style="color: white;">Password</label>
               </div>
             </div>
@@ -137,16 +141,26 @@
             </div>
 
             <div class="col offset-s1 s10 m5">
-              <a class="waves-effect waves-light btn login_btn">LOGIN</a>
+              <button class="btn waves-effect waves-light btn login_btn" type="submit" name="action">LOGIN</button>
             </div>
           </div>
+          </form>
       </div>
     </div>
   </div>
   
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('select').material_select();
+    });
+    
+    function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+  </script>
+       
   <!--<script type="text/javascript">
     $('.name_ip').on('click',function(){
       $('.name').css('color','silver');

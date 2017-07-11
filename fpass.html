@@ -1,0 +1,24 @@
+<form  ng-submit="submitbtn()" novalidate>
+      <div class="offset-m3 col s12 m6 mycard">
+        <div class="card white ">
+          <div class="card-content grey-text">
+            <span class="card-title center" style="color: teal;">FORGOT PASSWORD</span>
+              <p class="center textline">Enter your email address and we will send you a link to reset your password.
+              </p>
+              <div class="row">
+                <div class="input-field offset-m1 col m10 s12">
+                  <input id="email" type="email" class="validate" placeholder="Enter your e-mail address" ng-model="user_email" required>
+                </div>
+
+                <div class="col s10 offset-s1 m10 offset-m1">
+                  <p class="center" style="color: teal;"><b>{{response}}</b></p>
+                </div>
+              </div>
+          </div>
+          
+          <div class="card-action center">
+          <button class="btn waves-effect waves-light btn btn-large submit_btn" type="submit" name="action" style="background-color:#c62828;border:2px solid #c62828"><span style="font-weight:bolder;color:white">Send Password reset e-mail</button>
+          </div>
+        </div>
+      </div>
+      </form>

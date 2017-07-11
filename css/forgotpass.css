@@ -22,3 +22,9 @@ body
 	padding-bottom: 2vw;
 
 }
+
+#toast-container {
+  top: 12% !important;
+  right: auto !important;
+  left:40%;
+}
