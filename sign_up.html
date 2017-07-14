@@ -16,14 +16,27 @@
 
 <body>
 
+   <div id="modal1" class="modal" ng-controller="OTPController">
+          <div class="modal-content">
+          <div class="col s12">
+            <h4>Verify OTP</h4>
+            <p>Enter verfy and then press "Verify"</p>
+          </div>
+            <div class="input-field col s6">
+              <input id="otp" type="text" ng-model="user_OTP">
+              <label for="OTP">Enter OTP</label>
+            </div>
+          </div>
+          <div class="modal-footer col m2 s12">
+              <button id="verify" class="btn waves-effect waves-light btn modal-close" type="" name="action" ng-click="verifyOTP()">Verify</button>
+          </div>
+      </div>
+
   <div class="col s12 m12">
     <h5 class="center align" style="color:#c62828; padding-top: 5vh">BLOODPORT</h>
   </div>
-
   <div class="container">
     <div class="row main_div">
-    <div class="topBorder"></div>
-    <div class="sideBorder"></div>
       <div class="col s12 m8 white">
         <div class="row icons">
           <div class="col s12 m4">
@@ -128,7 +141,7 @@
         <div class="row">
           <div class="col s12 m12">
             <!--<a type="submit" class="waves-effect waves-light btn submit_btn" value="submit">SIGN UP</a>-->
-           <button class="btn waves-effect waves-light btn submit_btn" type="submit" name="action" ng-disabled="signupForm.$invalid || cmprPass()">Signup</button>
+        <button id="signup_button" class="btn waves-effect waves-light btn submit_btn" type="submit" name="action" ng-disabled="signupForm.$invalid || cmprPass()">Signup</button>
           </div>
         </div>
         </div>
@@ -188,6 +201,18 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+
+      $('.modal').modal();
+     $('#signup_button').click(function(){
+        $('#modal1').show();
+        $('#modal1').css({
+          zIndex:4
+        });
+     })
+     $('#verify').click(function(){
+      $('#modal1').hide();
+     })
+  
     $('select').material_select();
     
     $('.datepicker').pickadate({
@@ -202,6 +227,7 @@
 
 
   </script>
+
        
   <!--<script type="text/javascript">
     $('.name_ip').on('click',function(){
