@@ -10,6 +10,8 @@
       <link rel="stylesheet" href="css/materialize-social.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
       <script src="js/app.js"></script>
 </head>
@@ -50,7 +52,7 @@
           </div>
         </div>
 
-      <form name="signupForm" ng-controller="signupController" ng-submit="callsignUp()" novalidate>
+      <form name="signupForm" ng-controller="signupController" novalidate ng-submit="callsignUp()">
         <div class="container container1" >
           <div class="row">
             <div class="col s12 m6">
@@ -82,8 +84,8 @@
         
           <div class="col s12 m6">
             <div class="input-field">
-              <i class="material-icons small prefix invert_colors" style="color: #c62828">invert_colors</i>
-              <select>
+              <i class="material-icons small prefix invert_colors blood_drop" style="color: #c62828">invert_colors</i>
+              <select ng-model="user_blood_grp">
                 <option value="" disabled selected>Blood Group</option>
                 <option value="A+">A+</option>
                 <option value="B+">B+</option>
@@ -101,16 +103,22 @@
         <div class="row">
           <div class="col s12 m6">
             <div class="input-field">
-            <i class="material-icons prefix today" style="color: #c62828">today<input type="date" name="date" class="datepicker"></i>
-            <input type="date" name="date" class="datepicker">
-            <label for="date of birth" style="color: #c62828">Date Of Birth</label>
+            <i class="material-icons prefix today" style="color: #c62828">today</i>
+            <input type="date" name="date"  id="date_check" class="form-control" ng-model="user_dob" onclick="check()">
+       <!--     <label for="date of birth" style="color: #c62828">Date Of Birth</label>-->
             </div>
           </div>
+          <script>
+            function check(){
+              var a = document.getElementById('date_check').value;
 
+              console.log(a);
+            }
+          </script>
           <div class="col s12 m6">
             <div class="input-field">
               <i class="material-icons prefix perm_identity" style="color: #c62828">perm_identity</i>
-              <select style="color: #c62828">
+              <select style="color: #c62828" ng-model="user_gender">
                 <option value="" disabled selected>Gender</option>
                 <option value="Male">Male</option>
                 <option value="female">Female</option>
@@ -141,7 +149,7 @@
         <div class="row">
           <div class="col s12 m12">
             <!--<a type="submit" class="waves-effect waves-light btn submit_btn" value="submit">SIGN UP</a>-->
-        <button id="signup_button" class="btn waves-effect waves-light btn submit_btn" type="submit" name="action" ng-disabled="signupForm.$invalid || cmprPass()">Signup</button>
+        <button id="signup_button" class="btn waves-effect waves-light btn submit_btn" type="submit" name="action" ng-disabled="signupForm.$invalid||cmprPass()||check_fields()">Signup</button>
           </div>
         </div>
         </div>
@@ -151,7 +159,7 @@
       <div class="col s12 m4 login_sec">
       <form name="login_form" ng-controller="loginController" ng-submit="login()" novalidate>
           <div class="row center">
-            <div class="col s12 offset-m4 m4 ">
+            <div class="col s12  offset-m4 m4 ">
               <h4 class="login white-text">LOGIN</h4>
             </div>
           </div>
@@ -188,7 +196,7 @@
               <a href="forgotPassword.html"><h6 class="white-text">Forgot Password?</h6></a>
             </div>
 
-            <div class="col offset-s1 s10 m5">
+            <div class="col offset-s4 s5 m5">
               <button class="btn waves-effect waves-light btn login_btn" type="submit" name="action">LOGIN</button>
             </div>
           </div>
@@ -197,18 +205,16 @@
     </div>
   </div>
   
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
 
       $('.modal').modal();
-     $('#signup_button').click(function(){
+       /*$('#signup_button').click(function(){
         $('#modal1').show();
         $('#modal1').css({
           zIndex:4
         });
-     })
+     })*/
      $('#verify').click(function(){
       $('#modal1').hide();
      })
@@ -217,7 +223,7 @@
     
     $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
+    selectYears: 30 // Creates a dropdown of 15 years to control year
   });
     });
     
@@ -229,7 +235,8 @@
   </script>
 
        
-  <!--<script type="text/javascript">
+  <script type="text/javascript">
+  /*
     $('.name_ip').on('click',function(){
       $('.name').css('color','silver');
       $('.name_ip').css('border-bottom','2px solid #ef5350');
@@ -262,6 +269,8 @@
     $('.login_pass_ip').on('click',function(){
       $('.login_pass_ip').css('border-bottom','2px solid white');
     })
-  </script>-->
+
+    */
+  </script>
 </body>
 </html>
