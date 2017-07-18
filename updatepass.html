@@ -1,4 +1,5 @@
-<form ng-controller="updatePasswordController" ng-submit="updatebtn()" novalidate>
+<link rel="stylesheet" type="text/css" href="css/forgotpass.css">
+<form  ng-submit="updatebtn()" novalidate>
   <div class="offset-m3 col s12 m6 mycard">
     <div class="card white ">
       <div class="card-content grey-text">
@@ -25,3 +26,13 @@
   </div>
   </div>
 </form>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('select').material_select();
+  });
+    function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+  </script>

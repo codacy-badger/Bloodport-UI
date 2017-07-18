@@ -1,0 +1,278 @@
+body,html
+{
+	padding:0px;
+	margin:0px;
+	 font-family: 'Dosis', sans-serif;
+
+}
+
+nav,header,footer 
+{
+    padding-left: 300px;
+
+}
+.side-nav
+{
+	background-color: #c62828;
+}
+
+.heading h3
+{
+	font-size: 23px;
+	margin-left:25%;
+	font-weight: bold;
+}
+
+.sidenav-items
+{
+	padding-top:2vh;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.side-nav li > a 
+{
+
+	color:white;
+
+}
+
+.side-nav li > a:hover {
+  background-color:#e0e0e0;
+  color: #c62828;
+  font-size: 16px;
+}
+
+select
+{
+	color:#c62828 !important;
+}
+.sidenav-item
+{
+	padding:8px;
+}
+
+.myNavbar
+{
+	background-color:white;
+}
+
+.mynav  a
+{
+	color:   #c62828;
+}
+.mynav .user_info
+{
+	color:  #c62828;
+	font-size: 22px;
+}
+.info_heading
+{
+	color:   #c62828;
+	font-size: 22px;
+}
+.user_profile_content,.blood_sure_section,.history_section
+{
+	height:100%;
+	background-color:#f8f9fa;
+}
+.myContainer
+{
+	padding-left: 300px;
+	padding-right: 20px;
+	padding-top: 20px;
+}
+.info
+{
+	border:1px solid #f5f5f5;
+	height: 70%;
+}
+.card img
+{
+	height:300px;
+}
+
+.total
+{
+	padding-top:20px;
+	font-size: 18px;
+}
+.payment
+{
+	padding-top:18px;
+}
+.payment_button
+{
+padding-bottom: 4.8vw;
+	
+}
+.upd_button
+{
+padding-bottom: 4.8vw;		
+}
+.user_info
+{
+	font-size: 24px;
+}
+
+
+
+footer
+{
+  background-color: #c62828;
+}
+
+.foot{
+  margin-top: 3vw;
+  margin-bottom: 6vw;
+  text-align: center;
+}
+
+.pgfoot{
+  background: url(img/back1.jpg);
+}
+
+.foota{
+  padding: 0.5vw;
+}
+
+.fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-facebook:hover{
+  background-color: white;
+  color: blue;
+}
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-twitter:hover{
+  background-color: white;
+  color: blue;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-google:hover{
+  background-color: white;
+  color:red;
+}
+
+.fa-pinterest {
+  background: #ef5350 ;
+  color: white;
+}
+
+.fa-pinterest:hover{
+  background-color: white;
+  color: red;
+}
+
+
+.page-footer{
+  background-color: #c62828;
+}
+
+.footer-copyright{
+  border:none;
+  box-shadow: none;
+  background: linear-gradient(rgba(255,0,0,0),rgba(255,0,0,0));
+}
+
+
+@media only screen and (max-width: 768px){
+nav,header, main, footer 
+{
+   padding-left: 0;
+}
+.myContainer
+{
+   padding-left: 0;
+   padding-right: 0px;
+      	
+}	
+.mynav .user_info
+{
+	color:  #B71C1C;
+	font-size: 18px;
+}
+.info_heading
+{
+	color:  #B71C1C;
+	font-size: 22px;
+}
+.total
+{
+	padding-top:15px;
+	font-size: 18px;
+}
+.payment
+{
+	padding-top:5px;
+}
+
+
+}
+
+.select-wrapper input.select-dropdown{
+  color: #c62828;
+}
+
+select:disabled {
+  color: #c62828
+}
+
+.select-wrapper input.select-dropdown:disabled {
+  color: #c62828;
+}
+
+.select-dropdown li.disabled,
+.select-dropdown li.disabled > span,
+.select-dropdown li.optgroup {
+  color: #c62828;
+}
+
+.select-dropdown li.optgroup.selected > span {
+  color: #c62828;
+}
+
+.select-dropdown li.optgroup > span {
+  color: #c62828;
+}
+
+.select-wrapper span.caret {
+  color: #c62828;
+}
+
+@media only screen and (max-width : 992px) {
+      
+      nav,header, main, footer 
+      {
+        padding-left: 0;
+      }
+      .myContainer
+      {
+      	padding-left: 0;
+      	padding-right: 0px;
+      	
+      }
+    }
+
+

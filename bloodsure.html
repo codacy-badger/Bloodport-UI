@@ -1,0 +1,216 @@
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+<!-- --------------------------My side Navbar------------------------------------------- -->
+    <div>
+     	<ul id="slide-out" class="side-nav fixed sidenav">
+      		<li class="heading"><h3 style="color:white">BLOODPORT</h3></li>
+      		<li ><div class="divider"></div></li>
+      		
+      		<div class="row">
+			    <div class="col s12 ">
+			        <div class="card" style="height:50px">
+			           <div class="input-field" style="padding:5px">
+					        <input id="search" type="search" required>
+					        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+					    </div>
+			        </div>
+			    </div>
+			</div>
+      		
+      		<div class="sidenav-items">
+      			<li class="sidenav-item bloodsure "><a ui-sref="bloodsure" class="waves-effect"><i class="small material-icons b-icon " style="color:white">dashboard</i>BLOODSURE</a></li>
+			    <li class="sidenav-item user"><a ui-sref="userprofile" class="waves-effect "><i class="small material-icons u-icon" style="color:white">perm_identity</i>USER PROFILE</a></li>
+			    <li class="sidenav-item history"><a ui-sref="history" class="waves-effect" href="#!"><i class="small material-icons h-icon " style="color:white">schedule</i>HISTORY</a> </li>
+			   	<li class="sidenav-item"><a ui-sref="hospital" class="waves-effect" href="#!"><i class="small material-icons m-icon" style="color:white">room</i>HOSPITAL</a> </li>
+			   	
+			   	<div class="divider hide-on-large-only"></div>
+				<div class="hide-on-large-only">
+			   		<li class="sidenav-item history"><a class="waves-effect" href="#!"><i class="small material-icons h-icon " style="color:#c62828">vpn_key</i>CHANGE PASSWORD</a> </li>
+			   		<li class="sidenav-item"><a class="waves-effect" href="#!"><i class="small material-icons m-icon" style="color:#c62828">call_received</i>LOGOUT</a> </li>
+			   	</div>
+      		</div>    			
+		</ul>
+	</div>
+
+
+	<!-- ---------------------------------------navbar--------------------------------------- -->
+	<div class="navbar-fixed">
+	  	<nav class="myNavbar">
+			<div class="nav-wrapper mynav">
+				<a href="#" data-activates="slide-out" class="right button-collapse"><i class="material-icons">menu</i></a>
+				<a href="#" class="brand-logo user_info">BloodSURE (Book/Pay/Receive)</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href=""></a></li>
+					<li><a href="">Change Password</a></li>
+					<li><a href="">Logout</a></li>
+				</ul>		        
+			</div>		    
+		</nav>			
+	</div>
+
+<div class="blood_sure_section">
+  		<div class="myContainer">
+  			<div class="row">
+  				<div class="col s12 m8">
+  					<div class=" col s12 card-panel white">
+		  				<h5 class="info_heading">Booking Details</h5>	
+		  				<div class="divider"></div>
+
+		  				<form class="col s12" novalidate>
+							<div class="row">
+							    <div class="input-field col s6">
+							        <input id="first_name" type="text" class="validate test" ng-model="data.patient_name">
+							        <label for="first_name" style="color: #c62828" required>Patient Name</label>
+							    </div>
+							    
+							    <div class="input-field col s6">
+									<select  ng-model="data.blood_grp" required>
+									<!--<option ng-repeat="value in select.choices">{{value}}</option>-->
+									
+										<option value="" disabled selected > Required Blood Group</option>
+										<option value="Whole HUman Blood IP">Whole HUman Blood IP</option>
+										<option value="Concentrated Human Red Blood Corpuscles IP (Packed Red Cells)">Concentrated Human Red Blood Corpuscles IP (Packed Red Cells)</option>
+										<option value="Platelet Concentrate BP">Platelet Concentrate BP</option>
+										<option value="Fresh Frozen Plasma">Fresh Frozen Plasma</option>
+										<option value="Plateletphersis">Plateletphersis</option>
+										<option value="Leucoreduced (Packed Red Cells)">Leucoreduced (Packed Red Cells)</option>
+										<option value="Cryoprecipitate">Cryoprecipitate</option>
+										<option value="Blood Group & Rh Typing (by automated system)">Blood Group & Rh Typing (by automated system)</option>
+										<option value="Therapeutic Phlebotomy">Therapeutic Phlebotomy</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+							    <div class="input-field col s6">
+							        <input id="first_name" type="text" class="validate test" ng-model="data.doctor_name">
+							        <label for="first_name" style="color: #c62828" required>Doctor Name</label>
+							    </div>
+							        	
+							    <div class="input-field col s6">
+									<select ng-model="data.hospital" required>
+										<option value="" disabled selected>Hospital</option>
+										<option value="a">a</option>
+										<option value=b>b</option>
+										<option value="c">c</option>
+										<option value="d">d</option>
+										<option value="e">e</option>
+										<option value="f">f</option>
+										<option value="g">g</option>
+										<option value="h">h</option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="input-field col s6">
+									<select ng-model="data.unit_of_blood" required>
+										<option value="" disabled selected>Units Of Blood</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div> 
+
+								<div class="input-field col s6">
+									<select ng-model="data.city" required>
+										<option value="" disabled selected>City</option>
+										<option value="a">a</option>
+										<option value="b">b</option>
+										<option value="c">c</option>
+										<option value="d">d</option>
+										<option value="e">e</option>
+										<option value="f">f</option>
+										<option value="g">g</option>
+										<option value="h">h</option>
+									</select>
+								</div> 
+							</div>
+							      	
+							<div class="payment">
+							    <h5 class="info_heading">Payment Details</h5>	
+				  				<div class="divider"></div>
+
+				  				<form class="col s12">
+									<div class="row">
+									    <div class="total">
+									      	<h8 >Total Cost</h8>
+									    </div>
+									      	
+										<div class="input-field col s12">
+										    <input disabled  id="disabled" type="text" class="validate">
+										    <label for="disabled"></label>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div class="payment_button center-align">
+								<button ng-click="mysubmit()" class="btn waves-effect waves-light pyt_button" style="background-color:#c62828" type="submit" name="action">PAYMENT</button>
+							</div>	 
+		  				</div>
+  					</div>
+
+  			<div class="col s12 m4">
+  				<div class="card medium">
+				    <div class="card-image">
+				        <img src="img/doc.png">
+				    </div>
+				            
+				    <div class="card-content">
+				        <p>Upload photo of Doctor's Prescription</p>
+				    </div>    
+				            
+				    <div class="card-action center">
+				        <button class="btn waves-effect waves-light upload_photo" style="background-color:#c62828" type="submit" name="action">UPLOAD PHOTO</button>
+				    </div>
+				</div>					
+			</div>				     
+  		</div>
+  		</form> 		
+  	</div>
+ </div>
+
+<!-- -------------------------------- Blood Sure Section end here------------------------------------------ -->
+
+
+   <!-- -------------------------------- footer starts here------------------------------------------------ -->
+
+   	<footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col m12 s12 foot">
+            <h5 class="center-align white-text">BLOOD PORT</h5>
+            <h6 class="center-align white-text">donate blood and save a life.donate blood and save a life.donate blood and save a life</h6>
+           <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-google"></a>
+          <a href="#" class="fa fa-pinterest"></a>
+          </div>
+        </div>
+      </div>
+
+      	<div class="footer-copyright center">
+            <div class="container center">
+	            <a class="white-text text-lighten-4  foota" href="#">HOME |</a>
+	            <a class="white-text text-lighten-4  foota" href="#info">OUR SERVICES |</a>
+	            <a class="white-text text-lighten-4  foota" href="#event"> UPCOMING EVENTS |</a>
+	            <a class="white-text text-lighten-4  foota" href="#photo">PHOTO GALLERY |</a>
+	            <a class="white-text text-lighten-4  foota" href="#!">SIGNIN/UP </a>
+            </div>
+        </div>
+    </footer>
+        <!-- -------------------------------- footer ends here------------------------------------------------ -->
+
+        <script type="text/javascript">
+			$('select').material_select();
+		</script>
+        <script type="text/javascript">
+      	$(document).ready(function(){
+      		$(".button-collapse").sideNav({
+      			menuWidth: 270
+      		});
+      	</script>
