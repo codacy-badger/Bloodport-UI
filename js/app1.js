@@ -124,6 +124,11 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 			{
 				Materialize.toast("User Email already exists,Please signup with a different I'd", 7000,'red darken-3');
 				$scope.user_email=null;
+				$scope.user_name=null;
+				$scope.user_mobile_no=null;
+				$scope.user_password=null;
+				$scope.user_confirm_password=null;
+				$scope.user_blood_grp.selected=null;
 				$scope.OTPsent=false;
 			}
 			else 
@@ -588,6 +593,32 @@ app.controller('userprofileController',function($scope,$http,$state){
 
 app.controller('historyController',function($scope,$http){
 	console.log("historyController called");
+
+	$http({
+			method: 'POST',
+			url: 'http://localhost:8080/dashboard/get_patient_data',
+			data: {
+				email: 'sakshi781996@gmail.com'
+			}
+		}).then(function(response){
+			console.log(response.data);
+			$scope.detail=response.data;
+		})
+		
+	$scope.get_history_patient=function(){
+		console.log("getting details of patient");
+
+		$http({
+			method: 'POST',
+			url: 'http://localhost:8080/dashboard/get_patient_data',
+			data: {
+				email: 'sakshi781996@gmail.com'
+			}
+		}).then(function(response){
+			console.log(response.data);
+			$scope.detail=response.data;
+		})
+	}
 })
 
 app.controller('hospitalController',function($scope,$http){
