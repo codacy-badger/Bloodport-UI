@@ -215,7 +215,11 @@ footer
 {
   color:#c62828;
 }
-
+.filter_chip
+{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 @media only screen and (max-width: 768px){
 nav,header, main, footer 
 {

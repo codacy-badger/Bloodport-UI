@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!-- -------------------------------------------------Navbar Starts Here---------------------------------------------------- -->
 
@@ -49,7 +50,7 @@
                   <p><a href="" class="typewrite light grey-text text-lighten-3" data-period="2000" data-type='["A life may depend on a gesture from you, a bottle of Blood.", "The best blood will at some time get into a fool or a mosquito.","To give blood you need neither extra strength nor extra food,and you will save a life."]'></a></p>
                 </div>
                 <div  class="emergency_btn">
-                  <a ui-sref="bloodsure" class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828"><span style="font-weight:bolder">EMERGENCY</span></a>
+                  <a ui-sref="bloodsure" class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828" ng-click="bloodsure()"><span style="font-weight:bolder">EMERGENCY</span></a>
                 </div>
           </div>
         </div> 
@@ -255,7 +256,7 @@
                     </div>
                       
                       <div class="button center">
-                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white"><span style="font-weight:bold">Search Donors</span></a>
+                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white" ng-click="findDonor()"><span style="font-weight:bold">Find Donors</span></a>
                       </div>
                       
                     </div>
@@ -276,7 +277,7 @@
                     </div>
                       
                       <div class="button center">
-                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white"><span style="font-weight:bold">Search Hospitals</span></a>
+                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white" ng-click="findHospitals()"><span style="font-weight:bold">Find Hospitals</span></a>
                       </div>
                       
                     </div>
@@ -301,7 +302,7 @@
                     </div>
                       
                       <div class="button center">
-                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white"><span style="font-weight:bold">Donate Blood</span></a>
+                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white" ng-click="donateBlood()"><span style="font-weight:bold">Donate Blood</span></a>
                       </div>
                       
                     </div>
@@ -321,7 +322,7 @@
                     </div>
                       
                       <div class="button center">
-                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white"><span style="font-weight:bold">Book Blood</span></a>
+                        <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid white" ng-click="bloodsure()"><span style="font-weight:bold">Book Blood</span></a>
                       </div>
                       
                     </div>
