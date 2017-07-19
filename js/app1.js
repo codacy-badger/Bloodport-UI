@@ -7,7 +7,8 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 	$stateProvider
 		.state('mainpage',{
 			url: '/mainpage',
-			templateUrl: 'mainPage.html'
+			templateUrl: 'mainPage.html',
+			controller:'mainpageController'
 		})
 		.state('signup',{
 			url:'/signup',
@@ -20,28 +21,38 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 			controller:'fpassController'
 		})
 
-		.state('bloodsure',{
+		.state('dashboard',{
+			url:'/dashboard',
+			templateUrl:'dashboard.html',
+			controller:''
+		})
+		.state('dashboard.bloodsure',{
 			url: '/bloodsure',
 			templateUrl: 'bloodsure.html',
 			controller: 'bloodsure_controller'
 		})
 
-		.state('userprofile',{
+		.state('dashboard.userprofile',{
 			url: '/userprofile',
 			templateUrl: 'userprofile.html',
 			controller: 'userprofileController'
 		})
 
-		.state('history',{
+		.state('dashboard.history',{
 			url: '/history',
 			templateUrl: 'history.html',
 			controller: 'historyController'
 		})
 
-		.state('hospital',{
+		.state('dashboard.hospital',{
 			url: '/s',
 			templateUrl: 'hospital.html',
 			controller: 'hospitalController'
+		})
+		.state('dashboard.donor',{
+			url:'/search',
+			templateUrl:'donor.html',
+			controller:''
 		})
 		/*.state('updatepassword',{
 			url: '/updatepassword',
@@ -62,7 +73,11 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 		}
 	}
 });*/
-
+app.controller('mainpageController',function($state,$scope){
+	$scope.go_dash=function(){
+		$state.go_dash('dashboard.bloodsure');
+	}
+})
 
 app.controller('signupController',function($scope,$http,$rootScope,$state){
 	console.log("signupController called");
@@ -488,6 +503,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 	$scope.mysubmit=function(){
 	/* code for payment gateway*/
 		$scope.data.calculatedcost=$scope.cost_calculation();
+		console.log($scope.data.calculatedcost);
 		$http({
 		method: 'POST',
 		url: 'http://localhost:8080/dashboard/submit_patient_detail',

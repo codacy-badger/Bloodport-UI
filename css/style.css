@@ -6,11 +6,7 @@ body,html
 
 }
 
-nav,header,footer 
-{
-    padding-left: 300px;
 
-}
 .side-nav
 {
 	background-color: #c62828;
@@ -56,6 +52,7 @@ select
 .myNavbar
 {
 	background-color:white;
+  padding-left: 300px;
 }
 
 .mynav  a
@@ -121,6 +118,9 @@ padding-bottom: 4.8vw;
 footer
 {
   background-color: #c62828;
+}
+.dashboard_footer{
+  padding-left: 300px;
 }
 
 .foot{
@@ -196,7 +196,25 @@ footer
   box-shadow: none;
   background: linear-gradient(rgba(255,0,0,0),rgba(255,0,0,0));
 }
+.card_head
+{
+  background-color: #c62828;
+  padding-top: 30%;
+}
+.card_head h3
+{
+  color: white;
+}
 
+.card_head_donate
+{
+  background-color: white;
+  padding-top: 30%;
+}
+.card_head_donate h3
+{
+  color:#c62828;
+}
 
 @media only screen and (max-width: 768px){
 nav,header, main, footer 
@@ -275,5 +293,4 @@ select:disabled {
       	
       }
     }
-
 
