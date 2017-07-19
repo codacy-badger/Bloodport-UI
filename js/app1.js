@@ -191,6 +191,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 			if(res.data=="true")
 			{
 				loggedIn=true;
+				$scope.logged_email=$scope.user_login_email
 				$state.go('mainpage');
 			}
 			else
@@ -254,13 +255,239 @@ app.controller('fpassController',function($scope,$http,$state){
 	}
 });*/
 
-app.controller('bloodsure_controller',function($scope,$http){
+app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 	$scope.data={};
 
+	$scope.check_fields=function(){
+		var check_field1=true;
+		if(($scope.data.blood_grp==null)||($scope.data.hospital==null)||($scope.data.unit_of_blood==null)||($scope.data.city==null)){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	console.log("bloodsure_controller called");
+
+	$scope.cost_calculation=function(){
+			var unit=$scope.data.unit_of_blood;
+			var bloodgrp=$scope.data.blood_grp;
+
+			if(bloodgrp=="Whole HUman Blood IP")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=5000;
+					return 5000;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=7500;
+					return 7500;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=10000;
+					return 10000;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=12500;
+					return 12500;
+				}
+			}
+			else if (bloodgrp=="Concentrated Human Red Blood Corpuscles IP (Packed Red Cells)")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=5000;
+					return 5000;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=7500;
+					return 7500;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=10000;
+					return 10000;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=12500;
+					return 12500;
+				}
+			}
+			else if(bloodgrp=="Platelet Concentrate BP")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=2200;
+					return 2200;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=3300;
+					return 3300;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=4400;
+					return 4400;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=5500;
+					return 5500;
+				}
+			}
+			else if (bloodgrp=="Fresh Frozen Plasma")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=2500;
+					return 2500;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=3750;
+					return 3750;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=5000;
+					return 5000;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=6250;
+					return 6250;
+				}
+			}
+			else if(bloodgrp=="Plateletphersis")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=22100;
+					return 22100;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=33150;
+					return 33150;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=44200;
+					return 44200;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=55250;
+					return 55250;
+				}
+			}
+			else if(bloodgrp=="Leucoreduced (Packed Red Cells)")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=5300;
+					return 5300;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=7950;
+					return 7950;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=10600;
+					return 10600;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=13250;
+					return 13250;
+				}	
+			}
+			else if(bloodgrp=="Cryoprecipitate")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=2400;
+					return 2400;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=3600;
+					return 3600;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=4800;
+					return 4800;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=6000;
+					return 6000;
+				}	
+			}
+			else if(bloodgrp=="Blood Group & Rh Typing (by automated system)"){
+				if(unit==2)
+				{
+					$scope.data.cost=200;
+					return 200;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=300;
+					return 300;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=400;
+					return 400;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=500;
+					return 500;
+				}	
+			}
+			else if(bloodgrp=="Therapeutic Phlebotomy")
+			{
+				if(unit==2)
+				{
+					$scope.data.cost=1000;
+					return 1000;
+				}
+				else if(unit==3)
+				{
+					$scope.data.cost=1500;
+					return 1500;
+				}
+				else if(unit==4)
+				{
+					$scope.data.cost=2000;
+					return 2000;
+				}
+				else if(unit==5)
+				{
+					$scope.data.cost=2500;
+					return 2500;
+				}
+			}
+		}
+
+		
+
 	$scope.mysubmit=function(){
 	/* code for payment gateway*/
-	
+		$scope.data.calculatedcost=$scope.cost_calculation();
 		$http({
 		method: 'POST',
 		url: 'http://localhost:8080/dashboard/submit_patient_detail',
@@ -271,12 +498,24 @@ app.controller('bloodsure_controller',function($scope,$http){
 			hospital: $scope.data.hospital,
 			unit_of_blood: $scope.data.unit_of_blood,
 			city: $scope.data.city,
-			//cost: $scope.cost
+			cost: $scope.data.calculatedcost,
+			email: 'sakshi781996@gmail.com'
 		}
 	}).then(function(response){
-		
 		console.log(response.data);
-		alert("done");
+		if(response.data=="Your request has been successfully saved!!!"){
+			Materialize.toast(response.data,7000,'red darken-3');	
+			$scope.data.patient_name=null;
+			 $scope.data.blood_grp=null;
+			 $scope.data.doctor_name=null;
+			 hospital: $scope.data.hospital=null;
+			 $scope.data.unit_of_blood=null;
+			 $scope.data.city=null;
+			 $scope.data.cost=null;
+		}
+		else{
+			Materialize.toast("Some error has occured. Please try again!!!",7000,'red darken-3');
+		}
 	});
 	}
 });
@@ -314,6 +553,9 @@ app.controller('userprofileController',function($scope,$http,$state){
 		}).then(function(response){
 			console.log("user updated");
 			console.log(response.data);
+
+			Materialize.toast(response.data,7000,'red darken-3');
+
 			$http({
 				method: 'POST',
 				url: 'http://localhost:8080/register/get_details',

@@ -94,8 +94,20 @@
 		  				<div class="divider"></div>
 
 		  				<form class="col s12" novalidate>
-							<div class="row">
 
+		  					<div class="row">
+		  						<div class="col s5 m3">
+		  							<h5 style="padding-top: 0.5vw;color: #c62828">BLOOD ID:</h5>
+		  						</div>
+
+		  						<div class="col s3 m3">
+		  							<input type="text" name="bloodid" disabled style="color: #c62828" ng-value="show_data.blood_id">
+		  						</div>
+		  					</div>
+
+
+
+							<div class="row">
 							    <div class="input-field col m6 s6">
 							        <input  id="user_name" type="text" class="validate" ng-model="user_name" required ng-value="show_data.user_name" style="color: #c62828">
 							        
@@ -122,7 +134,7 @@
 							    </div>
 							        	
 							    <div class="input-field col s6">
-							        <input id="user_mobile_no" type="tel" class="validate" required ng-model="user_mobile_no" ng-value="show_data.user_mobile_no" style="color: #c62828">
+							        <input id="user_mobile_no" type="tel" class="validate" disabled ng-value="show_data.user_mobile_no" style="color: #c62828">
 							        
 							    </div>
 							</div>
@@ -177,7 +189,7 @@
         </div>
     </footer>
         <!-- -------------------------------- footer ends here------------------------------------------------ -->
-
+        <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript">
 			$('select').material_select();
 		</script>
@@ -186,4 +198,5 @@
       		$(".button-collapse").sideNav({
       			menuWidth: 270
       		});
+      	});
       	</script>

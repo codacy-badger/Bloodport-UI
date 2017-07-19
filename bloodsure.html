@@ -57,15 +57,15 @@
 		  				<h5 class="info_heading">Booking Details</h5>	
 		  				<div class="divider"></div>
 
-		  				<form class="col s12" novalidate>
-							<div class="row">
+		  				<form class="col s12" name="booking_details_form" novalidate ng-submit="mysubmit()">
+		  					<div class="row">
 							    <div class="input-field col s6">
-							        <input id="first_name" type="text" class="validate test" ng-model="data.patient_name">
-							        <label for="first_name" style="color: #c62828" required>Patient Name</label>
+							        <input id="first_name" type="text" class="validate test" ng-model="data.patient_name" required>
+							        <label for="first_name" style="color: #c62828">Patient Name</label>
 							    </div>
 							    
 							    <div class="input-field col s6">
-									<select  ng-model="data.blood_grp" required>
+									<select  ng-model="data.blood_grp">
 									<!--<option ng-repeat="value in select.choices">{{value}}</option>-->
 									
 										<option value="" disabled selected > Required Blood Group</option>
@@ -84,12 +84,12 @@
 
 							<div class="row">
 							    <div class="input-field col s6">
-							        <input id="first_name" type="text" class="validate test" ng-model="data.doctor_name">
-							        <label for="first_name" style="color: #c62828" required>Doctor Name</label>
+							        <input id="first_name" type="text" class="validate test" ng-model="data.doctor_name"  required>
+							        <label for="first_name" style="color: #c62828">Doctor Name</label>
 							    </div>
 							        	
 							    <div class="input-field col s6">
-									<select ng-model="data.hospital" required>
+									<select ng-model="data.hospital">
 										<option value="" disabled selected>Hospital</option>
 										<option value="a">a</option>
 										<option value=b>b</option>
@@ -103,10 +103,9 @@
 								</div>
 							</div>
 
-
 							<div class="row">
 								<div class="input-field col s6">
-									<select ng-model="data.unit_of_blood" required>
+									<select ng-model="data.unit_of_blood" ng-change="cost_calculation()">
 										<option value="" disabled selected>Units Of Blood</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -116,7 +115,7 @@
 								</div> 
 
 								<div class="input-field col s6">
-									<select ng-model="data.city" required>
+									<select ng-model="data.city">
 										<option value="" disabled selected>City</option>
 										<option value="a">a</option>
 										<option value="b">b</option>
@@ -129,29 +128,33 @@
 									</select>
 								</div> 
 							</div>
-							      	
+
 							<div class="payment">
 							    <h5 class="info_heading">Payment Details</h5>	
 				  				<div class="divider"></div>
-
-				  				<form class="col s12">
-									<div class="row">
-									    <div class="total">
-									      	<h8 >Total Cost</h8>
-									    </div>
-									      	
-										<div class="input-field col s12">
-										    <input disabled  id="disabled" type="text" class="validate">
-										    <label for="disabled"></label>
-										</div>
-									</div>
-								</form>
 							</div>
 
-							<div class="payment_button center-align">
-								<button ng-click="mysubmit()" class="btn waves-effect waves-light pyt_button" style="background-color:#c62828" type="submit" name="action">PAYMENT</button>
-							</div>	 
+							<div class="row">
+								<div class="col s4 m2">
+									<p style="color: #c62828; font-size: 18px; padding-top: 1vw;">AMOUNT:</p>
+								</div>
+
+								<div class="input-field col s5 m5">
+									
+									<input type="text" name="cost" disabled ng-value="data.cost">
+								</div>
+							</div>
+
+							<div class="container">
+							<div class="row">
+								<div class="payment_button center-align">
+									<button class="btn waves-effect waves-light pyt_button" style="background-color:#c62828" type="submit" name="action" ng-disabled="booking_details_form.$invalid|| check_fields()">PAYMENT</button>
+								</div>
+							</div>
+							</div>
+		  				</form>								 
 		  				</div>
+
   					</div>
 
   			<div class="col s12 m4">
@@ -204,7 +207,7 @@
         </div>
     </footer>
         <!-- -------------------------------- footer ends here------------------------------------------------ -->
-
+        <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript">
 			$('select').material_select();
 		</script>
@@ -213,4 +216,5 @@
       		$(".button-collapse").sideNav({
       			menuWidth: 270
       		});
+      	});
       	</script>
