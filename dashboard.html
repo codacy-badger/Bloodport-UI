@@ -27,8 +27,10 @@
 			    <li class="sidenav-item history"><a ui-sref="dashboard.history" class="waves-effect" href="#!"><i class="small material-icons h-icon " style="color:white">schedule</i>HISTORY</a> </li>
 			   	<div class="divider hide-on-large-only"></div>
 				<div class="hide-on-large-only">
-			   		<li class="sidenav-item history"><a class="waves-effect" href="#!"><i class="small material-icons h-icon " style="color:#c62828">vpn_key</i>CHANGE PASSWORD</a> </li>
-			   		<li class="sidenav-item"><a class="waves-effect" href="#!"><i class="small material-icons m-icon" style="color:#c62828" ng-click="logout()">call_received</i>LOGOUT</a> </li>
+				<!-- addded by sakshi on 20/7/17 -->
+			   		<li class="sidenav-item center" style="color: white">{{logged_email}}</li>
+			   		<li class="sidenav-item center" style="color: white"><a class="waves-effect" href="#!" ng-click="logout()">LOGOUT</a> </li>
+			   		<!-- add ended -->
 			   	</div>
       		</div>    			
 		</ul>
@@ -42,8 +44,9 @@
 				<a href="#" data-activates="slide-out" class="right button-collapse"><i class="material-icons">menu</i></a>
 				<a href="#" class="brand-logo user_info">BloodSURE (Book/Pay/Receive)</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href=""></a></li>
-					<li><a href="">Change Password</a></li>
+					<!-- addded by sakshi on 20/7/17 -->
+					<li style="color: #c62828;">{{logged_email}}</li>
+					<!-- add ended -->
 					<li><a href="" ng-click="logout()">Logout</a></li>
 				</ul>		        
 			</div>		    

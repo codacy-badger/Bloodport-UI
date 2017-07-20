@@ -228,6 +228,14 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 							}
 						}).then(function(response){
 							Materialize.toast(response.data, 7000,'red darken-3');
+							/* added by sakshi on 20/7/17*/
+							$scope.user_email=null;
+							$scope.user_name=null;
+							$scope.user_mobile_no=null;
+							$scope.user_password=null;
+							$scope.user_confirm_password=null;
+							$scope.user_blood_grp.selected=null;
+							$scope.OTPsent=false;
 						})
 					
 				}
@@ -256,7 +264,9 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 			if(res.data=="true")
 			{
 				$rootScope.loggedIn=true;
-				$rootScope.logged_email=$scope.user_login_email
+				/* addded by sakshi on 20/7/17 */
+				$rootScope.logged_email=$scope.user_login_email;
+				/*add ended */
 				$state.go('dashboard.bloodsure');
 			}
 			else
@@ -267,6 +277,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 		});
 	}
 });
+
 
 
 
@@ -572,7 +583,9 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 			unit_of_blood: $scope.data.unit_of_blood,
 			city: $scope.data.city,
 			cost: $scope.data.calculatedcost,
-			email: 'sakshi781996@gmail.com'
+			/* addded by sakshi on 20/7/17 */
+			email: $rootScope.logged_email
+			/* add ended */
 		}
 	}).then(function(response){
 		console.log(response.data);
@@ -592,8 +605,9 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 	});
 	}
 });
-
-app.controller('userprofileController',function($scope,$http,$state){
+/* addded by sakshi on 20/7/17 */
+app.controller('userprofileController',function($scope,$http,$state,$rootScope){
+	/* add ended */
 	console.log("userprofileController controller");
 
 	console.log("getting details");
@@ -602,7 +616,9 @@ app.controller('userprofileController',function($scope,$http,$state){
 		method: 'POST',
 		url: 'http://localhost:8080/register/get_details',
 		data:{
-			user_email: 'sakshi781996@gmail.com'
+			/* addded by sakshi on 20/7/17 */
+			user_email: $rootScope.logged_email
+			/* add ended */
 		}
 	}).then(function(response){
 		$scope.show_data=response.data;
@@ -611,7 +627,9 @@ app.controller('userprofileController',function($scope,$http,$state){
 	console.log("updating details");
 
 	$scope.update_profile=function(){
-		$scope.user_email='sakshi781996@gmail.com'
+		/* addded by sakshi on 20/7/17 */
+		$scope.user_email=$rootScope.logged_email
+		/* add ended */
 		$http({
 			method: 'POST',
 			url: 'http://localhost:8080/register/update_details',
@@ -633,7 +651,9 @@ app.controller('userprofileController',function($scope,$http,$state){
 				method: 'POST',
 				url: 'http://localhost:8080/register/get_details',
 				data:{
-					user_email: 'sakshi781996@gmail.com'
+					/* addded by sakshi on 20/7/17 */
+					user_email: $rootScope.logged_email
+					/* add ended */
 				}
 			}).then(function(response){
 				$scope.show_data=response.data;
@@ -642,15 +662,18 @@ app.controller('userprofileController',function($scope,$http,$state){
 	}
 })
 
-
-app.controller('historyController',function($scope,$http){
+/* addded by sakshi on 20/7/17 */
+app.controller('historyController',function($scope,$http,$rootScope){
+	/* add ended */
 	console.log("historyController called");
 
 	$http({
 			method: 'POST',
 			url: 'http://localhost:8080/dashboard/get_patient_data',
 			data: {
-				email: 'sakshi781996@gmail.com'
+				/* addded by sakshi on 20/7/17 */
+				email: $rootScope.logged_email
+				/* add ended */
 			}
 		}).then(function(response){
 			console.log(response.data);
@@ -664,7 +687,9 @@ app.controller('historyController',function($scope,$http){
 			method: 'POST',
 			url: 'http://localhost:8080/dashboard/get_patient_data',
 			data: {
-				email: 'sakshi781996@gmail.com'
+				/* addded by sakshi on 20/7/17 */
+				email: $rootScope.logged_email
+				/* add ended */
 			}
 		}).then(function(response){
 			console.log(response.data);

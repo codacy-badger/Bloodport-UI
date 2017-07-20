@@ -220,6 +220,17 @@ footer
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.hospital_container{
+  padding-left: -500px;
+  padding-right: 0px;
+}
+
+.fields{
+  padding-top: 5vw;
+  padding-bottom: 1vw;
+}
+
 @media only screen and (max-width: 768px){
 nav,header, main, footer 
 {
@@ -297,4 +308,10 @@ select:disabled {
       	
       }
     }
+
+/*adding csss of map*/
+
+.map{
+  height: 300px;
+}
 
