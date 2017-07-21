@@ -64,11 +64,7 @@ select
 	color:  #c62828;
 	font-size: 22px;
 }
-.info_heading
-{
-	color:   #c62828;
-	font-size: 22px;
-}
+
 .user_profile_content,.blood_sure_section,.history_section
 {
 	height:100%;
@@ -309,9 +305,19 @@ select:disabled {
       }
     }
 
-/*adding csss of map*/
+/* added by me*/
+/*adding css of map*/
 
 .map{
   height: 300px;
+}
+
+.info_heading
+{
+  color:   #c62828;
+  font-size: 22px;
+  /* added by me*/
+  padding-left: 50px;
+  /* add ended*/
 }
 

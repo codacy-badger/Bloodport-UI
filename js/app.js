@@ -699,5 +699,25 @@ app.controller('historyController',function($scope,$http,$rootScope){
 })
 
 app.controller('hospitalController',function($scope,$http){
+	$scope.data={};
 	console.log("hospitalController called");
+	console.log($scope.data.loc);
+
+	$scope.test=function(){
+		alert('yse');
+	}
+
+	$http({
+		method: 'POST',
+		url:'https://maps.googleapis.com/maps/api/place/textsearch/json?query=bloodbank+in_delhi&key=AIzaSyBwKhfl1sq3UXada0CHZ08-Cd7DernOcRI',
+		headers:{
+			'Access-Control-Allow-Origin' : '*',
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		}
+		
+	}).then(function(response){
+		console.log(response.data);
+	})
 })
