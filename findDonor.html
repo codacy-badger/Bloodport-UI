@@ -5,29 +5,75 @@
   					<div class=" col s12 card-panel white">
 		  				<h5 class="info_heading">Donors Details</h5>	
 		  				<div class="divider"></div>
-						<div class="filter_chip">
-							<button class="chip" onclick="alert('i am cicked')">
-							 
-							    Sort by Location
-							 </button>
+						<div class="row">
+							<div class="col s12 m6 filter_chip" >
 
-							 <a ng-click=""><div class="chip">
-							 
-							    Sort by Blood Type
-							 </div></a>
+								<a href="" ng-click="click=4;style4=styles;style1=null;style2=null;style3=null;findAll()" class="chip" ng-style="style4">All Donors</a>
+								<a href="" ng-click="click=3;style3=styles;style1=null;style2=null;style4=null;searchByStatus()" class="chip" ng-style="style3">Sort by Availability</a>
+								<a href="" ng-click="click=1 ;style1=styles; style2=null;style3=null;style4=null" ng-style="style1" class="chip">Sort by Blood Type</a>
+								<a href="" ng-click="click=2;style2=styles; style1=null;style3=null;style4=null" ng-style="style2" class="chip">Sort by Location</a>
+								
+							</div>
+							
+							<div class="col s12 m6">
+								<div class="input-field inline" ng-show="click==1">
+								      <select ng-model="donor_bloodgrp">
+									      <option value="" disabled selected>Select Blood Group</option>
+									      <option value="A+"> A+</option>
+									      <option value="B+">B+</option>
+									      <option value="AB+">AB+</option>
+									      <option value="O+">O+</option>
+									      <option value="A-">A-</option>
+									      <option value="B-">B-</option>
+									      <option value="AB-">AB-</option>
+									      <option value="O-">O-</option>
+									   </select>
+								<a class="waves-effect waves-light btn select_button" ng-click="searchByBloodgrp()" >Find Donor</a>
+						    	</div>
 
-							 <a ng-click=""><div class="chip">
-							 
-							    Sort by Location
-							 </div></a>
+						    	<div class="input-field inline" ng-show="click==2">
 
-							 <a ng-click=""><div class="chip">
-							 
-							    Sort by Location
-							 </div></a>
-						</div>	 
+						    		<select ng-model="donor_location">
+									      <option value="" disabled selected>Select Location</option>
+									      <option value="DELHI">DELHI</option>
+									      <option value="GURUGRAM">GURUGRAM</option>
+									      <option value="NOIDA">NOIDA</option>
+									      <option value="GRAETER KAILASH">GREATER KAILASH</option>
+									</select>
+								<a class="waves-effect waves-light btn select_button" ng-click="searchByLocation()" >Find Donor</a>
+						    	</div> 
+						    	<div ng-show="click==3">
+						    		
+						    	</div>
+							</div>	
+					    </div>	
+		  			<div class="donor-table">
+		  				<table class="striped responsive-table centered">
+					        <thead>
+					          <tr>
+					              <th style="font-size:20px">Donor Name</th>
+					              <th  style="font-size:20px">Donor Bloodgroup</th>
+					              <th  style="font-size:20px">Donor Status</th>
+					              <th  style="font-size:20px">Donor Location</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr ng-repeat="donor in details">
+					            <td>{{donor.donor_name}}</td>
+					            <td>{{donor.donor_bloodgrp}}</td>
+					            <td>{{donor.donor_status}}</td>
+					            <td>{{donor.donor_location}}</td>
+					          </tr>
+					     
+					        </tbody>
+					      </table>
+		  			</div>
 		  			</div>
   				</div>				     
   			</div> 		
   		</div>
  </div>
+<script type="text/javascript">
+	$('select').material_select();
+</script>

@@ -1,11 +1,11 @@
-
-<div class="findDonor_section">
+<script type="text/javascript" src="script.js"></script>
+<div class="hospital_section">
   	<div class="myContainer">
   		<div class="row">
   			<div class="col s12 m12">
   				<div class=" col s12 card-panel white">
   					<div class="col s12 m12">
-  						<div class="input-field valign-wrapper">
+  						<div class="input-field align-wrapper">
   							<i class="material-icons prefix search" style="color: #c62828">search</i>
   							<p class="info_heading">Hospitals Search</p>
   						</div>
@@ -13,11 +13,56 @@
 		  				
 		  			<div class="divider">
 		  			</div>
+
+		  			<div class="row">
+							<div class="col s12 m8 filter_chip" >
+								<a href="" ng-click="click=1;style1=styles;style2=null;style3=null;style4=null;style5=null;" class="chip" ng-style="style1">All Hospitals</a>
+								<a href="" ng-click="click=2;style2=styles;style1=null;style3=null;style4=null;style5=null" class="chip" ng-style="style2">Sort by Location</a>
+								<a href="" ng-click="click=3;style3=styles; style2=null;style1=null;style4=null;style5=null" ng-style="style3" class="chip">Sort by Name</a>
+								<!--<a href="" ng-click="click=4;style4=styles;style3=null; style2=null;style1=null;style5=null" ng-style="style4" class="chip">Sort by Camp Organizer</a>
+								<a href="" ng-click="click=5;style5=styles;style4=null;style3=null; style2=null;style1=null;" ng-style="style5" class="chip">Sort by Blood Banks</a>-->
+								<!--<a href="" ng-click="click=2;style2=styles; style1=null;style3=null;style4=null" ng-style="style2" class="chip">Sort by Location</a>-->
+								
+							</div>
+							
+							<div class="col s12 m4">
+								<div ng-show="click==1"></div>
+						    	<div class="input-field inline" ng-show="click==2">
+
+						    		<select ng-model="hospitalLocation">
+									      <option value="" disabled selected>Select Location</option>
+									      <option value="DELHI">DELHI</option>
+									      <option value="GURUGRAM">GURUGRAM</option>
+									      <option value="NOIDA">NOIDA</option>
+									      <option value="GRAETER KAILASH">GREATER KAILASH</option>
+									</select>
+								<a class="waves-effect waves-light btn select_button" ng-click="searchHospitalbyLocation()" >Find Camp</a>
+						    	</div>
+
+
+						    	<div class="input-field inline" ng-show="click==3">
+
+						    		<select ng-model="hospitalName">
+									      <option value="" disabled selected>Select Hospital Name</option>
+									      <option value="DELHI">DELHI</option>
+									      <option value="GURUGRAM">GURUGRAM</option>
+									      <option value="NOIDA">NOIDA</option>
+									      <option value="GRAETER KAILASH">GREATER KAILASH</option>
+									</select>
+								<a class="waves-effect waves-light btn select_button" ng-click="searchByName()" >Find</a>
+						    	</div>
+
+						   
+						    	<!--<div ng-show="click==3">
+						    		
+						    	</div>-->
+							</div>	
+					    </div>
 					
 					<!--<button class="chip" ng-click="check()">Sort by Location</button>
 					<button class="chip" ng-click="check()">Sort by Name</button>-->
 							 
-					<div class="filter_chip">
+					<!--<div class="filter_chip">
 						<div class="col s12 m4">
 							<div class="input-field valign-wrapper">
 								<i class="material-icons prefix add_location tooltipped" style="color: #c62828" data-position="bottom" data-delay="50" data-tooltip="Location">add_location</i>
@@ -43,10 +88,10 @@
 								</select>
 							</div>
 						</div>
-					</div>
+					</div>-->
 
-					<div class="col s12 card white map">
-		  				wdmlwdueidbfoggogihkrfhrfrfyrufrufhrfhurfh
+					<div class="col s12 card white" id="map">
+		  				
 		  			</div>	
 
 		  			<div class="col s12 m12 card">
@@ -79,7 +124,7 @@
   		</div> 	
  	</div>
 </div>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtW-bB1YLRRaJdbKuXeQUk3Z_kBrItZvY&callback=initMap"></script>
 <script type="text/javascript">
 	$('.chips').material_chip();
 	$('select').material_select();

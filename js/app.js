@@ -45,20 +45,25 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 		})
 
 		.state('dashboard.hospital',{
-			url: '/s',
+			url: '/findHospitals',
 			templateUrl: 'hospital.html',
 			controller: 'hospitalController'
 		})
 		.state('dashboard.donor',{
 			url:'/search',
 			templateUrl:'donor.html',
-			controller:''
+			controller:'donorController'
 		})
-		.state('dashboard.donor.findDonor',{
-		url:'/donorfind',
+		.state('dashboard.findDonor',{
+		url:'/findDonor',
 			templateUrl:'findDonor.html',
 			controller:'findDonorController'
 
+		})
+		.state('dashboard.beDonor',{
+			url:'/findcamps',
+			templateUrl:'beDonor.html',
+			controller:'beDonorController'
 		})
 		/*.state('updatepassword',{
 			url: '/updatepassword',
@@ -79,11 +84,12 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 		}
 	}
 });*/
+
 app.controller('mainpageController',function($state,$scope,$rootScope){
 	$scope.findDonor=function(){
 		if($rootScope.loggedIn==true)
 		{
-			$state.go('dashboard.donor.findDonor');
+			$state.go('dashboard.findDonor');
 		}
 		else
 		{
@@ -104,7 +110,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope){
 	$scope.donateBlood=function(){
 		if($rootScope.loggedIn==true)
 		{
-			$state.go('dashboard.donor.findDonor');//to be corrected
+			$state.go('dashboard.beDonor');
 		}
 		else
 		{
@@ -115,12 +121,16 @@ app.controller('mainpageController',function($state,$scope,$rootScope){
 	$scope.bloodsure=function(){
 		if($rootScope.loggedIn==true)
 		{
-			$state.go('dashboard.bloodsure');//to be corrected
+			$state.go('dashboard.bloodsure');
 		}
 		else
 		{
 			$state.go('signup')
 		}
+	}
+
+	$scope.clk=function(){
+		$state.go(dashboard.bloodsure);
 	}
 })
 
@@ -228,7 +238,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 							}
 						}).then(function(response){
 							Materialize.toast(response.data, 7000,'red darken-3');
-							/* added by sakshi on 20/7/17*/
+							/*Edit by sakshi*/
 							$scope.user_email=null;
 							$scope.user_name=null;
 							$scope.user_mobile_no=null;
@@ -236,6 +246,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 							$scope.user_confirm_password=null;
 							$scope.user_blood_grp.selected=null;
 							$scope.OTPsent=false;
+							/*-----------------*/
 						})
 					
 				}
@@ -277,7 +288,6 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 		});
 	}
 });
-
 
 
 
@@ -340,7 +350,7 @@ app.controller('dashboardController',function($scope,$rootScope,$state){
 
 app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 	$scope.data={};
-
+	$rootScope.dahsboardtitle="BloodSURE (Book/Pay/Recieve)"
 	$scope.check_fields=function(){
 		var check_field1=true;
 		if(($scope.data.blood_grp==null)||($scope.data.hospital==null)||($scope.data.unit_of_blood==null)||($scope.data.city==null)){
@@ -600,16 +610,17 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 			 $scope.data.cost=null;
 		}
 		else{
-			Materialize.toast("Some error has occured. Please try again!!!",7000,'red darken-3');
+			Materialize.toast("Some error has occured. Please try again!!!",4000,'red darken-3');
 		}
 	});
 	}
 });
+
 /* addded by sakshi on 20/7/17 */
 app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 	/* add ended */
 	console.log("userprofileController controller");
-
+	$rootScope.dahsboardtitle="User Profile"
 	console.log("getting details");
 
 	$http({
@@ -662,10 +673,214 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 	}
 })
 
-/* addded by sakshi on 20/7/17 */
+app.controller('donorController',function($rootScope,$scope,$state){
+	console.log("donorController called");
+	$rootScope.dahsboardtitle="Find Donor/Be a Donor"
+})
+
+app.controller('findDonorController',function($scope,$rootScope,$state,$http){
+	console.log("find donor controller called");
+	$rootScope.dahsboardtitle="Find Donor";
+	$rootScope.donor_status="Available";
+	$scope.styles={'background-color' : '#c62828','color':'white'};
+	$scope.style4=$scope.styles;
+	console.log($scope.style4);
+	$http({
+		method:'GET',
+		url:'http://localhost:8080/donor/allDonors',
+
+	}).then((res)=>{
+		$scope.details=res.data;
+	})
+	$scope.findAll=function(){
+		$http({
+		method:'GET',
+		url:'http://localhost:8080/donor/allDonors',
+
+		}).then((res)=>{
+			$scope.details=res.data;
+		})
+	}
+	$scope.searchByLocation=function(){
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/donor/sortByLocation',
+			data:{
+				donor_location:$scope.donor_location,
+				donor_status:$rootScope.donor_status
+			}
+		}).then((res)=>{
+			if(res.data)
+			{
+				$scope.details=res.data;
+				console.log("res is"+res.data);
+			}
+			if(res.data=="")
+			{
+				Materialize.toast("There is no Donor at "+$scope.donor_location+"", 4000,'red darken-3');
+			}
+			
+		})
+	}
+
+	$scope.searchByBloodgrp=function(){
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/donor/sortByBloodgrp',
+			data:{
+				donor_bloodgrp:$scope.donor_bloodgrp,
+				donor_status:$rootScope.donor_status
+			}
+		}).then((res)=>{
+			if(res)
+			{
+				console.log($scope.donor_bloodgrp);
+				$scope.details=res.data
+			}
+			if(res.data=="")
+			{
+				Materialize.toast("There is no Donor with Blood group "+$scope.donor_bloodgrp+"", 4000,'red darken-3');
+			}
+			
+		})
+	}
+
+	$scope.searchByStatus=function(){
+		
+		console.log($scope.donor_status);
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/donor/sortByStatus',
+			data:{
+				donor_status:$rootScope.donor_status
+			}
+		}).then((res)=>{
+			if(res)
+			{
+				$scope.details=res.data
+			}
+			if(res.data="")
+			{
+				Materialize.toast("There is no available Donor", 3000,'red darken-3');
+			}
+		})
+	}
+})
+
+app.controller('beDonorController',function($scope,$rootScope,$state,$http){
+	$rootScope.dahsboardtitle="Be a Donor";
+	$scope.styles={'background-color' : '#c62828','color':'white'};
+	$scope.style1=$scope.styles;
+	$http({
+		method:'GET',
+		url:'http://localhost:8080/camps/allCamps',
+	}).then((res)=>{
+		console.log(res.data);
+		$scope.details=res.data
+	})
+	$scope.allCamps=function(){
+		$http({
+		method:'GET',
+		url:'http://localhost:8080/camps/allCamps',
+		}).then((res)=>{
+			console.log(res.data);
+			$scope.details=res.data
+		})
+	}
+	$scope.searchCampbyLocation=function(){
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/camps/campbyLocation',
+			data:{
+				camplocation:$scope.camplocation
+			}
+		}).then((res)=>{
+			if(res.data)
+			{
+				$scope.details=res.data
+			}
+			if(res.data=="")
+			{
+				Materialize.toast("No camp Available at "+$scope.camplocation+"", 3000,'red darken-3');
+			}
+			
+		})
+	}
+
+		$scope.searchByDate=function(){
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/camps/campByDate',
+			data:{
+				dateOfDonation:$scope.dateOfDonation
+			}
+		}).then((res)=>{
+			if(res.data)
+			{
+				console.log($scope.dateOfDonation);
+				$scope.details=res.data
+			}
+			if(res.data=="")
+			{
+				Materialize.toast("No camp Available on "+$scope.dateOfDonation+"", 3000,'red darken-3');
+			}
+			
+		})
+	}
+
+
+	$scope.searchCampbyOrganizer=function(){
+		console.log("Camp Oragnization");
+		console.log($scope.camporganizer);
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/camps/campByOrganizer',
+			data:{
+				campOrganizer:$scope.camporganizer
+			}
+		}).then((res)=>{
+			console.log($scope.camporganizer);
+			if(res.data)
+			{
+				$scope.details=res.data
+			}
+			if(res.data=="")
+			{
+				Materialize.toast("No camp Available by "+$scope.camporganizer+"", 3000,'red darken-3');
+			}
+			
+		})
+	}
+
+	$scope.searchCampbyBloodBank=function(){
+		console.log("Blood Bank search");
+		console.log($scope.bloodBank);
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/camps/campByBloodBank',
+			data:{
+				bloodBank:$scope.bloodBank
+			}
+		}).then((res)=>{
+			console.log($scope.bloodBank);
+			if(res.data)
+			{
+				$scope.details=res.data
+			}
+			if(res.data=="")
+			{
+				Materialize.toast("No camp Available by "+$scope.bloodBank+"", 3000,'red darken-3');
+			}
+			
+		})
+	}
+})
+
+
 app.controller('historyController',function($scope,$http,$rootScope){
 	/* add ended */
 	console.log("historyController called");
+	$rootScope.dahsboardtitle="Find Hospital"
 
 	$http({
 			method: 'POST',
@@ -698,26 +913,19 @@ app.controller('historyController',function($scope,$http,$rootScope){
 	}
 })
 
-app.controller('hospitalController',function($scope,$http){
-	$scope.data={};
+app.controller('hospitalController',function($scope,$http,$rootScope){
 	console.log("hospitalController called");
-	console.log($scope.data.loc);
-
-	$scope.test=function(){
-		alert('yse');
-	}
-
-	$http({
-		method: 'POST',
-		url:'https://maps.googleapis.com/maps/api/place/textsearch/json?query=bloodbank+in_delhi&key=AIzaSyBwKhfl1sq3UXada0CHZ08-Cd7DernOcRI',
-		headers:{
-			'Access-Control-Allow-Origin' : '*',
-				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		}
-		
-	}).then(function(response){
-		console.log(response.data);
-	})
+	$rootScope.dahsboardtitle="Find Hospital";
+	$scope.styles={'background-color' : '#c62828','color':'white'};
+	$scope.style1=$scope.styles;
+	/*$scope.map;
+	function initMap(){
+		$scope.map=google.maps.Map(document.getElementById('map'),{
+			center:{
+				lat: -34.397,
+				lng: 150.644
+			},
+			zoom:8
+		});
+	}*/
 })

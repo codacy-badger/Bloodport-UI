@@ -26,7 +26,7 @@ body{
   color: white;  
   font-size: 2vw;
   font-weight: bold;
-  margin-top: 0.5vw;
+ 
 }
 .nav-wrapper
 {
@@ -178,6 +178,7 @@ video {
 }
 
 
+
 /*----------------------------------Css related to Landing page ends here-----------------------------------------*/
 
 
@@ -299,7 +300,7 @@ video {
 
 .video_text{
   color: #c62828;
-  padding-top:5%;
+  padding-top:4%;
 }
 
 .video_text i{
@@ -325,7 +326,6 @@ video {
 
 .donation_process{
   height: 100%;
-  padding-bottom: 4%;
 }
 
 .donation_process .card
@@ -702,3 +702,207 @@ footer
 
 
 
+
+
+
+
+/*.page-footer{
+  background-color: #c62828;
+}
+
+.footer-copyright{
+  border:none;
+  box-shadow: none;
+  background: linear-gradient(rgba(255,0,0,0),rgba(255,0,0,0));
+}
+
+
+
+@media only screen and (min-width:320px) and (max-width:640px){
+    .overlay2
+    {
+        display: none;
+    }
+
+}
+@media (max-width: 360px){
+     .social-section ul
+    {
+        padding-right: 30px !important;
+        padding-left: 30px !important;
+    }
+    .social-section .fbIcon,.social-section .twitterIcon,.social-section .youtubeIcon,.social-section .linkedinIcon
+    {
+        font-size:30px !important;
+    }
+    .social-section button
+    {
+        background-color: transparent;
+        box-shadow: none;
+        width: 5px !important;
+        padding-left: 0px !important;
+    }
+
+
+    
+}
+
+
+@media (max-width:480px ){
+    .logo
+    {
+        padding-left: 10px !important;
+
+        padding-bottom: 20px;
+    }
+    iframe
+    {
+        width:250px;
+    }
+    .social-section .fbIcon,.social-section .twitterIcon,.social-section .youtubeIcon,.social-section .linkedinIcon
+    {
+        font-size:30px !important;
+    }
+    .social-section button
+    {
+        background-color: transparent;
+        box-shadow: none;
+        width: 5px !important;
+        padding-left: 10px !important;
+    }
+     .social-section ul
+    {
+        padding-right: 30px !important;
+        padding-left: 30px !important;
+    }
+}
+
+
+  @media(max-width: 580px){
+
+    .logo
+    {
+        padding-left: 0px !important;
+
+        padding-bottom: 20px;
+    }
+
+      .social-section ul
+    {
+        padding-right: 30px !important;
+        padding-left: 70px !important;
+    }
+  }  
+
+
+.title
+{
+    
+    font-size: 25px;
+
+}
+.social-section
+{
+    text-align: center;
+    
+}
+
+.social-section button
+{
+    background-color: transparent;
+    box-shadow: none;
+    width: 20px !important;
+    padding-left: 50px;
+}
+.social-section button:hover
+{
+    box-shadow: none;
+    background-color: none !important;
+}
+
+
+.social-section .fbIcon
+{
+    font-size: 40px;
+}
+.social-section .fbIcon:hover
+{
+    color:#3b5998;
+}
+
+.social-section .twitterIcon
+{
+    font-size: 40px;
+}
+.social-section .twitterIcon:hover
+{
+    color:#55acee;
+}
+
+.social-section .youtubeIcon
+{
+    font-size: 40px;
+}
+.social-section .youtubeIcon:hover
+{
+    color:#bb0000;
+}
+
+.social-section .linkedinIcon
+{
+    font-size: 40px;
+}
+
+.social-section .linkedinIcon:hover
+{
+    color:#007bb5;
+}
+
+footer.page-footer .social-section
+{
+    text-align: left;
+}
+
+.footer_section
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+} 
+.footer_section ul
+{
+    text-align: center;
+}
+.footer_section ul a:hover
+{
+    text-decoration: none;
+    color:rgb(251, 118, 27);
+}
+
+.foot_link a:hover
+{
+    text-decoration: none;
+    color:rgb(251, 118, 27);
+    background-color: none;
+}
+
+.logo img
+{
+    width:60%;
+    height:100%;
+}
+.logo
+{
+    padding-left: 25%;
+
+    padding-bottom: 10px;
+}
+.logoImg
+{
+    text-decoration: none;
+}
+.map
+{
+    padding-bottom: 20px;
+}
+*/

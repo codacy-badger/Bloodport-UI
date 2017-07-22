@@ -4,7 +4,7 @@
 
    <nav class="nav1">
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo heading1"><span><img src="img/bport_logo.png" height="30" width="30"></span>BLOODPORT</a>
+      <a ui-sref="mainpage" class="brand-logo heading1">BLOODPORT</a>
       <a href="#!" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down main_menu">
         <li><a ui-sref="dashboard.bloodsure" class="smoothScroll">HOME</a></li>
@@ -12,6 +12,7 @@
         <li><a href="#event" class="smoothScroll">UPCOMING EVENTS</a></li>
         <li><a href="#photo" class="smoothScroll">PHOTO GALLERY</a></li>
         <li><a ui-sref="signup">SIGN-UP/SIGN-IN</a></li>
+        <a ui-sref="" class="waves-effect waves-light btn" style="background-color:#c62828;" ng-click="">Be an Organizer</a>
       </ul>
       
     </div>
@@ -29,16 +30,16 @@
 
   
 
-  <!-- -----------------------------------------------Landing Page Starts Here--------------------------------------------- -->
+ <!-- -----------------------------------------------Landing Page Starts Here--------------------------------------------- -->
 
   <div class="vsec" id="home">
   <video playsinline autoplay muted loop>
       <source src="video/donation.mp4" type="video/mp4">
     </video> 
 
-    <div carousel class="carousel carousel-slider myslider" data-indicators="true">
+    <div class="carousel carousel-slider myslider" data-indicators="true">
     <div class="carousel-fixed-item center">
-      <a href="#request" class="smoothScroll"><i  class=" material-icons medium scroll">keyboard_arrow_down</i></a>
+      <a href="#request" class="smoothScroll" ><i  class=" material-icons medium scroll">keyboard_arrow_down</i></a>
     </div>
 
     <div class="carousel-item white-text  img1" href="#one!">
@@ -50,7 +51,7 @@
                   <p><a href="" class="typewrite light grey-text text-lighten-3" data-period="2000" data-type='["A life may depend on a gesture from you, a bottle of Blood.", "The best blood will at some time get into a fool or a mosquito.","To give blood you need neither extra strength nor extra food,and you will save a life."]'></a></p>
                 </div>
                 <div  class="emergency_btn">
-                  <a ui-sref="bloodsure" class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828" ng-click="bloodsure()"><span style="font-weight:bolder">EMERGENCY</span></a>
+                  <a class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828"><span style="font-weight:bolder">EMERGENCY</span></a>
                 </div>
           </div>
         </div> 
@@ -98,7 +99,6 @@
 
 
 
-
   <!-- -----------------------------------------------Request Section Starts Here--------------------------------------------- -->
 
   <div class="row request" id="request">
@@ -124,16 +124,16 @@
   <!-- -----------------------------------------------Request section ends Here--------------------------------------------- -->
 
   <!-- --------------------------------------------Donation process section starts Here--------------------------------------- -->
-   <div class="donation_process">  
+    <div class="donation_process">  
       <div class="row">
         <div class="col m12 s12 bloodgrp">
-          <p class="center-align heading" ><i class="material-icons">clear_all</i><span>DONATION PROCESS</span><i class="material-icons">clear_all</i></p>
+          <p class="center-align heading" ><i class="material-icons">clear_all</i><span style="font-size:40px">DONATION PROCESS</span><i class="material-icons">clear_all</i></p>
           <h5 class="center-align grey-text text-darken-1">Increase the awareness among people about various issues</h5>
         </div>
       </div>
 
       <div class="row">
-        <div class="col s12 m3 mycard1">
+        <div class="col s12 m3">
           <div class="card">
             <div class="card-image">
               <img src="img/regis.jpg">
@@ -148,7 +148,7 @@
           </div>
         </div>
 
-        <div class="col s12 m3 mycard2">
+        <div class="col s12 m3">
           <div class="card">
             <div class="card-image">
               <img src="img/screening.jpg" style="height: 213px">
@@ -163,7 +163,7 @@
           </div>
         </div>
 
-        <div class="col s12 m3 mycard3">
+        <div class="col s12 m3">
           <div class="card">
             <div class="card-image">
               <img src="img/donate.jpg" style="height: 213px">
@@ -178,7 +178,7 @@
           </div>
         </div>
 
-        <div class="col s12 m3 mycard4">
+        <div class="col s12 m3">
           <div class="card">
             <div class="card-image">
               <img src="img/refresh.jpg" style="height: 213px">
@@ -195,10 +195,8 @@
       </div>
 
     </div>
-  <!-- --------------------------------------------donation process section ends Here--------------------------------------- -->   
-
-
-
+  <!-- --------------------------------------------donation process section ends Here------------------------------------
+  
 
 <!-- --------------------------------------------Play the video section Starts Here--------------------------------------- -->
     <div class="video_sec">
@@ -633,12 +631,11 @@
 
       <div class="footer-copyright center">
             <div class="container">
-            <span class="hide-on-med-and-down">© 2014 Copyright Text</span>
-            <a class="white-text text-lighten-4 foot_next"  href="#">HOME</a>
-            <a class="white-text text-lighten-4 foot_next"  href="#info">INFO</a>
-            <a class="white-text text-lighten-4 foot_next"  href="#event">EVENTS</a>
-            <a class="white-text text-lighten-4 foot_next"  href="#photo">PHOTOS</a>
-            <a class="white-text text-lighten-4 foota" href="#!">SIGNIN/UP</a>
+            <span class="hide-on-med-and-down">Copyright © 2017 BloodPORT.in </span>
+            <a class="white-text text-lighten-4 foot_next"  href="#" style="font-size:15px">Privacy Policy</a>
+            <a class="white-text text-lighten-4 foot_next"  href="#info" style="font-size:15px">Terms and Conditions</a>
+            <a class="white-text text-lighten-4 foot_next"  href="#event" style="font-size:15px">Legal</a>
+            <a class="white-text text-lighten-4 foota" href=" " ui-sref="signup" style="font-size:15px">Sign-in/Signup</a>
            
       
            
@@ -647,9 +644,64 @@
           </div>
     </footer>
 
+
+
+
+     <!--Footer-->
+<!--<footer class="page-footer center-on-small-only" style="background-color#c62828">
+    <!--Footer Links-->
+    <!--<div >
+        <div class="container">
+            <div class="row" style="padding-top:50px;padding-bottom:10px">
+            
+                <div class="col s12 m4 map">
+                    
+                    
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.8090628723344!2d77.03681581453654!3d28.425017700194612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1875d7aa50e5%3A0x7e6930bbea28775f!2sInternational+Land+Developers!5e0!3m2!1sen!2sin!4v1499939966459" width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+    
+                </div>
+                
+                <div class="col s12 m4 " >
+                        <div class="row logo">
+                            <a href="" class="logoImg"><img src="img/bport_logo.png"></a>
+                        </div>
+                        <div class="row">
+                            <div class="social-section">
+                                <ul >
+                                    <button type="button" class="btn  btn-fb" style="padding-left: 10px;"><i class="fa fa-facebook fbIcon"></i></button>
+                                    <button type="button" class="btn  btn-tw" ><i class="fa fa-twitter twitterIcon"></i></button>
+                                    
+                                    <button type="button" class="btn btn-ins" ><i class="fa fa-youtube youtubeIcon"></i></button>
+                                    <button type="button" class="btn btn-linkedin"><i class="fa fa-linkedin linkedinIcon"></i></button>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+                <div class="col s12 m4">
+                   <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fshuttlescrap%2F&tabs=timeline&width=250&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=463464124027028" width="250" height="250" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-copyright center">
+            <div class="container">
+            <span class="hide-on-med-and-down">Copyright © 2017 BloodPORT.in </span>
+            <a class="white-text text-lighten-4 foot_next"  href="#" style="font-size:15px">Privacy Policy</a>
+            <a class="white-text text-lighten-4 foot_next"  href="#info" style="font-size:15px">Terms and Conditions</a>
+            <a class="white-text text-lighten-4 foot_next"  href="#event" style="font-size:15px">Legal</a>
+            <a class="white-text text-lighten-4 foota" href=" " ui-sref="signup" style="font-size:15px">Sign-in/Signup</a>
+           
+      
+           
+           
+            </div>
+          </div>
+</footer>-->
+
     <!--------------------------------------Footer ends Here-------------------------------------------- -->
 
-<script type="text/javascript" src="js/smoothscroll.js"></script>
+
 <script type="text/javascript">
     
     $(document).ready(function()
@@ -695,7 +747,6 @@
 
 
       /*--------------------Scripts related to carousel and side nav starts here-------------------*/
-
 
       $('.carousel.carousel-slider').carousel({fullWidth: true});
      
@@ -760,7 +811,7 @@
 
       /*---------------------------Script related to typewriting effect starts here-----------------*/
 
-      var TxtType = function(el, toRotate, period) 
+           var TxtType = function(el, toRotate, period) 
       {
         this.toRotate = toRotate;
         this.el = el;
@@ -819,7 +870,7 @@
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
         document.body.appendChild(css);
       };
-    });
+  
   /*---------------------------------------------------------Ends here-----------------------------------*/
   /*-------------------------Slider Jquery-------------------------------------------------------------*/
 
@@ -828,7 +879,7 @@
             indicators:false
           });
       });
-
+  });
   /*------------------------Script for relaoding to start of the page-----------------------------------*/
  
   
