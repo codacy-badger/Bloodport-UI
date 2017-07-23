@@ -707,6 +707,7 @@
     
     $(document).ready(function()
     {
+
       $(".button-collapse").sideNav();
     /*------------------------------Js for scrollreveal starts here-----------------------------------*/
       window.sr = ScrollReveal({ reset: true });
@@ -785,28 +786,38 @@
 
       /*------------------------Script related to Counter section starts here-----------------------*/
 
-      $('.counter').each(function() 
-      {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-      },
+      $(document).on("scroll", function () {
+        if ($(document).scrollTop()>2300) 
+        {
+            $('.counter').each(function() 
+            {
+              var $this = $(this),
+              countTo = $this.attr('data-count');
+              $({ countNum: $this.text()}).animate({
+              countNum: countTo
+            },
 
-      {
-        duration: 8000,
-        easing:'linear',
-        step: function() 
-        {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() 
-        {
-          $this.text(this.countNum);
-          //alert('finished');
-        }
-      });  
+            {
+              duration: 8000,
+              easing:'linear',
+              step: function() 
+              {
+              $this.text(Math.floor(this.countNum));
+              },
+              complete: function() 
+              {
+                $this.text(this.countNum);
+                //alert('finished');
+              }
+            });  
       });
+        } 
+        else 
+        {
+           //alert("you are at > 100");
+        }
+     });
+      
       /*--------------------------------------------Ends here--------------------------------------*/
 
 
