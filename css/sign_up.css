@@ -9,22 +9,12 @@ body{
   left:15%;
 }
 
-
 .container1{
 	width: 85%;
 }
 
-.topBorder
-{
-	position:absolute;
-	bottom: 50px;
-	right:50px; 
-	border-top:4px solid  blue;
-	border-left:4px solid  blue;
-}
-
 .icons{
-	margin-top: 2vw;
+	padding-top: 2vw;
 	padding-left: 2.2vw;
 	padding-right: 2.2vw;
 }
