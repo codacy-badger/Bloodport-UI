@@ -98,8 +98,10 @@
 	font-size: 18px;
 }
 
-
-
+.step1{
+	top: -23vw;
+	height: 22.5vw;
+}
 /*----------------------------------Css related to donation section ends here-----------------------------------------*/
 
 /*------------------------------------CSS realated to testimonials starts here------------------------------------------*/
@@ -284,7 +286,7 @@ iframe
 }
 
 .step1{
-	top: -51px;
+	top: -81px;
 	height:25vw;
 }
 

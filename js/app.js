@@ -1,4 +1,8 @@
-var app=angular.module('main_app',['ui.router']);
+var app=angular.module('main_app',['ui.router','angular-loading-bar']);
+
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+  }])
 
 app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 
@@ -128,13 +132,9 @@ app.controller('mainpageController',function($state,$scope,$rootScope){
 			$state.go('signup')
 		}
 	}
-
-	$scope.clk=function(){
-		$state.go(dashboard.bloodsure);
-	}
 })
 
-app.controller('signupController',function($scope,$http,$rootScope,$state){
+app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoadingBar){
 	console.log("signupController called");
 	$scope.check_fields=function(){
 		var check_select=true;
@@ -212,6 +212,9 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 							console.log("OTP is"+$rootScope.OTP);
 						});
 			}
+		}).finally(function(){
+			console.log("loading bar");
+			cfpLoadingBar.complete();
 		});
 
 	},
@@ -285,13 +288,15 @@ app.controller('signupController',function($scope,$http,$rootScope,$state){
 				Materialize.toast(res.data, 7000,'red darken-3');
 			}
 			
+		}).finally(function(){
+			cfpLoadingBar.complete();
 		});
 	}
 });
 
 
 
-app.controller('fpassController',function($scope,$http,$state){
+app.controller('fpassController',function($scope,$http,$state,cfpLoadingBar){
 	console.log("fpassController  called");
 	$scope.submitbtn=function(){
 		if($scope.user_email)
@@ -306,6 +311,8 @@ app.controller('fpassController',function($scope,$http,$state){
 				console.log("user found here.");
 				$scope.response= res.data;
 				$state.go('signup');
+			}).finally(function(){
+				cfpLoadingBar.complete();
 			});
 		}
 		else
