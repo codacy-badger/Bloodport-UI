@@ -16,7 +16,7 @@
 							    </div>
 							    
 							    <div class="input-field col s6">
-									<select  ng-model="data.blood_grp">
+									<select  ng-model="data.blood_grp" ng-change="cost_calculation()">
 									<!--<option ng-repeat="value in select.choices">{{value}}</option>-->
 									
 										<option value="" disabled selected > Required Blood Group</option>

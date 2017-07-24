@@ -161,10 +161,17 @@
 .detail .time{
   font-size: 2.5vw; 
 }
-
-
-
 /*----------------------------------CSS related to event section-----------------------------------------------------*/
+
+.about_text
+{
+	text-align: center;
+}
+
+iframe 
+{
+
+}
 }
 
 /*---------------------------------------------------------------------------------------------------------------------*/
@@ -319,7 +326,10 @@
 	font-size: 10px;
 	padding: 4px;
 }
-
+.about_text
+{
+	text-align: center;
+}
 /*----------------------------------Css related to footer section ends here-----------------------------------------*/
 }
 
@@ -395,40 +405,11 @@
 	font-size: 22px;
 }
 /*----------------------------------Css related to donation section ends here-----------------------------------------*/
+.about_text
+{
+	text-align: center;
 }
-
-/*----------------------------------Css related to footer section ends here-----------------------------------------*/
-.foot h5{
-	font-size: 15px;
 }
-
-.foot h6{
-	font-size: 10px;
-}
-
-.foota{
-	padding-left: 1vw;
-	font-size: 10px; 
-}
-
-.foot_next{
-	font-size: 10px;
-	padding-left: 4vw;
-}
-
-.fa{
-	width: 20px;
-	height: 20px;
-	font-size: 10px;
-	padding: 4px;
-}
-
-/*----------------------------------Css related to footer section ends here-----------------------------------------*/
-
-}
-
-
-
 
 
 

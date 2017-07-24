@@ -627,9 +627,37 @@ video {
 /*----------------------------------Css related to footer starts  here-----------------------------------------*/
 footer
 {
+  
   background-color: #c62828;
+  background: url('/img/foot.jpg') fixed no-repeat;
+  background-size: cover;
 }
 
+.footer_tint{
+  background: linear-gradient(rgba(0,0,0,0.32),rgba(0,0,0,0.32))
+}
+
+.container1{
+  width: 85%;
+  padding-top: 20px;
+}
+
+.about_company{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  font-size: 18px;
+}
+
+.head_links{
+  font-size: 32px;
+  color: white;
+}
+
+.links{
+  color: white;
+  font-size: 18px;
+}
 .foot{
   margin-top: 3vw;
   margin-bottom: 6vw;
@@ -644,55 +672,43 @@ footer
   padding: 0.5vw;
 }
 
-.fa{
-    padding: 10px;
-    font-size: 30px;
-    width: 40px;
-    text-align: center;
-    text-decoration: none;
-    height: 40px;
-    margin-top: 10px;
+.facebook{
+  background-color: transparent;
+  box-shadow: none
 }
 
-.fa-facebook {
-    background: #3B5998;
-    color: white;
+.facebook:hover{
+    box-shadow: none;
+    background-color: transparent;
+    color: #3b5998;
+}
+.google {
+  background: transparent;
+  box-shadow: none;
 }
 
-.fa-facebook:hover{
-  background-color: white;
-  color: blue;
-}
-.fa-twitter {
-    background: #55ACEE;
-    color: white;
+.google:hover{
+  background-color: transparent;
+  color:#dd4b39;
 }
 
-.fa-twitter:hover{
-  background-color: white;
-  color: blue;
+.linkedin{
+  background-color: transparent;
+  box-shadow: none
 }
-
-.fa-google {
-  background: #dd4b39;
-  color: white;
-}
-
-.fa-google:hover{
-  background-color: white;
-  color:red;
-}
-
-.page-footer{
-  background-color: #c62828;
-}
-
 .footer-copyright{
   border:none;
   box-shadow: none;
-  background: linear-gradient(rgba(255,0,0,0),rgba(255,0,0,0));
+  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
+  height: 5vw;
+  padding-top: 0.5vw;
 }
-
+.myfooter ul a
+{
+  padding:6px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
 /*----------------------------------Css related to footer ends here-----------------------------------------*/
 
 
