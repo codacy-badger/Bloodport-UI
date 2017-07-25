@@ -89,7 +89,7 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 	}
 });*/
 
-app.controller('mainpageController',function($state,$scope,$rootScope){
+app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 	$scope.findDonor=function(){
 		if($rootScope.loggedIn==true)
 		{
@@ -132,6 +132,51 @@ app.controller('mainpageController',function($state,$scope,$rootScope){
 			$state.go('signup')
 		}
 	}
+
+	$scope.emergencyUser=function(){
+		$rootScope.emergency_user=true;
+		console.log("emergency_user caled");
+		$('#modal1').show();
+		$('#modal1').css({
+          	zIndex:4
+        });
+	}
+
+	$scope.check=function(){
+		if(($scope.modal_user_blood_grp==null)||($scope.modal_user_email==null))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	$scope.submit_details=function(){
+		console.log("submit details from modal called");
+		$http({
+			method: "POST",
+			url: 'http://localhost:8080/register/modal_submit',
+			data:{
+				user_mobile_no: $scope.modal_user_mobile_no,
+				user_email: $scope.modal_user_email,
+				user_blood_grp: $scope.modal_user_blood_grp
+			}
+		}).then(function(response){
+			$rootScope.logged_mobile_no=$scope.modal_user_mobile_no;
+			console.log(response.data);
+
+			if(response.data=="Details submitted")
+			{
+				$state.go('dashboard.bloodsure');
+			}
+			else
+			{
+				Materialize.toast('Some error has occured!!Please try again',7000,'red darken-3');
+			}
+		})
+	}
 })
 
 app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoadingBar){
@@ -171,13 +216,13 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 			method:'POST',
 			url:'http://localhost:8080/register/check',
 			data:{
-				user_email:$scope.user_email
+				user_mobile_no:$scope.user_mobile_no
 			}
 		}).then((res)=>{
 			console.log("res is "+res.data);
 			if(res.data=="true")
 			{
-				Materialize.toast("User Email already exists,Please signup with a different I'd", 7000,'red darken-3');
+				Materialize.toast("User already exists,Please signup with a different identity", 7000,'red darken-3');
 				$scope.user_email=null;
 				$scope.user_name=null;
 				$scope.user_mobile_no=null;
@@ -271,7 +316,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 			method: 'POST',
 			url: 'http://localhost:8080/register/login_user',
 			data:{
-				user_email: $scope.user_login_email,
+				user_mobile_no: $scope.user_login_mobile_no,
 				user_password: $scope.user_login_password
 				}
 		}).then(function(res){
@@ -279,7 +324,8 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 			{
 				$rootScope.loggedIn=true;
 				/* addded by sakshi on 20/7/17 */
-				$rootScope.logged_email=$scope.user_login_email;
+				$rootScope.logged_mobile_no=$scope.user_login_mobile_no;
+				console.log($rootScope.logged_mobile_no);
 				/*add ended */
 				$state.go('dashboard.bloodsure');
 			}
@@ -589,6 +635,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 	/* code for payment gateway*/
 		$scope.data.calculatedcost=$scope.cost_calculation();
 		console.log($scope.data.calculatedcost);
+		console.log($rootScope.logged_mobile_no);
 		$http({
 		method: 'POST',
 		url: 'http://localhost:8080/dashboard/submit_patient_detail',
@@ -601,7 +648,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 			city: $scope.data.city,
 			cost: $scope.data.calculatedcost,
 			/* addded by sakshi on 20/7/17 */
-			email: $rootScope.logged_email
+			mobile_no: $rootScope.logged_mobile_no
 			/* add ended */
 		}
 	}).then(function(response){
@@ -627,15 +674,41 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 	/* add ended */
 	console.log("userprofileController controller");
-	$rootScope.dahsboardtitle="User Profile"
-	console.log("getting details");
+	$rootScope.dahsboardtitle="User Profile";
+	console.log($rootScope.emergency_user);
+
+	$scope.check=function(){
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	if($rootScope.emergency_user)
+	{
+		console.log("it is an emergency_user");
+		$('#modal1').show();
+		$('#modal1').css({
+			zIndex: 16,
+
+		});
+
+	}
+	else
+	{
+		console.log("it is signed up user");
+		console.log("getting details");
 
 	$http({
 		method: 'POST',
 		url: 'http://localhost:8080/register/get_details',
 		data:{
 			/* addded by sakshi on 20/7/17 */
-			user_email: $rootScope.logged_email
+			user_mobile_no: $rootScope.logged_mobile_no
 			/* add ended */
 		}
 	}).then(function(response){
@@ -646,7 +719,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 
 	$scope.update_profile=function(){
 		/* addded by sakshi on 20/7/17 */
-		$scope.user_email=$rootScope.logged_email
+		$scope.user_mobile_no=$rootScope.logged_mobile_no
 		/* add ended */
 		$http({
 			method: 'POST',
@@ -670,7 +743,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 				url: 'http://localhost:8080/register/get_details',
 				data:{
 					/* addded by sakshi on 20/7/17 */
-					user_email: $rootScope.logged_email
+					user_mobile_no: $rootScope.logged_mobile_no
 					/* add ended */
 				}
 			}).then(function(response){
@@ -678,11 +751,71 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 			})
 		})
 	}
+	}
+
+	$scope.update_modal_details=function(){
+		console.log('update_modal_details caled');
+		$http({
+			method: 'POST',
+			url:'http://localhost:8080/register/update_modal_details',
+			data:{
+			user_name: $scope.user_modal_name,
+			user_dob: $scope.user_modal_dob,
+			user_gender: $scope.user_modal_gender,
+			user_password: $scope.user_modal_pass,
+			user_mobile_no: $rootScope.logged_mobile_no
+			}
+		}).then(function(response){
+			console.log("details added");
+			$rootScope.emergency_user=false;
+			Materialize.toast('details added',7000,'red-darken3');
+			$state.go('dashboard.bloodsure');	
+		})
+	}
 })
 
 app.controller('donorController',function($rootScope,$scope,$state){
 	console.log("donorController called");
 	$rootScope.dahsboardtitle="Find Donor/Be a Donor"
+	if($rootScope.emergency_user)
+	{
+		console.log("it is an emergency_user");
+		$('#modal1').show();
+		$('#modal1').css({
+			zIndex: 16,	
+		});
+	}
+
+	$scope.check=function(){
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	$scope.update_modal_details=function(){
+		console.log('update_modal_details caled');
+		$http({
+			method: 'POST',
+			url:'http://localhost:8080/register/update_modal_details',
+			data:{
+			user_name: $scope.user_modal_name,
+			user_dob: $scope.user_modal_dob,
+			user_gender: $scope.user_modal_gender,
+			user_password: $scope.user_modal_pass,
+			user_mobile_no: $rootScope.logged_mobile_no
+			}
+		}).then(function(response){
+			console.log("details added");
+			$rootScope.emergency_user=false;
+			Materialize.toast('details added',7000,'red-darken3');
+			$state.go('dashboard.bloodsure');	
+		})
+	}	
 })
 
 app.controller('findDonorController',function($scope,$rootScope,$state,$http){
@@ -884,17 +1017,56 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 })
 
 
-app.controller('historyController',function($scope,$http,$rootScope){
+app.controller('historyController',function($scope,$http,$rootScope,$state){
 	/* add ended */
 	console.log("historyController called");
 	$rootScope.dahsboardtitle="Find Hospital"
 
-	$http({
+	$scope.check=function(){
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	$scope.update_modal_details=function(){
+		console.log('update_modal_details caled');
+		$http({
+			method: 'POST',
+			url:'http://localhost:8080/register/update_modal_details',
+			data:{
+			user_name: $scope.user_modal_name,
+			user_dob: $scope.user_modal_dob,
+			user_gender: $scope.user_modal_gender,
+			user_password: $scope.user_modal_pass,
+			user_mobile_no: $rootScope.logged_mobile_no
+			}
+		}).then(function(response){
+			console.log("details added");
+			$rootScope.emergency_user=false;
+			Materialize.toast('details added',7000,'red-darken3');
+			$state.go('dashboard.bloodsure');	
+		})
+	}
+	if($rootScope.emergency_user)
+	{
+		console.log("it is an emergency_user");
+		$('#modal1').show();
+		$('#modal1').css({
+			zIndex: 16,
+		});
+	}
+	else{
+		$http({
 			method: 'POST',
 			url: 'http://localhost:8080/dashboard/get_patient_data',
 			data: {
 				/* addded by sakshi on 20/7/17 */
-				email: $rootScope.logged_email
+				mobile_no: $rootScope.logged_mobile_no
 				/* add ended */
 			}
 		}).then(function(response){
@@ -902,7 +1074,7 @@ app.controller('historyController',function($scope,$http,$rootScope){
 			$scope.detail=response.data;
 		})
 		
-	$scope.get_history_patient=function(){
+		$scope.get_history_patient=function(){
 		console.log("getting details of patient");
 
 		$http({
@@ -918,13 +1090,55 @@ app.controller('historyController',function($scope,$http,$rootScope){
 			$scope.detail=response.data;
 		})
 	}
+	}
 })
 
-app.controller('hospitalController',function($scope,$http,$rootScope){
+app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	console.log("hospitalController called");
 	$rootScope.dahsboardtitle="Find Hospital";
 	$scope.styles={'background-color' : '#c62828','color':'white'};
 	$scope.style1=$scope.styles;
+
+	$scope.check=function(){
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	$scope.update_modal_details=function(){
+		console.log('update_modal_details caled');
+		$http({
+			method: 'POST',
+			url:'http://localhost:8080/register/update_modal_details',
+			data:{
+			user_name: $scope.user_modal_name,
+			user_dob: $scope.user_modal_dob,
+			user_gender: $scope.user_modal_gender,
+			user_password: $scope.user_modal_pass,
+			user_mobile_no: $rootScope.logged_mobile_no
+			}
+		}).then(function(response){
+			console.log("details added");
+			$rootScope.emergency_user=false;
+			Materialize.toast('details added',7000,'red-darken3');
+			$state.go('dashboard.bloodsure');	
+		})
+	}
+	if($rootScope.emergency_user)
+	{
+		console.log("it is an emergency_user");
+		$('#modal1').show();
+		$('#modal1').css({
+			zIndex: 16,
+		});
+	}
+	else{
+	}
 	/*$scope.map;
 	function initMap(){
 		$scope.map=google.maps.Map(document.getElementById('map'),{

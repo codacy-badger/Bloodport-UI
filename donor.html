@@ -1,6 +1,42 @@
 
-<div class="user_profile_content">
-<div class=" myContainer">
+<div class="user_profile_content" >
+  <div id="modal1" class="modal userprofileModal" >
+        <div class="modal-content center">
+          <div class="col s12 m8">
+            <h5><span style="color:#c62828">Please Enter Details to access "Donor"</span></h5>
+           
+          </div>
+
+          <form name="update_form" novalidate ng-submit="update_modal_details()" class="userprofileForm">
+            <div class="input-field col s6">
+              <input id="user_name" type="text" ng-model="user_modal_name" required style="color: #c62828">
+              <label for="user_name" style="color: #c62828">Enter Name</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input type="date" name="user_dob" ng-model="user_modal_dob" required style="color: #c62828">
+            </div>
+
+            <div class="input-field col s6">  
+              <select ng-model="user_modal_gender">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">MALE</option>
+                <option value="female">FEMALE</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+
+            <div class="input-field col s6">
+              <input type="password" name="user_modal_pass" ng-model="user_modal_pass" required style="color: #c62828">
+              <label for="user_modal_pass" style="color: #c62828">Password</label>
+            </div>
+
+            <p ng-model="errorMsg"></p>
+
+            <button id="verify" class="btn waves-effect waves-light btn modal-close" type="" name="action" ng-disabled="check()||update_form.$invalid" style="background-color: #c62828; color: white">Submit</button>
+          </div>
+  </div>
+<div class=" myContainer" >
 	<div class="row">
         <a ui-sref="dashboard.findDonor"><div class="col s12 m6">
           <div class="card medium center  hoverable card_head">

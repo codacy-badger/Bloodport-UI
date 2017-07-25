@@ -38,6 +38,50 @@
       <source src="video/donation.mp4" type="video/mp4">
     </video> 
 
+    <div id="modal1" class="modal mainPagemodal">
+      <div class="modal-content center">
+        <div class="col s12 center">
+            <h4 style="color:#c62828">Enter Details</h4>
+            <p style="color:#bdbdbd">Enter details and then press "Submit"</p>
+        </div>
+      <form name="modalfrorm" novalidate ng-submit="submit_details()" class="mainPagemodal_form">
+          <div class="input-field col m12 s12">
+            <i class="material-icons prefix tel" style="color: #c62828">phone</i>
+            <input id="phone" type="tel" ng-model="modal_user_mobile_no" required style="color: #c62828">
+            <label for="phone" style="color: #c62828">Enter Mobile No.</label>
+          </div>
+
+          
+            <div class="input-field col s12 m12">
+              <i class="material-icons small prefix" style="color: #c62828">invert_colors</i>
+              <select ng-model="modal_user_blood_grp">
+                <option value="" disabled selected>Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="AB-">AB-</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+        
+          <div class="col s12 m12 input-field">
+            <i class="material-icons prefix mail" style="color: #c62828;">email</i>
+                <input id="icon_email" type="email" class="validate mail_ip" ng-model="modal_user_email" required style="color: #c62828">
+                <label for="icon_email" style="color: #c62828">Email</label>
+          </div>
+          
+          <p ng-model="errorMsg"></p>
+
+          <div class="modal-footer col m2 s12">
+            <button id="go" class="btn waves-effect waves-light btn modal-close" type="submit" name="action" ng-disabled="check()||modalfrorm.$invalid" style="background-color: #c62828; color: white">Submit</button>
+          </div>
+      </form>
+      </div>
+    </div>
+    
     <div class="row">
       <div class="offset-m1 col m10 offset-m1 content center-align">
                 <h6 class="welcome center-align">Welcome To BloodPORT</h6>
@@ -45,10 +89,8 @@
                   <p><a href="" class="typewrite light grey-text text-lighten-3" data-period="2000" data-type='["A life may depend on a gesture from you, a bottle of Blood.", "The best blood will at some time get into a fool or a mosquito.","To give blood you need neither extra strength nor extra food,and you will save a life."]'></a></p>
                 </div>
                 <div class="emergency_btn">
-                  <a  ng-click="bloodsure()" class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828"><span style="font-weight:bolder">EMERGENCY</span></a>
-                </div>
-
-               
+                  <a ng-click="emergencyUser()" class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828"><span style="font-weight:bolder">EMERGENCY</span></a>
+                </div>               
 
           </div>
     </div>
@@ -746,7 +788,7 @@
     
     $(document).ready(function()
     {
-
+      $('select').material_select();
       $(".button-collapse").sideNav();
     /*------------------------------Js for scrollreveal starts here-----------------------------------*/
       window.sr = ScrollReveal({ reset: true });
