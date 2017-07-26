@@ -1,4 +1,5 @@
 <script type="text/javascript" src="script.js"></script>
+
 <div class="hospital_section">
 		<div id="modal1" class="modal userprofileModal" >
         <div class="modal-content center">
@@ -55,6 +56,7 @@
 								<a href="" ng-click="click=1;style1=styles;style2=null;style3=null;style4=null;style5=null;" class="chip" ng-style="style1">All Hospitals</a>
 								<a href="" ng-click="click=2;style2=styles;style1=null;style3=null;style4=null;style5=null" class="chip" ng-style="style2">Sort by Location</a>
 								<a href="" ng-click="click=3;style3=styles; style2=null;style1=null;style4=null;style5=null" ng-style="style3" class="chip">Sort by Name</a>
+								
 								<!--<a href="" ng-click="click=4;style4=styles;style3=null; style2=null;style1=null;style5=null" ng-style="style4" class="chip">Sort by Camp Organizer</a>
 								<a href="" ng-click="click=5;style5=styles;style4=null;style3=null; style2=null;style1=null;" ng-style="style5" class="chip">Sort by Blood Banks</a>-->
 								<!--<a href="" ng-click="click=2;style2=styles; style1=null;style3=null;style4=null" ng-style="style2" class="chip">Sort by Location</a>-->
@@ -62,7 +64,10 @@
 							</div>
 							
 							<div class="col s12 m4">
-								<div ng-show="click==1"></div>
+								<div ng-show="click==1">
+									<button onclick="getData()">OK</button>
+									
+								</div>
 						    	<div class="input-field inline" ng-show="click==2">
 
 						    		<select ng-model="hospitalLocation">
@@ -165,4 +170,5 @@
 	$('.chips').material_chip();
 	$('select').material_select();
 	$('.tooltipped').tooltip({delay: 50});
+
 </script>

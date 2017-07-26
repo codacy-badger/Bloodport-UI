@@ -8,7 +8,7 @@
       <a ui-sref="mainpage" class="brand-logo heading1">BLOODPORT</a>
       <a href="#!" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down main_menu">
-        <li><a href="#home" class="smoothScroll">HOME</a></li>
+        <li><a ui-sref="dashboard.hospital" class="smoothScroll">HOME</a></li>
         <li><a href="#info" class="smoothScroll">OUR SERVICES</a></li>
         <li><a href="#event" class="smoothScroll">UPCOMING EVENTS</a></li>
         <li><a href="#photo" class="smoothScroll">PHOTO GALLERY</a></li>
@@ -19,7 +19,7 @@
     </div>
   </nav>
     <ul class="side-nav" id="mobile-demo">
-      <li class=""><a href="#">HOME</a></li>
+      <li class=""><a ui-sref="dashboard.hospital">HOME</a></li>
         <li><a href="#info" class="smoothScroll">OUR SERVICES</a></li>
         <li><a href="#event" class="smoothScroll">UPCOMING EVENTS</a></li>
         <li><a ui-sref="signup">SIGN-UP/SIGN-IN</a></li>
@@ -52,19 +52,21 @@
           </div>
 
           
-            <div class="input-field col s12 m12">
-              <i class="material-icons small prefix" style="color: #c62828">invert_colors</i>
-              <select ng-model="modal_user_blood_grp">
-                <option value="" disabled selected>Blood Group</option>
-                <option value="A+">A+</option>
-                <option value="B+">B+</option>
-                <option value="AB+">AB+</option>
-                <option value="O+">O+</option>
-                <option value="A-">A-</option>
-                <option value="B-">B-</option>
-                <option value="AB-">AB-</option>
-                <option value="O-">O-</option>
-              </select>
+            <div class="col s12 m12">
+              <div class="input-field">
+              <i class="material-icons prefix tel" style="color: #c62828">phone</i>
+                <select ng-model="modal_user_blood_grp">
+                  <option value="" disabled selected style="color: #c62828">Blood Group</option>
+                  <option value="A+">A+</option>
+                  <option value="B+">B+</option>
+                  <option value="AB+">AB+</option>
+                  <option value="O+">O+</option>
+                  <option value="A-">A-</option>
+                  <option value="B-">B-</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O-">O-</option>
+                </select>
+                </div>
             </div>
         
           <div class="col s12 m12 input-field">
@@ -76,7 +78,8 @@
           <p ng-model="errorMsg"></p>
 
           <div class="modal-footer col m2 s12">
-            <button id="go" class="btn waves-effect waves-light btn modal-close" type="submit" name="action" ng-disabled="check()||modalfrorm.$invalid" style="background-color: #c62828; color: white">Submit</button>
+            <button id="go" class="btn waves-effect waves-light btn modal-close" type="submit" name="action" ng-disabled="check()||modalfrorm.$invalid" style="background-color: #c62828; color: white; margin-left: 20px">Submit</button>
+            <a href="#" class="btn-flat cancel_btn">Cancel</a>
           </div>
       </form>
       </div>
@@ -253,7 +256,7 @@
   
 
 <!-- --------------------------------------------Play the video section Starts Here--------------------------------------- -->
-    <div class="video_sec">
+    <div class="video_sec hide-on-med-and-down">
      <div class="play_vid_tint">
       <div class="video_text center">
         <h3 class="play">PLAY THE VIDEO</h3>
@@ -974,7 +977,10 @@
       });
   });
   /*------------------------Script for relaoding to start of the page-----------------------------------*/
- 
+  
+    $('.cancel_btn').click(function(){
+      $('#modal1').hide();
+    });
   
     /*window.onbeforeunload= function(){ window.scrollTo(0,0);}*/
 

@@ -1,8 +1,39 @@
 
+var locations=[];
+
+function getData(){
+	var temp=[];
+	$.ajax({
+        type: "GET",
+        url:'http://localhost:8080/hospital/all_hospitals' ,
+        contentType: "application/json",
+       
+  
+        success: function(response) {
+            console.log(response);
+            temp=response;
+            console.log("hello"+temp.length);
+
+        },
+        error: function(response) {
+            console.log(response);
+        }
+});
+	console.log(temp);
+	for(var i=0;i<temp.length;i++)
+	{
+		locations[i]=[temp[i].hospital_name];
+		console.log(locations[i]);
+		console.log("helloooo");
+	}
+	
+}
+
+
 
 function initMap() {
 	
-	var broadway = {
+	/*var broadway = {
 		info: '<strong>Chipotle on Broadway</strong><br>\
 					5224 N Broadway St<br> Chicago, IL 60640<br>\
 					<a href="https://goo.gl/maps/jKNEDz4SyyH2">Get Directions</a>',
@@ -31,6 +62,8 @@ function initMap() {
       [belmont.info, belmont.lat, belmont.long, 1],
       [sheridan.info, sheridan.lat, sheridan.long, 2],
     ];
+	*/
+
 
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 13,
@@ -56,3 +89,4 @@ function initMap() {
 		})(marker, i));
 	}
 }
+

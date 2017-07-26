@@ -140,6 +140,9 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		$('#modal1').css({
           	zIndex:4
         });
+        $('.cancel_btn').click(function(){
+      $('#modal1').hide();
+    });
 	}
 
 	$scope.check=function(){
@@ -167,7 +170,15 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 			$rootScope.logged_mobile_no=$scope.modal_user_mobile_no;
 			console.log(response.data);
 
-			if(response.data=="Details submitted")
+			if(response.data=="User exists")
+			{
+				Materialize.toast('User exists!!!. Please book via login your account',7000,'red darken-3');
+				$scope.modal_user_mobile_no=null;
+				$scope.modal_user_blood_grp=null;
+				$scope.modal_user_email=null;
+				$('#modal1').hide();
+			}
+			else if(response.data=="Details submitted")
 			{
 				$state.go('dashboard.bloodsure');
 			}
@@ -694,7 +705,6 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		$('#modal1').show();
 		$('#modal1').css({
 			zIndex: 16,
-
 		});
 
 	}
@@ -768,13 +778,13 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		}).then(function(response){
 			console.log("details added");
 			$rootScope.emergency_user=false;
-			Materialize.toast('details added',7000,'red-darken3');
+			Materialize.toast('details added',7000,'red-darken-3');
 			$state.go('dashboard.bloodsure');	
 		})
 	}
 })
 
-app.controller('donorController',function($rootScope,$scope,$state){
+app.controller('donorController',function($rootScope,$scope,$state,$http){
 	console.log("donorController called");
 	$rootScope.dahsboardtitle="Find Donor/Be a Donor"
 	if($rootScope.emergency_user)
@@ -1139,14 +1149,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	}
 	else{
 	}
-	/*$scope.map;
-	function initMap(){
-		$scope.map=google.maps.Map(document.getElementById('map'),{
-			center:{
-				lat: -34.397,
-				lng: 150.644
-			},
-			zoom:8
-		});
-	}*/
+	
+
+
 })

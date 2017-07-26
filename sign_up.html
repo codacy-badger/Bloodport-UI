@@ -17,7 +17,7 @@
   </div>
 
   <div class="col s12 m12">
-    <h5 class="center align" style="color:#c62828; padding-top: 5vh">BLOODPORT</h>
+    <h4 class="center align" style="color:#c62828; padding-top: 5vh">BLOODPORT</h4>
   </div>
   <div class="container">
     <div class="row main_div">
@@ -83,7 +83,7 @@
           <div class="col s12 m6">
             <div class="input-field">
             <i class="material-icons prefix today" style="color: #c62828">today</i>
-            <input type="date" name="date"  id="date_check" class="form-control" ng-model="user_dob" onclick="check()">
+            <input type="date" name="date"  id="date_check" class="form-control" ng-model="user_dob" onclick="check()" style="color: #c62828">
        <!--     <label for="date of birth" style="color: #c62828">Date Of Birth</label>-->
             </div>
           </div>
@@ -164,11 +164,11 @@
           </div>
 
           <div class="row center">
-            <div class="col offset-s3 s6 m6" >
+            <div class="col offset-s3 s6 m5" >
               <a ui-sref="forgotpassword"><h6 class="white-text">Forgot Password?</h6></a>
             </div>
 
-            <div class="col offset-s4 s5 m5">
+            <div class="col offset-s4 s6 offset-m1 m6">
              <!--added by sakshi on 20/7/17-->
              <button class="btn waves-effect waves-light btn login_btn" type="submit" name="action" ng-click="login()">LOGIN</button>
              <!--added finished-->
@@ -190,12 +190,7 @@
     $(document).ready(function() {
 
       $('.modal').modal();
-       /*$('#signup_button').click(function(){
-        $('#modal1').show();
-        $('#modal1').css({
-          zIndex:4
-        });
-     })*/
+      
      $('#verify').click(function(){
       $('#modal1').hide();
      })
