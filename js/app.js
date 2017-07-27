@@ -1,4 +1,4 @@
-var app=angular.module('main_app',['ui.router','angular-loading-bar']);
+var app=angular.module('main_app',['ui.router','angular-loading-bar','angular-typed']);
 
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
@@ -68,6 +68,27 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 			url:'/findcamps',
 			templateUrl:'beDonor.html',
 			controller:'beDonorController'
+		})
+
+		.state('footerpages',{
+			url:'/footerpages',
+			templateUrl: 'footer.html',
+			controller: 'footerController'
+		})
+		.state('footerpages.privacy',{
+			url: '/footerpages.privacy',
+			templateUrl: 'privacy.html',
+			controller: 'privacyController'
+		})
+		.state('footerpages.tandc',{
+			url: '/footerpages.tandc',
+			templateUrl: 'tandc.html',
+			controller: 'tandcController'
+		})
+		.state('footerpages.legal',{
+			url: '/footerpages.legal',
+			templateUrl: 'legal.html',
+			controller: 'legalController'
 		})
 		/*.state('updatepassword',{
 			url: '/updatepassword',
@@ -1152,4 +1173,20 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	
 
 
+})
+
+app.controller('footerController',function(){
+	console.log("footerController called");
+})
+
+app.controller('privacyController',function(){
+	console.log("privacyController called");
+})
+
+app.controller('tandcController',function(){
+	console.log('tandcController called');
+})
+
+app.controller('legalController',function(){
+	console.log('legalController called');
 })

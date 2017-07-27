@@ -6,7 +6,7 @@
       		<li ui-sref="mainpage" class="heading"><h3 style="color:white">BLOODPORT</h3></li>
       		<li ><div class="divider"></div></li>
       		
-      		<div class="row">
+      		<!--<div class="row">
 			    <div class="col s12 ">
 			        <div class="card" style="height:50px">
 			           <div class="input-field" style="padding:5px">
@@ -15,9 +15,12 @@
 					    </div>
 			        </div>
 			    </div>
-			</div>
+			</div>-->
       		
       		<div class="sidenav-items">
+
+      			<li class="sidenav-item hide-on-large-only" style="color: white"><a class="waves-effect"><i class="small material-icons b-icon " style="color:white">person</i>{{logged_mobile_no}}</a></li>
+      			<div class="divider hide-on-large-only"></div>
       			<li class="sidenav-item bloodsure "><a ui-sref="dashboard.bloodsure" class="waves-effect"><i class="small material-icons b-icon " style="color:white">dashboard</i>BLOODSURE</a></li>
 			    <li class="sidenav-item user"><a ui-sref="dashboard.userprofile" class="waves-effect "><i class="small material-icons u-icon" style="color:white">perm_identity</i>USER PROFILE</a></li>
 
@@ -28,8 +31,7 @@
 			   	<div class="divider hide-on-large-only"></div>
 				<div class="hide-on-large-only">
 			   		<!-- addded by sakshi on 20/7/17 -->
-			   		<li class="sidenav-item center" style="color: white">{{logged_mobile_no}}</li>
-			   		<li class="sidenav-item center" style="color: white"><a class="waves-effect" href="#!" ng-click="logout()">LOGOUT</a> </li>
+			   		<li class="sidenav-item" style="color: white"><a class="waves-effect" href="#!" ng-click="logout()"><i class="small material-icons b-icon " style="color:white">subdirectory_arrow_left</i>LOGOUT</a> </li>
 			   		<!-- add ended -->
 			   	</div>
       		</div>    			

@@ -2,6 +2,19 @@ body{
   font-family: 'Dosis', sans-serif;
 }
 
+body::-webkit-scrollbar {
+    width: 0.3em;
+}
+ 
+body::-webkit-scrollbar-track {
+    background-color: #424242;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: #c62828;
+}
+
+
 /*----------------------------------Css related to navbar starts here-----------------------------------------*/
 
 .main_menu{
@@ -38,7 +51,10 @@ nav ul li a
   color:white;
 }
 
-
+.mysideNav ul li
+{
+  margin-top: 10%;
+}
 /*----------------------------------Css related to navbar ends here-----------------------------------------*/
 
 
@@ -63,7 +79,7 @@ nav ul li a
 
 .carousel .img1
 {
-  background: url(../img/img4.jpg) fixed no-repeat;
+  background: url(../img/1.jpg) fixed no-repeat;
   background-size: cover;
 
 }
@@ -105,7 +121,7 @@ video {
 
 .vsec{
   z-index: 2;
-  height:98vh;
+  height:100vh;
   background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
 }
 
@@ -169,7 +185,7 @@ video {
   color:white;
   margin-top: 3vw;
 }
-.typewriter_effect p a{
+.typewriter_effect p {
   font-size: 2vw;
   font-weight: bold;
 }

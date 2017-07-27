@@ -16,7 +16,7 @@
 	margin-top: 40vw;
 }
 
-.typewriter_effect p a{
+.typewriter_effect p {
   font-size: 3.5vw;
 }
 
@@ -187,7 +187,7 @@ iframe
 	margin-top: 55vw;
 }
 
-.typewriter_effect p a{
+.typewriter_effect p {
   font-size: 4.5vw;
 }
 
@@ -242,7 +242,7 @@ iframe
 	margin-top: 55vw;
 }
 
-.typewriter_effect p a{
+.typewriter_effect p {
   font-size: 4.5vw;
 }
 
@@ -353,7 +353,7 @@ iframe
 	margin-top: 15vw;
 }
 
-.typewriter_effect p a{
+.typewriter_effect p {
   font-size: 2.5vw;
 }
 
@@ -530,7 +530,7 @@ video {
 
 .vsec{
   z-index: 2;
-  height:90vh;
+  height:100vh;
   background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
 }
 
