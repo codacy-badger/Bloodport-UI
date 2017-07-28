@@ -53,31 +53,23 @@
 
 		  			<div class="row">
 							<div class="col s12 m8 filter_chip" >
-								<a href="" ng-click="click=1;style1=styles;style2=null;style3=null;style4=null;style5=null;" class="chip" ng-style="style1">All Hospitals</a>
-								<a href="" ng-click="click=2;style2=styles;style1=null;style3=null;style4=null;style5=null" class="chip" ng-style="style2">Sort by Location</a>
+								<a href="" onclick="getAllHospitals();"  ng-click="allHospitals();click=1;style1=styles;style2=null;style3=null;style4=null;style5=null;" class="chip" ng-style="style1">All Hospitals</a>
+								<a href=""  ng-click="click=2;style2=styles;style1=null;style3=null;style4=null;style5=null" class="chip" ng-style="style2">Sort by Location</a>
 								<a href="" ng-click="click=3;style3=styles; style2=null;style1=null;style4=null;style5=null" ng-style="style3" class="chip">Sort by Name</a>
-								
-								<!--<a href="" ng-click="click=4;style4=styles;style3=null; style2=null;style1=null;style5=null" ng-style="style4" class="chip">Sort by Camp Organizer</a>
-								<a href="" ng-click="click=5;style5=styles;style4=null;style3=null; style2=null;style1=null;" ng-style="style5" class="chip">Sort by Blood Banks</a>-->
-								<!--<a href="" ng-click="click=2;style2=styles; style1=null;style3=null;style4=null" ng-style="style2" class="chip">Sort by Location</a>-->
 								
 							</div>
 							
 							<div class="col s12 m4">
-								<div ng-show="click==1">
-									<button onclick="getData()">OK</button>
-									
-								</div>
+								<div ng-show="click==1"></div>
 						    	<div class="input-field inline" ng-show="click==2">
 
-						    		<select ng-model="hospitalLocation">
+						    		<select ng-model="hospitalLocation" id="hospitalLocation">
 									      <option value="" disabled selected>Select Location</option>
-									      <option value="DELHI">DELHI</option>
-									      <option value="GURUGRAM">GURUGRAM</option>
-									      <option value="NOIDA">NOIDA</option>
-									      <option value="GRAETER KAILASH">GREATER KAILASH</option>
+									      <option value="Delhi">DELHI</option>
+									      <option value="ncr">NCR</option>
+									    
 									</select>
-								<a class="waves-effect waves-light btn select_button" ng-click="searchHospitalbyLocation()" >Find Camp</a>
+								<a class="waves-effect waves-light btn select_button" onclick="getHospitalsByLocations();" ng-click="getHospitalsBylocations();">Find</a>
 						    	</div>
 
 
@@ -92,80 +84,34 @@
 									</select>
 								<a class="waves-effect waves-light btn select_button" ng-click="searchByName()" >Find</a>
 						    	</div>
-
-						   
-						    	<!--<div ng-show="click==3">
-						    		
-						    	</div>-->
 							</div>	
 					    </div>
-					
-					<!--<button class="chip" ng-click="check()">Sort by Location</button>
-					<button class="chip" ng-click="check()">Sort by Name</button>-->
-							 
-					<!--<div class="filter_chip">
-						<div class="col s12 m4">
-							<div class="input-field valign-wrapper">
-								<i class="material-icons prefix add_location tooltipped" style="color: #c62828" data-position="bottom" data-delay="50" data-tooltip="Location">add_location</i>
-								<select ng-model="data.loc" ng-change="test()">
-									<option value="" disabled selected > Required Blood Group</option>
-									<option value="Delhi">Delhi</option>
-									<option value="Noida">Noida</option>
-									<option value="Gurgoan">Gurgoan</option>
-								</select>
-
-							</div>
-						</div>
-
-						<div class="col s12 m4">
-							<div class="input-field valign-wrapper">
-								<i class="material-icons prefix contacts tooltipped" style="color: #c62828" data-position="bottom" data-delay="50" data-tooltip="Hospital Name">contacts</i>
-								<select>
-									<option value="Pitampura Blood Bank">Pitampura Blood Bank</option>
-									<option value="Blood Bank Org">Blood Bank Org</option>
-									<option value="Lions Blood Bank">Lions Blood Bank</option>
-									<option value="Blood Bank Apollo">Blood Bank Apollo</option>
-									<option value="Shiv Rathi">Shiv Rathi</option>
-								</select>
-							</div>
-						</div>
-					</div>-->
+				
 
 					<div class="col s12 card white" id="map">
 		  				
 		  			</div>	
-
-		  			<div class="col s12 m12 card">
-		  				<table class="striped bordered">
-		  					<thead>
-		  						<tr>
-		  							<th>HOSPITAL ID</th>
-		  							<th>HOSPITAL NAME</th>
-		  							<th>HOSPITAL LOCATION</th>
-		  						</tr>
-		  					</thead>
-
-		  					<tbody>
-		  						<tr>
-		  							<td>1</td>
-		  							<td>abc</td>
-		  							<td>Gurgoan</td>
-		  						</tr>
-
-		  						<tr>
-		  							<td>2</td>
-		  							<td>xyz</td>
-		  							<td>noida</td>
-		  						</tr>
-		  					</tbody>
-		  				</table>
-		  			</div> 
+				        <div class="col s12 m12" ng-repeat="hospital in hospitals">
+				          <div class="card white">
+				            <div class="card-content grey-text">
+				              <span class="card-title" style="color:#c62828;font-size:20px"><i class="material-icons" style="color:#c62828;font-size:20px" >account_balance</i>{{hospital.hospital_name}}</span>
+				              <p class="" style="word-wrap: break-word;">{{hospital.address}}</p>
+				              <div class="hospitals_link">
+				              	<p style="font-size:14px;padding-top:5px;word-wrap: break-word;"><a class="" href="{{hospital.website}}"> <i class="material-icons" style="font-size:14px;padding-top:5px">language</i>Website: {{hospital.website}}</a></p>
+				              	<p><a class="" style="font-size:14px;padding-top:5px;word-wrap: break-word;"> <i class="material-icons" style="font-size:14px;padding-top:5px">phone_iphone</i>Phone:{{hospital.phone_number}}</a></p>
+				              </div>
+				              
+				            </div>
+				          </div>
+				        </div>
 		  		</div>
   			</div>				     
   		</div> 	
  	</div>
 </div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtW-bB1YLRRaJdbKuXeQUk3Z_kBrItZvY&callback=initMap"></script>
+<script async defer 
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc9i1F7eIkNgEyOwXDoBlYFqQIaxsXVFQ&callback=initMap"></script>
+</body>
 <script type="text/javascript">
 	$('.chips').material_chip();
 	$('select').material_select();

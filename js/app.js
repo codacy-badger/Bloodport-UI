@@ -177,15 +177,15 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		}
 	}
 
-	$scope.submit_details=function(){
-		console.log("submit details from modal called");
+		$scope.check_user=function(){
+		$rootScope.mainOTP=false;
+		$scope.modalOTPsent=false;
+		console.log("check user from modal called");
 		$http({
 			method: "POST",
-			url: 'http://localhost:8080/register/modal_submit',
+			url: 'http://localhost:8080/register/modal_check',
 			data:{
 				user_mobile_no: $scope.modal_user_mobile_no,
-				user_email: $scope.modal_user_email,
-				user_blood_grp: $scope.modal_user_blood_grp
 			}
 		}).then(function(response){
 			$rootScope.logged_mobile_no=$scope.modal_user_mobile_no;
@@ -199,15 +199,66 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 				$scope.modal_user_email=null;
 				$('#modal1').hide();
 			}
-			else if(response.data=="Details submitted")
+			else if(response.data=="new user")
 			{
-				$state.go('dashboard.bloodsure');
-			}
-			else
-			{
-				Materialize.toast('Some error has occured!!Please try again',7000,'red darken-3');
+				/*$state.go('dashboard.bloodsure');*/
+				$rootScope.mainOTP=true;
+				$('#modal1').css({
+					height: 250
+				})
+				$http({
+						method:'POST',
+						url:'https://sendotp.msg91.com/api/generateOTP',
+						headers: {
+				             "application-Key": "_2NXWaVUffdYqANPke1RP6hq4fTAe-Buk1cT9ukSBJ0OO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip5oUx_xAqQbhmpbgOt2nxrGVPvE6IPiemhKl6q44dmTrLsOcAiUL1OyGw8TqXpNkjg=="
+				        },
+						data:{
+							countryCode:91,
+							mobileNumber:$scope.modal_user_mobile_no,
+							getGeneratedOTP:true	 
+						}
+				}).then((response)=>{
+							console.log("OTP has been send");
+							$scope.modalOTPsent=true;
+							$rootScope.modalOTP=response.data.response.oneTimePassword;
+							console.log("OTP is"+$rootScope.modalOTP);
+				});
 			}
 		})
+	}
+
+	$scope.verifyEmergencyOTP=function(){
+		if($scope.inputOTP && $rootScope.modalOTP)
+		{
+			if($scope.inputOTP==$rootScope.modalOTP)
+			{
+				$http({
+					method: 'POST',
+					url:'http://localhost:8080/register/emergency_submit',
+					data:{
+						user_mobile_no: $scope.modal_user_mobile_no,
+						user_email: $scope.modal_user_email,
+						user_blood_grp: $scope.modal_user_blood_grp
+					}
+				}).then(function(response){
+					console.log("user saved");
+					Materialize.toast('User added',7000,'red darken-3');
+					$state.go('dashboard.bloodsure');
+				});
+			}
+			else{
+				Materialize.toast('OTP doesn\'t match');
+				$('#modal1').hide();
+				$scope.modal_user_email=null;
+				$scope.modal_user_mobile_no=null;
+				$scope.modal_user_blood_grp=null;
+				$scope.inputOTP=null;
+			}
+		}
+		else
+		{
+			Materialize.toast('Some error has occured!!!',7000,'red darken-3');
+		}
 	}
 })
 
@@ -1130,6 +1181,23 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	$scope.styles={'background-color' : '#c62828','color':'white'};
 	$scope.style1=$scope.styles;
 
+	$http({
+		method:'GET',
+		url:'http://localhost:8080/hospital/all_hospitals',
+	}).then((res)=>{
+		//console.log(res.data);
+		$rootScope.hospitals=res.data;
+	});
+	$scope.allHospitals=function(){
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/hospital/all_hospitals',
+
+		}).then((res)=>{
+			$rootScope.hospitals=res.data;
+		})
+	}
+
 	$scope.check=function(){
 		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
 		{
@@ -1154,7 +1222,6 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 			user_mobile_no: $rootScope.logged_mobile_no
 			}
 		}).then(function(response){
-			console.log("details added");
 			$rootScope.emergency_user=false;
 			Materialize.toast('details added',7000,'red-darken3');
 			$state.go('dashboard.bloodsure');	
@@ -1162,7 +1229,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	}
 	if($rootScope.emergency_user)
 	{
-		console.log("it is an emergency_user");
+		
 		$('#modal1').show();
 		$('#modal1').css({
 			zIndex: 16,
@@ -1172,7 +1239,29 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	}
 	
 
+	$scope.getHospitalsBylocations=function(){
+		if($scope.hospitalLocation=="Delhi")
+		{
 
+			$http({
+			method:'POST',
+			url:'http://localhost:8080/hospital/sortByLocationDelhi'
+			}).then((response)=>{
+				$rootScope.hospitals=response.data;
+			})
+		}
+		if($scope.hospitalLocation=="ncr")
+		{
+			$http({
+				method:'POST',
+				url:'http://localhost:8080/hospital/sortByLocationNCR',
+
+			}).then((response)=>{
+				$rootScope.hospitals=response.data;
+			})
+		}
+		
+	}
 })
 
 app.controller('footerController',function(){

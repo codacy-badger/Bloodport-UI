@@ -1,90 +1,117 @@
+var temp=[];
+var locations=[];
+var lang=[];
+var lat=[];
 
 
+	function initMap() 
+	{
 
-function getData(){
-	var temp;
-	var locations=[];
+
+	}
 	$.ajax({
         type: "GET",
         url:'http://localhost:8080/hospital/all_hospitals' ,
         contentType: "application/json",
         success: function(response) {
-            console.log(response);
+            //console.log(response);
             temp=response;
-            console.log("hello"+temp);
+           	run();
         },
         error: function(response) {
             console.log(response);
         }
-});
-	console.log("out of loop "+temp);
-	for(var i=0;i<temp.length;i++)
-	{
-		locations[i]=[temp[i].hospital_name];
-		console.log(locations[i]);
-		console.log("helloooo");
-	}
-	
-}
-
-
-
-function initMap() {
-	
-	var broadway = {
-		info: '<strong>Chipotle on Broadway</strong><br>\
-					5224 N Broadway St<br> Chicago, IL 60640<br>\
-					<a href="https://goo.gl/maps/jKNEDz4SyyH2">Get Directions</a>',
-		lat: 41.976816,
-		long: -87.659916
-	};
-
-	var belmont = {
-		info: '<strong>Chipotle on Belmont</strong><br>\
-					1025 W Belmont Ave<br> Chicago, IL 60657<br>\
-					<a href="https://goo.gl/maps/PHfsWTvgKa92">Get Directions</a>',
-		lat: 41.939670,
-		long: -87.655167
-	};
-
-	var sheridan = {
-		info: '<strong>Chipotle on Sheridan</strong><br>\r\
-					6600 N Sheridan Rd<br> Chicago, IL 60626<br>\
-					<a href="https://goo.gl/maps/QGUrqZPsYp92">Get Directions</a>',
-		lat: 42.002707,
-		long: -87.661236
-	};
-
-	var locations = [
-      [broadway.info, broadway.lat, broadway.long, 0],
-      [belmont.info, belmont.lat, belmont.long, 1],
-      [sheridan.info, sheridan.lat, sheridan.long, 2],
-    ];
-	
-
-
-	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 13,
-		center: new google.maps.LatLng(41.976816, -87.659916),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
-
-	var infowindow = new google.maps.InfoWindow({});
-
-	var marker, i;
-
-	for (i = 0; i < locations.length; i++) {
-		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-			map: map
 		});
-
-		google.maps.event.addListener(marker, 'click', (function (marker, i) {
-			return function () {
-				infowindow.setContent(locations[i][0]);
-				infowindow.open(map, marker);
-			}
-		})(marker, i));
+	function getAllHospitals(){
+		$.ajax({
+        type: "GET",
+        url:'http://localhost:8080/hospital/all_hospitals' ,
+        contentType: "application/json",
+        success: function(response) {
+            //console.log(response);
+            temp=response;
+           	run();
+        },
+        error: function(response) {
+            console.log(response);
+        }
+		});
 	}
-}
 
+	function getHospitalsByLocations(){
+		if($('#hospitalLocation').val()=="Delhi")
+		{
+			$.ajax({
+	        type: "POST",
+	        url:'http://localhost:8080/hospital/sortByLocationDelhi' ,
+	        contentType: "application/json",
+	        success: function(response) {
+	            //console.log(response);
+	            temp=response;
+	           	run();
+	        },
+	        error: function(response) {
+	            console.log(response);
+	        }
+			});
+		}
+
+		if($('#hospitalLocation').val()=="ncr")
+		{
+			
+			$.ajax({
+				method:'POST',
+				url:'http://localhost:8080/hospital/sortByLocationNCR',
+				contentType: "application/json",
+				success: function(response){
+					temp=response;
+					run();
+				},
+				error:function(response)
+				{
+					console.log(response);
+				}
+			});
+		}
+		
+	}
+
+	function run(){
+		
+		for(var i=0;i<temp.length;i++)
+		{
+			lang[i]=parseFloat(temp[i].lattitude);
+			lat[i]=parseFloat(temp[i].longitude)
+			locations[i]=[temp[i].hospital_name,lang[i],lat[i],i];	
+		}	
+		runMap();
+	}
+
+		function runMap()
+			{
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 6,
+					center: new google.maps.LatLng(28.6139391,77.20902120000005),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+
+				var infowindow = new google.maps.InfoWindow({});
+
+				var marker, i;
+
+				for (i = 0; i < temp.length; i++) 
+				{
+					
+					marker = new google.maps.Marker({
+						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+						map: map
+					});
+
+					google.maps.event.addListener(marker, 'click', (function (marker, i) {
+						return function () {
+							infowindow.setContent(locations[i][0]);
+							infowindow.open(map, marker);
+						}
+					})(marker, i));
+				}
+			}
