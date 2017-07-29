@@ -4,7 +4,7 @@
 		<div id="modal1" class="modal userprofileModal" >
         <div class="modal-content center">
           <div class="col s12 m8">
-            <h5><span style="color:#c62828">Please Enter Details to access "User Profile"</span></h5>
+            <h5><span style="color:#c62828">Please Enter Details to access "Hospital"</span></h5>
            
           </div>
 
@@ -74,20 +74,20 @@
 
 
 						    	<div class="input-field inline" ng-show="click==3">
-
 						    		<select ng-model="hospitalName">
-									     
-									      <option style="color:red" ng-repeat="hospital in hospitals" value="{{hospital.hospital_name}}">{{hospital.hospital_name}}</option>
-									      
+									      <option value="" disabled selected>Select Hospital Name</option>
+									      <option value="G B Pant Hospital">G B Pant Hospital</option>
+									      <option value="Care Hospital">Care Hospital</option>
+									      <option value="L V Prasad Eye Institute">L V Prasad Eye Institute</option>
+									      <option value="Apollo Hospitals">Apollo Hospitals</option>
 									</select>
-								<a class="waves-effect waves-light btn select_button" ng-click="searchByName()" >Find</a>
+								<a class="waves-effect waves-light btn select_button" ng-click="getHospitalsByName()" >Find</a>
 						    	</div>
 							</div>	
 					    </div>
 				
 
-					<div class="col s12 card white" id="map">
-		  				
+					<div class="col s12 card white" id="map">	
 		  			</div>	
 				        <div class="col s12 m12" ng-repeat="hospital in hospitals">
 				          <div class="card white">

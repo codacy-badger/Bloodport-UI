@@ -90,11 +90,11 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 			templateUrl: 'legal.html',
 			controller: 'legalController'
 		})
-		/*.state('updatepassword',{
-			url: '/updatepassword',
-			templateUrl: 'updatepass.html',
-			controller: 'updatePasswordController'
-		})*/
+		.state('footerpages.faq',{
+			url: '/footerpages.faq',
+			templateUrl: 'faq.html',
+			controller: 'faqController'
+		})
 });
 
 /*app.factory('share_details',function($rootScope){
@@ -183,7 +183,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		console.log("check user from modal called");
 		$http({
 			method: "POST",
-			url: '/register/modal_check',
+			url: 'http://api.bloodport.in/register/modal_check',
 			data:{
 				user_mobile_no: $scope.modal_user_mobile_no,
 			}
@@ -234,7 +234,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 			{
 				$http({
 					method: 'POST',
-					url:'http://localhost:8080/register/emergency_submit',
+					url:'http://api.bloodport.in/register/emergency_submit',
 					data:{
 						user_mobile_no: $scope.modal_user_mobile_no,
 						user_email: $scope.modal_user_email,
@@ -297,7 +297,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		$scope.OTPsent=false;
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/register/check',
+			url:'http://api.bloodport.in/register/check',
 			data:{
 				user_mobile_no:$scope.user_mobile_no
 			}
@@ -356,7 +356,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 					$scope.user_OTP=null;
 						$http({
 							method: 'POST',
-							url: 'http://localhost:8080/register/signup',
+							url: 'http://api.bloodport.in/register/signup',
 							data:{
 							user_name: $scope.user_name,
 							user_email: $scope.user_email,
@@ -397,7 +397,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		$rootScope.loggedIn=false;
 		$http({
 			method: 'POST',
-			url: 'http://localhost:8080/register/login_user',
+			url: 'http://api.bloodport.in/register/login_user',
 			data:{
 				user_mobile_no: $scope.user_login_mobile_no,
 				user_password: $scope.user_login_password
@@ -432,7 +432,7 @@ app.controller('fpassController',function($scope,$http,$state,cfpLoadingBar){
 		{
 			$http({
 			method: 'POST',
-			url: 'http://localhost:8080/register/forgotpassword',
+			url: 'http://api.bloodport.in/register/forgotpassword',
 			data: {
 				user_email: $scope.user_email
 				}
@@ -721,7 +721,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 		console.log($rootScope.logged_mobile_no);
 		$http({
 		method: 'POST',
-		url: 'http://localhost:8080/dashboard/submit_patient_detail',
+		url: 'http://api.bloodport.in/dashboard/submit_patient_detail',
 		data:{
 			patient_name: $scope.data.patient_name,
 			blood_grp: $scope.data.blood_grp,
@@ -787,7 +787,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 
 	$http({
 		method: 'POST',
-		url: 'http://localhost:8080/register/get_details',
+		url: 'http://api.bloodport.in/register/get_details',
 		data:{
 			/* addded by sakshi on 20/7/17 */
 			user_mobile_no: $rootScope.logged_mobile_no
@@ -805,7 +805,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		/* add ended */
 		$http({
 			method: 'POST',
-			url: 'http://localhost:8080/register/update_details',
+			url: 'http://api.bloodport.in/register/update_details',
 			data:{
 				user_name: $scope.user_name,
 				user_email: $scope.user_email,
@@ -822,7 +822,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 
 			$http({
 				method: 'POST',
-				url: 'http://localhost:8080/register/get_details',
+				url: 'http://api.bloodport.in/register/get_details',
 				data:{
 					/* addded by sakshi on 20/7/17 */
 					user_mobile_no: $rootScope.logged_mobile_no
@@ -839,7 +839,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://localhost:8080/register/update_modal_details',
+			url:'http://api.bloodport.in/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -883,7 +883,7 @@ app.controller('donorController',function($rootScope,$scope,$state,$http){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://localhost:8080/register/update_modal_details',
+			url:'http://api.bloodport.in/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -909,7 +909,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	console.log($scope.style4);
 	$http({
 		method:'GET',
-		url:'http://localhost:8080/donor/allDonors',
+		url:'http://api.bloodport.in/donor/allDonors',
 
 	}).then((res)=>{
 		$scope.details=res.data;
@@ -917,7 +917,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	$scope.findAll=function(){
 		$http({
 		method:'GET',
-		url:'http://localhost:8080/donor/allDonors',
+		url:'http://api.bloodport.in/donor/allDonors',
 
 		}).then((res)=>{
 			$scope.details=res.data;
@@ -926,7 +926,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	$scope.searchByLocation=function(){
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/donor/sortByLocation',
+			url:'http://api.bloodport.in/donor/sortByLocation',
 			data:{
 				donor_location:$scope.donor_location,
 				donor_status:$rootScope.donor_status
@@ -948,7 +948,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	$scope.searchByBloodgrp=function(){
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/donor/sortByBloodgrp',
+			url:'http://api.bloodport.in/donor/sortByBloodgrp',
 			data:{
 				donor_bloodgrp:$scope.donor_bloodgrp,
 				donor_status:$rootScope.donor_status
@@ -972,7 +972,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 		console.log($scope.donor_status);
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/donor/sortByStatus',
+			url:'http://api.bloodport.in/donor/sortByStatus',
 			data:{
 				donor_status:$rootScope.donor_status
 			}
@@ -995,7 +995,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 	$scope.style1=$scope.styles;
 	$http({
 		method:'GET',
-		url:'http://localhost:8080/camps/allCamps',
+		url:'http://api.bloodport.in/camps/allCamps',
 	}).then((res)=>{
 		console.log(res.data);
 		$scope.details=res.data
@@ -1003,7 +1003,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 	$scope.allCamps=function(){
 		$http({
 		method:'GET',
-		url:'http://localhost:8080/camps/allCamps',
+		url:'http://api.bloodport.in/camps/allCamps',
 		}).then((res)=>{
 			console.log(res.data);
 			$scope.details=res.data
@@ -1012,7 +1012,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 	$scope.searchCampbyLocation=function(){
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/camps/campbyLocation',
+			url:'http://api.bloodport.in/camps/campbyLocation',
 			data:{
 				camplocation:$scope.camplocation
 			}
@@ -1032,7 +1032,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 		$scope.searchByDate=function(){
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/camps/campByDate',
+			url:'http://api.bloodport.in/camps/campByDate',
 			data:{
 				dateOfDonation:$scope.dateOfDonation
 			}
@@ -1056,7 +1056,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 		console.log($scope.camporganizer);
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/camps/campByOrganizer',
+			url:'http://api.bloodport.in/camps/campByOrganizer',
 			data:{
 				campOrganizer:$scope.camporganizer
 			}
@@ -1079,7 +1079,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 		console.log($scope.bloodBank);
 		$http({
 			method:'POST',
-			url:'http://localhost:8080/camps/campByBloodBank',
+			url:'http://api.bloodport.in/camps/campByBloodBank',
 			data:{
 				bloodBank:$scope.bloodBank
 			}
@@ -1119,7 +1119,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://localhost:8080/register/update_modal_details',
+			url:'http://api.bloodport.in/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -1145,7 +1145,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 	else{
 		$http({
 			method: 'POST',
-			url: 'http://localhost:8080/dashboard/get_patient_data',
+			url: 'http://api.bloodport.in/dashboard/get_patient_data',
 			data: {
 				/* addded by sakshi on 20/7/17 */
 				mobile_no: $rootScope.logged_mobile_no
@@ -1161,7 +1161,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 
 		$http({
 			method: 'POST',
-			url: 'http://localhost:8080/dashboard/get_patient_data',
+			url: 'http://api.bloodport.in/dashboard/get_patient_data',
 			data: {
 				/* addded by sakshi on 20/7/17 */
 				email: $rootScope.logged_email
@@ -1183,7 +1183,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 
 	$http({
 		method:'GET',
-		url:'http://localhost:8080/hospital/all_hospitals',
+		url:'http://api.bloodport.in/hospital/all_hospitals',
 	}).then((res)=>{
 		//console.log(res.data);
 		$rootScope.hospitals=res.data;
@@ -1193,7 +1193,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	$scope.allHospitals=function(){
 		$http({
 			method:'GET',
-			url:'http://localhost:8080/hospital/all_hospitals',
+			url:'http://api.bloodport.in/hospital/all_hospitals',
 
 		}).then((res)=>{
 			$rootScope.hospitals=res.data;
@@ -1215,7 +1215,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://localhost:8080/register/update_modal_details',
+			url:'http://api.bloodport.in/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -1247,7 +1247,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 
 			$http({
 			method:'POST',
-			url:'http://localhost:8080/hospital/sortByLocationDelhi'
+			url:'http://api.bloodport.in/hospital/sortByLocationDelhi'
 			}).then((response)=>{
 				$rootScope.hospitals=response.data;
 			})
@@ -1256,7 +1256,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 		{
 			$http({
 				method:'POST',
-				url:'http://localhost:8080/hospital/sortByLocationNCR',
+				url:'http://api.bloodport.in/hospital/sortByLocationNCR',
 
 			}).then((response)=>{
 				$rootScope.hospitals=response.data;
@@ -1280,4 +1280,7 @@ app.controller('tandcController',function(){
 
 app.controller('legalController',function(){
 	console.log('legalController called');
+})
+app.controller('faqController',function(){
+	console.log('faqController called');
 })

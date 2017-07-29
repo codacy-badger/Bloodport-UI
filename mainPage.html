@@ -8,7 +8,7 @@
       <a ui-sref="mainpage" class="brand-logo heading1" ><span><img src="img/bport_logo.png" class="iconImage"></span>BLOODPORT</a>
       <a href="#!" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down main_menu">
-        <li><a ui-sref="dashboard.hospital" class="smoothScroll">HOME</a></li>
+        <li><a href="#home" class="smoothScroll">HOME</a></li>
         <li><a href="#info" class="smoothScroll">OUR SERVICES</a></li>
         <li><a href="#event" class="smoothScroll">UPCOMING EVENTS</a></li>
         <li><a href="#photo" class="smoothScroll">PHOTO GALLERY</a></li>
@@ -231,22 +231,7 @@
             </div>
             <div class="card-content dp_card">
               <h4>REGISTRATION</h4>
-              <p>You need to complete a very simple registration form. Which contains all required contact information to enter in the donation process</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s12 m3">
-          <div class="card">
-            <div class="card-image">
-              <img src="img/screening.jpg" style="height: 213px">
-              <div class="col offest-m9 m3 offset-m9 offset-s9 s3 offset-s9 step1">
-                <h3 class="center-align white-text">2</h3>
-              </div>
-            </div>
-            <div class="card-content dp_card">
-              <h4>SCREENING</h4>
-              <p>You need to complete a very simple registration form. Which contains all required contact information to enter in the donation process</p>
+              <p>You will be asked to complete a donor registration form, which includes your name, address, phone number, and various other types of demographic information.You will also be asked to show your donor card or the type of identification required by the particular blood bank you visit.</p>
             </div>
           </div>
         </div>
@@ -256,12 +241,27 @@
             <div class="card-image">
               <img src="img/donate.jpg" style="height: 213px">
               <div class="col offest-m9 m3 offset-m9 offset-s9 s3 offset-s9 step1">
+                <h3 class="center-align white-text">2</h3>
+              </div>
+            </div>
+            <div class="card-content dp_card">
+              <h4>SCREENING</h4>
+              <p>After registration, Doctors will perform a short health exam, taking your pulse, temperature and blood pressure. A drop of blood from your finger will also be tested to ensure that your blood iron level is sufficient for you to donate.All of this information is confidential.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+              <img src="img/screening.jpg" style="height: 213px">
+              <div class="col offest-m9 m3 offset-m9 offset-s9 s3 offset-s9 step1">
                 <h3 class="center-align white-text">3</h3>
               </div>
             </div>
             <div class="card-content dp_card">
               <h4>DONATION</h4>
-              <p>You need to complete a very simple registration form. Which contains all required contact information to enter in the donation process</p>
+              <p>You will proceed to a donor bed where your arm will be cleaned with an antiseptic, and a professional will use a blood donation kit to draw blood from a vein in your arm. During the donation process, you will donate one unit of blood; this takes about six to ten minutes.</p>
             </div>
           </div>
         </div>
@@ -276,7 +276,7 @@
             </div>
             <div class="card-content dp_card">
               <h4>REFRESHMENT</h4>
-              <p>You need to complete a very simple registration form. Which contains all required contact information to enter in the donation process</p>
+              <p>Following your donation, you will receive refreshments in the canteen area, where you can stay until you feel strong enough to leave. After donating, it is recommended that you increase your fluid intake for the next 24 to 48 hours; avoid strenuous physical exertion,heavy lifting or pulling.</p>
             </div>
           </div>
         </div>
@@ -322,7 +322,7 @@
       <div class="row">
         <div class="col m12 s12 bloodgrp">
           <p class="center-align"><i class="material-icons">clear_all</i><span class="our_serv">OUR SERVICES</span><i class="material-icons">clear_all</i></p>
-          <h5 class="center-align grey-text text-darken-1 our_serv_text"> Donate blood and save  a life. Donate blood and save  a life</h5>
+          <h5 class="center-align grey-text text-darken-1 our_serv_text"> Donate blood and save  a life.</h5>
         </div>
       </div>
      </div> 
@@ -724,7 +724,7 @@
           <a href="#event" class="links">UPCOMING EVENTS</a><br>
           <a href="#photo" class="links">PHOTO GALLERY</a><br>
           <a ui-sref="signup" class="links">SIGN  IN/SIGN UP</a><br>
-          <a href="#" class="links">FAQs</a><br>  
+          <a ui-sref="footerpages.faq" class="links">FAQs</a><br>  
         </div>
 
         <div class="col offset-s0 s12 m3 center">
