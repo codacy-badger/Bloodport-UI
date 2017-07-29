@@ -16,9 +16,23 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #c62828;
 }
+
+.iconImage
+{
+  width:60px;
+   height:60px; 
+   position:absolute;
+   top:1%;
+   left:5%;
+}
+
 .side-nav
 {
 	background-color: #c62828;
+}
+.heading
+{
+ 
 }
 
 .heading h3

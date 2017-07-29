@@ -76,11 +76,9 @@
 						    	<div class="input-field inline" ng-show="click==3">
 
 						    		<select ng-model="hospitalName">
-									      <option value="" disabled selected>Select Hospital Name</option>
-									      <option value="DELHI">DELHI</option>
-									      <option value="GURUGRAM">GURUGRAM</option>
-									      <option value="NOIDA">NOIDA</option>
-									      <option value="GRAETER KAILASH">GREATER KAILASH</option>
+									     
+									      <option style="color:red" ng-repeat="hospital in hospitals" value="{{hospital.hospital_name}}">{{hospital.hospital_name}}</option>
+									      
 									</select>
 								<a class="waves-effect waves-light btn select_button" ng-click="searchByName()" >Find</a>
 						    	</div>

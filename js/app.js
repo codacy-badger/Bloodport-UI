@@ -1,4 +1,4 @@
-var app=angular.module('main_app',['ui.router','angular-loading-bar','angular-typed']);
+var app=angular.module('main_app',['ui.router','angular-loading-bar','typer']);
 
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
@@ -183,7 +183,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		console.log("check user from modal called");
 		$http({
 			method: "POST",
-			url: 'http://localhost:8080/register/modal_check',
+			url: '/register/modal_check',
 			data:{
 				user_mobile_no: $scope.modal_user_mobile_no,
 			}
@@ -1102,7 +1102,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 app.controller('historyController',function($scope,$http,$rootScope,$state){
 	/* add ended */
 	console.log("historyController called");
-	$rootScope.dahsboardtitle="Find Hospital"
+	$rootScope.dahsboardtitle="Your History"
 
 	$scope.check=function(){
 		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
@@ -1187,7 +1187,9 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	}).then((res)=>{
 		//console.log(res.data);
 		$rootScope.hospitals=res.data;
+		console.log($rootScope.hospitals);
 	});
+
 	$scope.allHospitals=function(){
 		$http({
 			method:'GET',

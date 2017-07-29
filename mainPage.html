@@ -5,7 +5,7 @@
 
    <nav class="nav1">
     <div class="nav-wrapper">
-      <a ui-sref="mainpage" class="brand-logo heading1">BLOODPORT</a>
+      <a ui-sref="mainpage" class="brand-logo heading1" ><span><img src="img/bport_logo.png" class="iconImage"></span>BLOODPORT</a>
       <a href="#!" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down main_menu">
         <li><a ui-sref="dashboard.hospital" class="smoothScroll">HOME</a></li>
@@ -62,7 +62,7 @@
           
             <div class="col s12 m12">
               <div class="input-field">
-              <i class="material-icons prefix tel" style="color: #c62828">phone</i>
+              <i class="material-icons prefix tel" style="color: #c62828;left:0px;">opacity</i>
                 <select ng-model="modal_user_blood_grp">
                   <option value="" disabled selected style="color: #c62828">Blood Group</option>
                   <option value="A+">A+</option>
@@ -114,11 +114,17 @@
                 <h6 class="welcome center-align">Welcome To BloodPORT</h6>
 
                 <div class="typewriter_effect">
-                  <p><typed> Blood Donation Will Cost You Nothing But It Will Save A Life</typed></p>
+                  <!--<p><typed> A single Pint can save three lives, A signle Gesture can create million smiles</typed></p>-->
+                  <p><typer words="['A drop of blood is a life and can save someone from being dead','Opportunities knock the door sometimes, so don’t let it go and donate blood!', 'Your blood is very precious to someone’s life']" type-time='100' backspace-time='200' shuffle="true" highlight-background='transparent' start-typing="true" ></typer></p>
+ 
                 </div>
                 <div class="emergency_btn">
                   <a ng-click="emergencyUser()" class="waves-effect waves-light btn-large" style="background-color:transparent;border:2px solid #c62828"><span style="font-weight:bolder">EMERGENCY</span></a>
-                </div>               
+                </div>  
+
+                <div class="scroll" >
+                 <a href="#request"> <img src="img/scroll1.png"></a>
+                </div>             
 
           </div>
     </div>
@@ -722,7 +728,7 @@
         </div>
 
         <div class="col offset-s0 s12 m3 center">
-        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=300&height=300&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId" width="300" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBloodPORT%2F&tabs=timeline&width=300&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=463464124027028" width="300" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
         </div>
       </div>
     </div>

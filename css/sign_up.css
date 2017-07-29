@@ -14,7 +14,7 @@ body{
 }
 
 .main_div{
-	margin-top: 2vw
+	margin-top: 2vw;
 }
 
 .icons{
@@ -51,7 +51,7 @@ body{
 
 .login_sec{
 	background-color: #c62828;
-	height: 32.3vw;
+	height: 35.7vw;
 }
 .login{
 	margin-top:6vw;
