@@ -607,7 +607,7 @@ video {
 }
 
 .ph3{
-  width: 320px ; 
+  width: 365px ; 
   height:250px;
 }
 
@@ -622,6 +622,7 @@ video {
 
 .ph6{
   height: 300px;
+  width: 100%;
 }
 
 .ph7{
@@ -632,6 +633,7 @@ video {
 
 .ph8{
   height: 500px;
+  width: 100%;
   margin-top: -260px;
 }
 
