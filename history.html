@@ -18,7 +18,7 @@
             </div>
 
            	<div class="input-field col s6">	
-           		<select ng-model="user_modal_gender">
+           		<select class="browser-default" ng-model="user_modal_gender">
            			<option value="" disabled selected>Select Gender</option>
            			<option value="male">MALE</option>
            			<option value="female">FEMALE</option>
@@ -38,15 +38,10 @@
   	</div>
    			<div class="myContainer" >
    				<div class="row">
-			        <div class="col s12">
-			          <ul class="tabs">
-			            <li class="tab col s6" ng-click="get_history_patient()"><a style="color:#c62828" class="active"  href="#inbox">Patients</a></li>
-			            <li class="tab col s6" ><a style="color:#c62828"  href="#unread">Donors</a></li>
-			          </ul>
-			        </div>
+
 
 				        <div id="inbox" class="col s12">
-				        	<table class="striped responsive-table">
+				        	<table class="striped responsive-table centered">
 						        <thead>
 						          <tr>
 						              <th>Patient Name</th>
@@ -71,6 +66,7 @@
 						        </tbody>
 						      </table>
 				        </div>
+				        <!--
 				        <div id="unread" class="col s12">
 				        	<table class="striped responsive-table">
 						        <thead>
@@ -101,7 +97,7 @@
 						      </table>
 
 
-				        </div>
+				        </div>-->
       				</div>
    			</div>
    		</div>

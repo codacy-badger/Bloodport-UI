@@ -8,7 +8,7 @@
       <a ui-sref="mainpage" class="brand-logo heading1" ><span><img src="img/bport_logo.png" class="iconImage"></span>BLOODPORT</a>
       <a href="#!" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down main_menu">
-        <li><a href="#home" class="smoothScroll">HOME</a></li>
+        <li><a href="#home" ui-sref="dashboard.bloodsure" class="smoothScroll">HOME</a></li>
         <li><a href="#info" class="smoothScroll">OUR SERVICES</a></li>
         <li><a href="#event" class="smoothScroll">UPCOMING EVENTS</a></li>
         <li><a href="#photo" class="smoothScroll">PHOTO GALLERY</a></li>
@@ -63,7 +63,7 @@
             <div class="col s12 m12">
               <div class="input-field">
               <i class="material-icons prefix tel" style="color: #c62828;left:0px;">opacity</i>
-                <select ng-model="modal_user_blood_grp">
+                <select class="browser-default" ng-model="modal_user_blood_grp">
                   <option value="" disabled selected style="color: #c62828">Blood Group</option>
                   <option value="A+">A+</option>
                   <option value="B+">B+</option>

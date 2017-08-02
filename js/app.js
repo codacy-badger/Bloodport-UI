@@ -1187,16 +1187,18 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	}).then((res)=>{
 		//console.log(res.data);
 		$rootScope.hospitals=res.data;
+		$rootScope.oneHospital=$rootScope.hospitals;
 		console.log($rootScope.hospitals);
 	});
 
 	$scope.allHospitals=function(){
 		$http({
 			method:'GET',
-			url:'http://api.bloodport.in/hospital/all_hospitals',
+			url:'http://localhost:8080/hospital/all_hospitals',
 
 		}).then((res)=>{
 			$rootScope.hospitals=res.data;
+			$rootScope.oneHospital=$rootScope.hospitals;
 		})
 	}
 
@@ -1263,6 +1265,34 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 			})
 		}
 		
+	}
+
+	$scope.getHospitalsByName=function(){
+
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/hospital/sortByName',
+			data:{
+				hospital_name:$scope.hospitalName
+			}
+		}).then((res)=>{
+			$rootScope.oneHospital=res.data;
+			//console.log(res.data);
+			$rootScope.hospitals=$rootScope.oneHospital;
+			console.log($rootScope.oneHospital);
+			
+		}).then(()=>{
+				$http({
+				method:'GET',
+				url:'http://localhost:8080/hospital/all_hospitals',
+
+				}).then((res)=>{
+					//$rootScope.hospitals=res.data;
+					$rootScope.oneHospital=res.data;
+				})
+
+			})
+
 	}
 })
 

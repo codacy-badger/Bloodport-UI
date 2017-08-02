@@ -19,7 +19,7 @@
             </div>
 
            	<div class="input-field col s6">	
-           		<select ng-model="user_modal_gender">
+           		<select class="browser-default" ng-model="user_modal_gender">
            			<option value="" disabled selected>Select Gender</option>
            			<option value="male">MALE</option>
            			<option value="female">FEMALE</option>
@@ -52,10 +52,10 @@
 		  			</div>
 
 		  			<div class="row">
-							<div class="col s12 m8 filter_chip" >
+							<div class="col s12 m7 filter_chip" >
 								<a href="" onclick="getAllHospitals();"  ng-click="allHospitals();click=1;style1=styles;style2=null;style3=null;style4=null;style5=null;" class="chip" ng-style="style1">All Hospitals</a>
 								<a href=""  ng-click="click=2;style2=styles;style1=null;style3=null;style4=null;style5=null" class="chip" ng-style="style2">Sort by Location</a>
-								<a href="" ng-click="click=3;style3=styles; style2=null;style1=null;style4=null;style5=null" ng-style="style3" class="chip">Sort by Name</a>
+								<a href="" ng-click="click=3;style3=styles; style2=null;style1=null;style4=null;style5=null;allHospitals()" ng-style="style3" class="chip" >Sort by Name</a>
 								
 							</div>
 							
@@ -63,7 +63,7 @@
 								<div ng-show="click==1"></div>
 						    	<div class="input-field inline" ng-show="click==2">
 
-						    		<select ng-model="hospitalLocation" id="hospitalLocation">
+						    		<select class="browser-default" ng-model="hospitalLocation" id="hospitalLocation">
 									      <option value="" disabled selected>Select Location</option>
 									      <option value="Delhi">DELHI</option>
 									      <option value="ncr">NCR</option>
@@ -71,26 +71,22 @@
 									</select>
 								<a class="waves-effect waves-light btn select_button" onclick="getHospitalsByLocations();" ng-click="getHospitalsBylocations();">Find</a>
 						    	</div>
-
-
-						    	<div class="input-field inline" ng-show="click==3">
-						    		<select ng-model="hospitalName">
+						    </div>	
+						    
+						    	<div class="col s8 m3 input-field inline" ng-show="click==3">
+						    		<select class="browser-default" ng-model="hospitalName" id="hospitalName" class="browser-default">
 									      <option value="" disabled selected>Select Hospital Name</option>
-									      <option value="G B Pant Hospital">G B Pant Hospital</option>
-									      <option value="Care Hospital">Care Hospital</option>
-									      <option value="L V Prasad Eye Institute">L V Prasad Eye Institute</option>
-									      <option value="Apollo Hospitals">Apollo Hospitals</option>
+									      <option value="{{hospital.hospital_name}}" ng-repeat="hospital in oneHospital">{{hospital.hospital_name}}</option>
+									      
 									</select>
-								<a class="waves-effect waves-light btn select_button" ng-click="getHospitalsByName()" >Find</a>
+								<a class="waves-effect waves-light btn select_button" onclick ="getAllHospitalsbyName()" ng-click="getHospitalsByName();" >Find</a>
 						    	</div>
-							</div>	
 					    </div>
-				
 
 					<div class="col s12 card white" id="map">	
 		  			</div>	
 				        <div class="col s12 m12" ng-repeat="hospital in hospitals">
-				          <div class="card white">
+				          <div class="card white" >
 				            <div class="card-content grey-text">
 				              <span class="card-title" style="color:#c62828;font-size:20px"><i class="material-icons" style="color:#c62828;font-size:20px" >account_balance</i>{{hospital.hospital_name}}</span>
 				              <p class="" style="word-wrap: break-word;">{{hospital.address}}</p>

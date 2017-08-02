@@ -38,6 +38,32 @@ var lat=[];
 		});
 	}
 
+
+	function getAllHospitalsbyName(){
+
+		$.ajax({
+        type: "POST",
+        url:'http://localhost:8080/hospital/sortByName' ,
+        contentType: "application/json",
+        data:JSON.stringify({
+        	hospital_name:$('#hospitalName').val()
+        }),
+        success: function(response) {
+           // console.log("heelo"+response);
+            //console.log(temp);
+            temp=response;
+            console.log(response);
+           	run();
+        },
+        error: function(response) {
+            console.log(response.data
+            	);
+        }
+		});
+	}
+
+
+
 	function getHospitalsByLocations(){
 		if($('#hospitalLocation').val()=="Delhi")
 		{
