@@ -1,5 +1,25 @@
 var app=angular.module('main_app',['ui.router','angular-loading-bar','typer']);
 
+window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '463464124027028',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      status     	   : true, // check login status
+      cookie     	   : true, // enable cookies to allow the server to access the session
+      version          : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
   }])
@@ -183,7 +203,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		console.log("check user from modal called");
 		$http({
 			method: "POST",
-			url: 'http://api.bloodport.in/register/modal_check',
+			url: 'http://localhost:8080/register/modal_check',
 			data:{
 				user_mobile_no: $scope.modal_user_mobile_no,
 			}
@@ -193,7 +213,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 
 			if(response.data=="User exists")
 			{
-				Materialize.toast('User exists!!!. Please book via login your account',7000,'red darken-3');
+				Materialize.toast('User exists!!!. Please book via login your account',3000,'red darken-3');
 				$scope.modal_user_mobile_no=null;
 				$scope.modal_user_blood_grp=null;
 				$scope.modal_user_email=null;
@@ -234,7 +254,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 			{
 				$http({
 					method: 'POST',
-					url:'http://api.bloodport.in/register/emergency_submit',
+					url:'http://localhost:8080/register/emergency_submit',
 					data:{
 						user_mobile_no: $scope.modal_user_mobile_no,
 						user_email: $scope.modal_user_email,
@@ -242,7 +262,7 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 					}
 				}).then(function(response){
 					console.log("user saved");
-					Materialize.toast('User added',7000,'red darken-3');
+					Materialize.toast('User added',3000,'red darken-3');
 					$state.go('dashboard.bloodsure');
 				});
 			}
@@ -257,14 +277,142 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		}
 		else
 		{
-			Materialize.toast('Some error has occured!!!',7000,'red darken-3');
+			Materialize.toast('Some error has occured!!!',3000,'red darken-3');
 		}
 	}
 })
 
-app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoadingBar){
+app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoadingBar)
+{
 	console.log("signupController called");
-	$scope.check_fields=function(){
+
+
+	$scope.FbLogin=function()
+	{
+		$rootScope.fbLoginResponse=null;
+		var perm=[
+		'email',
+		'user_birthday'
+		].join(',');
+		var fields=[
+		'name',
+		'email',
+		'gender'
+		].join(',');
+		FB.login(function(response) {
+		    if (response.authResponse) 
+		    {
+			     FB.api('/me',{fields:fields}, function(response) {
+			       console.log('Good to see you, ' + response + '.');
+			       console.log(response);
+			       $rootScope.fbLoginResponse=response;
+			       console.log("response is "+$rootScope.fbLoginResponse.name);
+			     });
+			     $('#modal2').show();
+			     $('#modal2').css({
+			     	zIndex:4
+			     })
+			      $('.fb_cancel_btn').click(function(){
+   				  $('#modal2').hide();
+    			 });
+			     //$state.go('dashboard.bloodsure');
+		    } 
+		    else 
+		    {
+		     console.log('User cancelled login or did not fully authorize.');
+
+		    }
+		},{
+			scope: perm,
+			return_scopes: true,
+			auth_type: 'reauthenticate'
+		  });
+	}
+	$scope.faceBookLogin=function()
+	{
+		$http({
+			method:'POST',
+			url:'http://localhost:8080/register/modal_check',
+			data:{
+				user_mobile_no:$scope.socialLoginPhone
+			}
+		}).then((res)=>{
+			console.log($scope.socialLoginPhone);
+			console.log(res.data);
+			if(res.data=="User exists")
+			{
+				$rootScope.userNotExists=false;
+				Materialize.toast("User already exists,Please signup with a different identity", 3000,'red darken-3');
+				$scope.socialLoginPhone=null;
+			}
+			else
+			{
+				$rootScope.userNotExists=true;
+				$rootScope.fb_bloodgrp=$scope.fb_blood_grp;
+				$rootScope.fbPhone=$scope.socialLoginPhone;
+				console.log($rootScope.fb_bloodgrp);
+				console.log($rootScope.fbPhone);
+				$http({
+						method:'POST',
+						url:'https://sendotp.msg91.com/api/generateOTP',
+						headers: {
+				             "application-Key": "_2NXWaVUffdYqANPke1RP6hq4fTAe-Buk1cT9ukSBJ0OO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip5oUx_xAqQbhmpbgOt2nxrGVPvE6IPiemhKl6q44dmTrLsOcAiUL1OyGw8TqXpNkjg=="
+				        },
+						data:{
+							countryCode:91,
+							mobileNumber:$rootScope.fbPhone,
+							getGeneratedOTP:true	 
+						}
+					}).then((response)=>{
+							//console.log("OTP has been send");
+							$rootScope.FbOTPsent=true;
+							$rootScope.fbOTP=response.data.response.oneTimePassword;
+
+							console.log("OTP is"+$rootScope.fbOTP);
+					});
+			}
+		})
+
+	}
+
+	$scope.FbOTPVerify=function()
+	{
+		if($scope.socialLoginOTP&&$rootScope.FbOTPsent)
+		{
+			if($scope.socialLoginOTP==$rootScope.fbOTP)
+			{
+				$http({
+					method:'POST',
+					url:'http://localhost:8080/register/signup',
+					data:{
+						user_mobile_no:$rootScope.fbPhone,
+						user_blood_grp:$rootScope.fb_bloodgrp,
+						user_name:$rootScope.fbLoginResponse.name,
+						user_gender:$rootScope.fbLoginResponse.gender,
+					}
+				}).then((res)=>{
+					$rootScope.logged_mobile_no=$rootScope.fbPhone
+					console.log("user has been signup by fb");
+					var randomstring = Math.random().toString(36).slice(-8);
+					console.log(randomstring);
+					$state.go('dashboard.bloodsure');
+				});
+			}
+			else
+			{
+				$scope.FbErrorMsg="OTP doesn't match";
+				console.log("not macthed");
+			}
+
+		}
+		else
+		{
+			$scope.FbErrorMsg="Please Enter OTP";
+		}
+		
+	}
+	$scope.check_fields=function()
+	{
 		var check_select=true;
 		if(($scope.user_dob==null)||($scope.user_blood_grp==null)||($scope.user_gender==null))
 		{
@@ -278,7 +426,8 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		}
 	}
 
-	$scope.cmprPass=function(){
+	$scope.cmprPass=function()
+	{
 
 		var check=false;
 		if(($scope.user_password==null && $scope.user_confirm_password==null) || ($scope.user_password!=$scope.user_confirm_password))
@@ -291,13 +440,14 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 			check=false;
 			return check;
 		}
-	},
-	$scope.callsignUp=function(){
+	}
+	$scope.callsignUp=function()
+	{
 		console.log("signup called");
 		$scope.OTPsent=false;
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/register/check',
+			url:'http://localhost:8080/register/check',
 			data:{
 				user_mobile_no:$scope.user_mobile_no
 			}
@@ -305,7 +455,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 			console.log("res is "+res.data);
 			if(res.data=="true")
 			{
-				Materialize.toast("User already exists,Please signup with a different identity", 7000,'red darken-3');
+				Materialize.toast("User already exists,Please signup with a different identity", 3000,'red darken-3');
 				$scope.user_email=null;
 				$scope.user_name=null;
 				$scope.user_mobile_no=null;
@@ -334,10 +484,10 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 							getGeneratedOTP:true	 
 						}
 					}).then((response)=>{
-							console.log("OTP has been send");
+							//console.log("OTP has been send");
 							$scope.OTPsent=true;
 							$rootScope.OTP=response.data.response.oneTimePassword;
-							console.log("OTP is"+$rootScope.OTP);
+							//console.log("OTP is"+$rootScope.OTP);
 						});
 			}
 		}).finally(function(){
@@ -347,7 +497,8 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 
 	},
 
-		$scope.verifyOTP=function(){
+		$scope.verifyOTP=function()
+		{
 			if($scope.user_OTP && $scope.OTPsent)
 			{
 				if($scope.user_OTP==$rootScope.OTP)
@@ -356,7 +507,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 					$scope.user_OTP=null;
 						$http({
 							method: 'POST',
-							url: 'http://api.bloodport.in/register/signup',
+							url: 'http://localhost:8080/register/signup',
 							data:{
 							user_name: $scope.user_name,
 							user_email: $scope.user_email,
@@ -368,7 +519,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 							user_confirm_password:$scope.user_confirm_password
 							}
 						}).then(function(response){
-							Materialize.toast(response.data, 7000,'red darken-3');
+							Materialize.toast(response.data, 3000,'red darken-3');
 							/*Edit by sakshi*/
 							$scope.user_email=null;
 							$scope.user_name=null;
@@ -383,7 +534,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 				}
 				else
 				{
-					Materialize.toast("OTP doesn't match", 7000,'red darken-3');
+					Materialize.toast("OTP doesn't match", 3000,'red darken-3');
 				}
 			}
 			else
@@ -393,11 +544,12 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		}
 
 
-		$scope.login =function(){
+		$scope.login =function()
+		{
 		$rootScope.loggedIn=false;
 		$http({
 			method: 'POST',
-			url: 'http://api.bloodport.in/register/login_user',
+			url: 'http://localhost:8080/register/login_user',
 			data:{
 				user_mobile_no: $scope.user_login_mobile_no,
 				user_password: $scope.user_login_password
@@ -414,14 +566,14 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 			}
 			else
 			{
-				Materialize.toast(res.data, 7000,'red darken-3');
+				Materialize.toast(res.data, 3000,'red darken-3');
 			}
 			
 		}).finally(function(){
 			cfpLoadingBar.complete();
 		});
 	}
-});
+})
 
 
 
@@ -432,7 +584,7 @@ app.controller('fpassController',function($scope,$http,$state,cfpLoadingBar){
 		{
 			$http({
 			method: 'POST',
-			url: 'http://api.bloodport.in/register/forgotpassword',
+			url: 'http://localhost:8080/register/forgotpassword',
 			data: {
 				user_email: $scope.user_email
 				}
@@ -721,7 +873,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 		console.log($rootScope.logged_mobile_no);
 		$http({
 		method: 'POST',
-		url: 'http://api.bloodport.in/dashboard/submit_patient_detail',
+		url: 'http://localhost:8080/dashboard/submit_patient_detail',
 		data:{
 			patient_name: $scope.data.patient_name,
 			blood_grp: $scope.data.blood_grp,
@@ -737,7 +889,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 	}).then(function(response){
 		console.log(response.data);
 		if(response.data=="Your request has been successfully saved!!!"){
-			Materialize.toast(response.data,7000,'red darken-3');	
+			Materialize.toast(response.data,3000,'red darken-3');	
 			$scope.data.patient_name=null;
 			 $scope.data.blood_grp=null;
 			 $scope.data.doctor_name=null;
@@ -747,7 +899,7 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 			 $scope.data.cost=null;
 		}
 		else{
-			Materialize.toast("Some error has occured. Please try again!!!",4000,'red darken-3');
+			Materialize.toast("Some error has occured. Please try again!!!",3000,'red darken-3');
 		}
 	});
 	}
@@ -787,7 +939,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 
 	$http({
 		method: 'POST',
-		url: 'http://api.bloodport.in/register/get_details',
+		url: 'http://localhost:8080/register/get_details',
 		data:{
 			/* addded by sakshi on 20/7/17 */
 			user_mobile_no: $rootScope.logged_mobile_no
@@ -805,7 +957,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		/* add ended */
 		$http({
 			method: 'POST',
-			url: 'http://api.bloodport.in/register/update_details',
+			url: 'http://localhost:8080/register/update_details',
 			data:{
 				user_name: $scope.user_name,
 				user_email: $scope.user_email,
@@ -818,11 +970,11 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 			console.log("user updated");
 			console.log(response.data);
 
-			Materialize.toast(response.data,7000,'red darken-3');
+			Materialize.toast(response.data,3000,'red darken-3');
 
 			$http({
 				method: 'POST',
-				url: 'http://api.bloodport.in/register/get_details',
+				url: 'http://localhost:8080/register/get_details',
 				data:{
 					/* addded by sakshi on 20/7/17 */
 					user_mobile_no: $rootScope.logged_mobile_no
@@ -839,7 +991,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://api.bloodport.in/register/update_modal_details',
+			url:'http://localhost:8080/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -850,7 +1002,7 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 		}).then(function(response){
 			console.log("details added");
 			$rootScope.emergency_user=false;
-			Materialize.toast('details added',7000,'red-darken-3');
+			Materialize.toast('details added',3000,'red-darken-3');
 			$state.go('dashboard.bloodsure');	
 		})
 	}
@@ -883,7 +1035,7 @@ app.controller('donorController',function($rootScope,$scope,$state,$http){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://api.bloodport.in/register/update_modal_details',
+			url:'http://localhost:8080/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -894,7 +1046,7 @@ app.controller('donorController',function($rootScope,$scope,$state,$http){
 		}).then(function(response){
 			console.log("details added");
 			$rootScope.emergency_user=false;
-			Materialize.toast('details added',7000,'red-darken3');
+			Materialize.toast('details added',3000,'red-darken3');
 			$state.go('dashboard.bloodsure');	
 		})
 	}	
@@ -909,7 +1061,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	console.log($scope.style4);
 	$http({
 		method:'GET',
-		url:'http://api.bloodport.in/donor/allDonors',
+		url:'http://localhost:8080/donor/allDonors',
 
 	}).then((res)=>{
 		$scope.details=res.data;
@@ -917,7 +1069,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	$scope.findAll=function(){
 		$http({
 		method:'GET',
-		url:'http://api.bloodport.in/donor/allDonors',
+		url:'http://localhost:8080/donor/allDonors',
 
 		}).then((res)=>{
 			$scope.details=res.data;
@@ -926,7 +1078,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	$scope.searchByLocation=function(){
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/donor/sortByLocation',
+			url:'http://localhost:8080/donor/sortByLocation',
 			data:{
 				donor_location:$scope.donor_location,
 				donor_status:$rootScope.donor_status
@@ -939,7 +1091,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 			}
 			if(res.data=="")
 			{
-				Materialize.toast("There is no Donor at "+$scope.donor_location+"", 4000,'red darken-3');
+				Materialize.toast("There is no Donor at "+$scope.donor_location+"", 3000,'red darken-3');
 			}
 			
 		})
@@ -948,7 +1100,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 	$scope.searchByBloodgrp=function(){
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/donor/sortByBloodgrp',
+			url:'http://localhost:8080/donor/sortByBloodgrp',
 			data:{
 				donor_bloodgrp:$scope.donor_bloodgrp,
 				donor_status:$rootScope.donor_status
@@ -961,7 +1113,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 			}
 			if(res.data=="")
 			{
-				Materialize.toast("There is no Donor with Blood group "+$scope.donor_bloodgrp+"", 4000,'red darken-3');
+				Materialize.toast("There is no Donor with Blood group "+$scope.donor_bloodgrp+"", 3000,'red darken-3');
 			}
 			
 		})
@@ -972,7 +1124,7 @@ app.controller('findDonorController',function($scope,$rootScope,$state,$http){
 		console.log($scope.donor_status);
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/donor/sortByStatus',
+			url:'http://localhost:8080/donor/sortByStatus',
 			data:{
 				donor_status:$rootScope.donor_status
 			}
@@ -995,7 +1147,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 	$scope.style1=$scope.styles;
 	$http({
 		method:'GET',
-		url:'http://api.bloodport.in/camps/allCamps',
+		url:'http://localhost:8080/camps/allCamps',
 	}).then((res)=>{
 		console.log(res.data);
 		$scope.details=res.data
@@ -1003,7 +1155,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 	$scope.allCamps=function(){
 		$http({
 		method:'GET',
-		url:'http://api.bloodport.in/camps/allCamps',
+		url:'http://localhost:8080/camps/allCamps',
 		}).then((res)=>{
 			console.log(res.data);
 			$scope.details=res.data
@@ -1012,7 +1164,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 	$scope.searchCampbyLocation=function(){
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/camps/campbyLocation',
+			url:'http://localhost:8080/camps/campbyLocation',
 			data:{
 				camplocation:$scope.camplocation
 			}
@@ -1032,7 +1184,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 		$scope.searchByDate=function(){
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/camps/campByDate',
+			url:'http://localhost:8080/camps/campByDate',
 			data:{
 				dateOfDonation:$scope.dateOfDonation
 			}
@@ -1056,7 +1208,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 		console.log($scope.camporganizer);
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/camps/campByOrganizer',
+			url:'http://localhost:8080/camps/campByOrganizer',
 			data:{
 				campOrganizer:$scope.camporganizer
 			}
@@ -1079,7 +1231,7 @@ app.controller('beDonorController',function($scope,$rootScope,$state,$http){
 		console.log($scope.bloodBank);
 		$http({
 			method:'POST',
-			url:'http://api.bloodport.in/camps/campByBloodBank',
+			url:'http://localhost:8080/camps/campByBloodBank',
 			data:{
 				bloodBank:$scope.bloodBank
 			}
@@ -1119,7 +1271,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://api.bloodport.in/register/update_modal_details',
+			url:'http://localhost:8080/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -1130,7 +1282,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 		}).then(function(response){
 			console.log("details added");
 			$rootScope.emergency_user=false;
-			Materialize.toast('details added',7000,'red-darken3');
+			Materialize.toast('details added',3000,'red-darken3');
 			$state.go('dashboard.bloodsure');	
 		})
 	}
@@ -1145,7 +1297,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 	else{
 		$http({
 			method: 'POST',
-			url: 'http://api.bloodport.in/dashboard/get_patient_data',
+			url: 'http://localhost:8080/dashboard/get_patient_data',
 			data: {
 				/* addded by sakshi on 20/7/17 */
 				mobile_no: $rootScope.logged_mobile_no
@@ -1161,7 +1313,7 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 
 		$http({
 			method: 'POST',
-			url: 'http://api.bloodport.in/dashboard/get_patient_data',
+			url: 'http://localhost:8080/dashboard/get_patient_data',
 			data: {
 				/* addded by sakshi on 20/7/17 */
 				email: $rootScope.logged_email
@@ -1183,7 +1335,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 
 	$http({
 		method:'GET',
-		url:'http://api.bloodport.in/hospital/all_hospitals',
+		url:'http://localhost:8080/hospital/all_hospitals',
 	}).then((res)=>{
 		//console.log(res.data);
 		$rootScope.hospitals=res.data;
@@ -1217,7 +1369,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 		console.log('update_modal_details caled');
 		$http({
 			method: 'POST',
-			url:'http://api.bloodport.in/register/update_modal_details',
+			url:'http://localhost:8080/register/update_modal_details',
 			data:{
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
@@ -1227,7 +1379,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 			}
 		}).then(function(response){
 			$rootScope.emergency_user=false;
-			Materialize.toast('details added',7000,'red-darken3');
+			Materialize.toast('details added',3000,'red-darken3');
 			$state.go('dashboard.bloodsure');	
 		})
 	}
@@ -1249,7 +1401,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 
 			$http({
 			method:'POST',
-			url:'http://api.bloodport.in/hospital/sortByLocationDelhi'
+			url:'http://localhost:8080/hospital/sortByLocationDelhi'
 			}).then((response)=>{
 				$rootScope.hospitals=response.data;
 			})
@@ -1258,7 +1410,7 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 		{
 			$http({
 				method:'POST',
-				url:'http://api.bloodport.in/hospital/sortByLocationNCR',
+				url:'http://localhost:8080/hospital/sortByLocationNCR',
 
 			}).then((response)=>{
 				$rootScope.hospitals=response.data;

@@ -3,7 +3,7 @@ var locations=[];
 var lang=[];
 var lat=[];
 
-
+var t="shourya";
 	function initMap() 
 	{
 

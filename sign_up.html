@@ -16,6 +16,51 @@
           </div>
   </div>
 
+  <div id="modal2" class="modal">
+          <div class="modal-content">
+          <div class="col s12 center" ng-hide="userNotExists">
+            <h4 style="color:#c62828">Enter Your Phone Number</h4>
+            <p>Enter your Mobile number to get registered</p>
+          </div>
+          <div class="col s12 center" ng-show="userNotExists">
+            <h4 style="color:#c62828">Verify OTP</h4>
+            <p>Enter your Mobile number to get registered</p>
+          </div>
+
+            <div class="input-field col s6" ng-hide="userNotExists">
+              <input id="mobileNo" type="tel" ng-model="socialLoginPhone">
+              <label for="Mobile No.">Enter Mobile No.</label>
+            </div>
+            
+            <div class="input-field col s6" ng-hide="userNotExists">
+              <select ng-model="fb_blood_grp">
+                <option value="" disabled selected>Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="AB-">AB-</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            <div class="input-field col s6" ng-show="userNotExists">
+              <input id="mobileNo" type="text" ng-model="socialLoginOTP">
+              <label for="OTP">Enter OTP</label>
+            </div>
+          <p ng-model="FbErrorMsg" ng-show="userNotExists"></p>
+          </div>
+          <div class="modal-footer col m2 s12" ng-hide="userNotExists">
+              <button id="" class="btn waves-effect waves-light btn modal-close" type="" name="action" ng-click="faceBookLogin()">Submit</button>
+              <a href="#" class="btn-flat fb_cancel_btn">Cancel</a>
+          </div>
+          <div class="modal-footer col m2 s12" ng-show="userNotExists">
+              <button id="" class="btn waves-effect waves-light btn modal-close" type="" name="action" ng-click="FbOTPVerify()">Submit</button>
+              <a href="#" class="btn-flat fb_cancel_btn">Cancel</a>
+          </div>
+  </div>
+
   <div class="col s12 m12">
   <a ui-sref="mainpage"><p class="center align" style="color:#c62828; padding-top: 5vh;font-size:24px"><span><img src="img/bport_logo.png" width="90" height="60" style="position:absolute;top:7%;left:40%"></span>BLOODPORT</p></a>
   </div>
@@ -24,7 +69,7 @@
       <div class="col s12 m8 white">
         <div class="row icons">
           <div class="col s6 m4 center">
-            <a class="waves-effect waves-light btn social facebook"><i class="fa fa-facebook"></i>Facebook</a> 
+            <a ng-click="FbLogin()" class="waves-effect waves-light btn social facebook"><i class="fa fa-facebook"></i>Facebook</a> 
           </div>
           <div class="col s6 m4 center">
             <a class="waves-effect waves-light btn social google"><i class="fa fa-google"></i>  Google</a> 
@@ -212,6 +257,9 @@
 
        
   <script type="text/javascript">
+
+
+  
   /*
     $('.name_ip').on('click',function(){
       $('.name').css('color','silver');
