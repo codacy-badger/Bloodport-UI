@@ -411,6 +411,33 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		}
 		
 	}
+
+	$scope.onGoogleLogin=function(){
+		var params={
+			'clientid': '277264571124-pgi5trtp99gtq2of2o70i2l1jcfc9mss.apps.googleusercontent.com',
+			'cookiepolicy': 'single_host_origin',
+			'callback': function(result){
+				if(result['status']['signed_in']){
+					var request=gapi.client.plus.people.get({
+						'userId': 'me'
+					});
+					request.execute(function(resp){
+						$scope.$apply(function(){
+							$scope.username=resp.displayName;
+							$scope.email=resp.emails[0].value;
+							console.log($scope.username);
+							console.log($scope.email);
+						});
+					});
+				}
+			},
+			'approvalprompt':'force',
+			'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+		}
+
+		gapi.auth.signIn(params);
+	}
+
 	$scope.check_fields=function()
 	{
 		var check_select=true;
