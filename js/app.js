@@ -226,6 +226,9 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 				$('#modal1').css({
 					height: 250
 				})
+
+				//code for sending otp to emergency user
+				/*
 				$http({
 						method:'POST',
 						url:'https://sendotp.msg91.com/api/generateOTP',
@@ -242,7 +245,8 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 							$scope.modalOTPsent=true;
 							$rootScope.modalOTP=response.data.response.oneTimePassword;
 							console.log("OTP is"+$rootScope.modalOTP);
-				});
+				});*/
+				$rootScope.modalOTP=7777;	
 			}
 		})
 	}
@@ -252,13 +256,16 @@ app.controller('mainpageController',function($state,$scope,$rootScope,$http){
 		{
 			if($scope.inputOTP==$rootScope.modalOTP)
 			{
+				$scope.emergency_user_pass=Math.random().toString(36).slice(-8);
+				console.log($scope.emergency_user_pass);
 				$http({
 					method: 'POST',
 					url:'http://localhost:8080/register/emergency_submit',
 					data:{
 						user_mobile_no: $scope.modal_user_mobile_no,
 						user_email: $scope.modal_user_email,
-						user_blood_grp: $scope.modal_user_blood_grp
+						user_blood_grp: $scope.modal_user_blood_grp,
+						user_pass: $scope.emergency_user_pass
 					}
 				}).then(function(response){
 					console.log("user saved");
@@ -367,7 +374,6 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 							//console.log("OTP has been send");
 							$rootScope.FbOTPsent=true;
 							$rootScope.fbOTP=response.data.response.oneTimePassword;
-
 							console.log("OTP is"+$rootScope.fbOTP);
 					});
 			}
@@ -411,7 +417,7 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		}
 		
 	}
-
+//added from here
 	$scope.onGoogleLogin=function(){
 		var params={
 			'clientid': '277264571124-pgi5trtp99gtq2of2o70i2l1jcfc9mss.apps.googleusercontent.com',
@@ -423,10 +429,15 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 					});
 					request.execute(function(resp){
 						$scope.$apply(function(){
-							$scope.username=resp.displayName;
-							$scope.email=resp.emails[0].value;
-							console.log($scope.username);
-							console.log($scope.email);
+							$scope.google_username=resp.displayName;
+							$scope.google_user_email=resp.emails[0].value;
+							$scope.google_user_gender=resp.gender;
+							$scope.googleSignInCheck=true;
+							console.log($scope.google_username);
+							console.log($scope.google_user_email);
+							console.log($scope.google_user_gender);
+							$('#modal3').show();
+							$('#modal3').css('zIndex',4);
 						});
 					});
 				}
@@ -436,6 +447,98 @@ app.controller('signupController',function($scope,$http,$rootScope,$state,cfpLoa
 		}
 
 		gapi.auth.signIn(params);
+	}
+
+	$scope.cancel=function(){
+		console.log("google user didn't authorize");
+		$('#modal3').hide();
+	}
+
+	$scope.continue=function(){
+		if(($scope.google_phone_no==null)||($scope.google_blood_grp==null))
+		{
+			console.log("details not filled");
+			$scope.detailsEmptyTrue=true;
+			$scope.detailsEmpty="Please fill in your details";
+		}
+		else
+		{
+			$http({
+				method: 'POST',
+				url: 'http://localhost:8080/register/modal_check',
+				data: {
+					user_mobile_no: $scope.google_phone_no
+				}
+			}).then(function(response){
+				console.log(response);
+				if(response.data=="User exists")
+				{
+					$rootScope.google_user_not_exists=false;
+					Materialize.toast('User already exists!!!!!',7000,'red darken-3');
+					$('#modal3').hide();
+				}
+				else
+				{
+					$rootScope.google_user_not_exists=true;
+					//code for sending otp
+					$scope.googleOTP=7777;
+					/*
+					$http({
+						method: 'POST',
+						url: 'https://sendotp.msg91.com/api/generateOTP',
+						headers: {
+					         "application-Key": "_2NXWaVUffdYqANPke1RP6hq4fTAe-Buk1cT9ukSBJ0OO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip5oUx_xAqQbhmpbgOt2nxrGVPvE6IPiemhKl6q44dmTrLsOcAiUL1OyGw8TqXpNkjg=="
+					    },
+						data:{
+							countryCode:91,
+							mobileNumber:$scope.google_phone_no,
+							getGeneratedOTP:true	 
+						}
+					}).then(function(response){
+						$scope.googleOTPSent=true;
+						$scope.googleOTP=response.data.response.oneTimePassword,
+						console.log($scope.googleOTP);
+					});*/		
+				}
+			})
+		}
+	}
+		
+	$scope.saveGoogleUserDetails= function(){
+		if($scope.google_user_otp)
+		{
+			if($scope.google_user_otp==$scope.googleOTP)
+			{
+				$scope.google_user_pass=Math.random().toString(36).slice(-8);
+				console.log($scope.google_user_pass);
+				console.log("saving details in db");
+				$http({
+					method:'POST',
+					url: 'http://localhost:8080/register/specialSignUp',
+					data:{
+						user_mobile_no:$scope.google_phone_no,
+						user_blood_grp:$scope.google_blood_grp,
+						user_name: $scope.google_username,
+						user_email: $scope.google_user_email,
+						user_pass: $scope.google_user_pass,
+						user_gender: $scope.google_user_gender
+					}
+				}).then(function(response){
+					console.log("google user added");
+					$rootScope.logged_mobile_no=$scope.google_phone_no;
+					$state.go('dashboard.bloodsure');
+					console.log($scope.logged_mobile_no);
+				})
+			}	
+			else
+			{
+				Materialize.toast("OTP don't match, Please enter again",7000,'red darken-3');
+			}
+		}
+		else
+		{
+			Materialize.toast("Please enter OTP",7000,'red darken3');
+		}
 	}
 
 	$scope.check_fields=function()
@@ -940,13 +1043,13 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 	console.log($rootScope.emergency_user);
 
 	$scope.check=function(){
-		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null))
 		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -1023,7 +1126,6 @@ app.controller('userprofileController',function($scope,$http,$state,$rootScope){
 			user_name: $scope.user_modal_name,
 			user_dob: $scope.user_modal_dob,
 			user_gender: $scope.user_modal_gender,
-			user_password: $scope.user_modal_pass,
 			user_mobile_no: $rootScope.logged_mobile_no
 			}
 		}).then(function(response){
@@ -1048,13 +1150,13 @@ app.controller('donorController',function($rootScope,$scope,$state,$http){
 	}
 
 	$scope.check=function(){
-		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null))
 		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -1284,13 +1386,13 @@ app.controller('historyController',function($scope,$http,$rootScope,$state){
 	$rootScope.dahsboardtitle="Your History"
 
 	$scope.check=function(){
-		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null))
 		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -1382,13 +1484,13 @@ app.controller('hospitalController',function($scope,$http,$rootScope,$state){
 	}
 
 	$scope.check=function(){
-		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null)||($scope.user_modal_pass))
+		if(($scope.user_modal_name==null)||($scope.user_modal_dob==null)||($scope.user_modal_gender==null))
 		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
