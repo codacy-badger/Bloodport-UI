@@ -1,5 +1,80 @@
 var app=angular.module('main_app',['ui.router','angular-loading-bar','typer']);
 
+//file preview 
+app.service("uploadService", function($http, $q,$rootScope) {
+
+    return ({
+      upload: upload
+    });
+
+    function upload(file) {
+      var upl = $http({
+        method: 'POST',
+        url: 'http://localhost:8080/dashboard/submit_patient_detail', // /api/upload
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        data: {
+          upload: file
+        },
+        transformRequest: function(data, headersGetter) {
+          var formData = new FormData();
+          angular.forEach(data, function(value, key) {
+            formData.append(key, value);
+          });
+
+          var headers = headersGetter();
+          delete headers['Content-Type'];
+
+          return formData;
+        }
+      });
+      return upl.then(handleSuccess, handleError);
+
+    } // End upload function
+
+    // ---
+    // PRIVATE METHODS.
+    // ---
+  	
+    function handleError(response, data) {
+      if (!angular.isObject(response.data) ||!response.data.message) {
+        return ($q.reject("An unknown error occurred."));
+      }
+
+      return ($q.reject(response.data.message));
+    }
+
+    function handleSuccess(response) {
+      return (response);
+    }
+
+  })
+
+
+
+ app.directive("fileinput", [function() {
+    return {
+      scope: {
+        fileinput: "=",
+        filepreview: "="
+      },
+      link: function(scope, element, attributes) {
+        element.bind("change", function(changeEvent) {
+          scope.fileinput = changeEvent.target.files[0];
+          var reader = new FileReader();
+          reader.onload = function(loadEvent) {
+            scope.$apply(function() {
+              scope.filepreview = loadEvent.target.result;
+            });
+          }
+          reader.readAsDataURL(scope.fileinput);
+        });
+      }
+    }
+  }]);
+
+//fb login
 window.fbAsyncInit = function() {
     FB.init({
       appId            : '463464124027028',
@@ -20,9 +95,11 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+//loading bar
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
   }])
+
 
 app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 
@@ -766,9 +843,12 @@ app.controller('dashboardController',function($scope,$rootScope,$state){
 	}
 })
 
-app.controller('bloodsure_controller',function($scope,$http,$rootScope){
+app.controller('bloodsure_controller',function($scope,$http,$rootScope,uploadService){
 	$scope.data={};
-	$rootScope.dahsboardtitle="BloodSURE (Book/Pay/Recieve)"
+	$rootScope.dahsboardtitle="BloodSURE (Book/Pay/Recieve)";
+
+	console.log("bloodsure_controller called");
+
 	$scope.check_fields=function(){
 		var check_field1=true;
 		if(($scope.data.blood_grp==null)||($scope.data.hospital==null)||($scope.data.unit_of_blood==null)||($scope.data.city==null)){
@@ -779,8 +859,6 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 			return false;
 		}
 	}
-
-	console.log("bloodsure_controller called");
 
 	$scope.cost_calculation=function(){
 			var unit=$scope.data.unit_of_blood;
@@ -995,9 +1073,21 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 		}
 
 		
-
+	$scope.$watch('file', function(newfile, oldfile) {
+      if(angular.equals(newfile, oldfile) ){
+        return;
+      }
+     });
 	$scope.mysubmit=function(){
 	/* code for payment gateway*/
+
+
+      console.log($rootScope.file+'jhshsbhjasvhjvcjhcvjdvcv');
+      uploadService.upload(newfile).then(function(res){
+        // DO SOMETHING WITH THE RESULT!
+        console.log("result", res);
+      })
+   
 		$scope.data.calculatedcost=$scope.cost_calculation();
 		console.log($scope.data.calculatedcost);
 		console.log($rootScope.logged_mobile_no);
@@ -1033,6 +1123,8 @@ app.controller('bloodsure_controller',function($scope,$http,$rootScope){
 		}
 	});
 	}
+
+	
 });
 
 /* addded by sakshi on 20/7/17 */

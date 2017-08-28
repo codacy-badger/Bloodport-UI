@@ -107,22 +107,19 @@
 
   					</div>
 
-  			<div class="col s12 m4">
-  				<div class="card medium">
-				    <div class="card-image">
-				        <img src="img/doc.png">
-				    </div>
-				            
-				    <div class="card-content">
-				        <p>Upload photo of Doctor's Prescription</p>
-				    </div>    
-				            
-				    <div class="card-action center">
-				        <button class="btn waves-effect waves-light upload_photo" style="background-color:#c62828" type="submit" name="action">UPLOAD PHOTO</button>
-				    </div>
-				</div>					
-			</div>				     
-  		</div>
+		  			<div class="col s12 m4">
+		  				<div class="card medium">
+						    <div class="card-image">
+						        <img ng-model="presImage" ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview"/>
+						    </div>  
+						            
+						    <div class="card-action center">
+						    	<input type="file" fileinput="file" filepreview="filepreview"/>
+						        <button class="btn waves-effect waves-light upload_photo" style="background-color:#c62828" type="submit" name="action">UPLOAD PHOTO</button>
+						    </div>
+						</div>					
+					</div>				     
+  				</div>
   		</form> 		
   	</div>
  </div>
