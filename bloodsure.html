@@ -42,14 +42,7 @@
 							    <div class="input-field col s6">
 									<select class="browser-default" ng-model="data.hospital">
 										<option value="" disabled selected>Hospital</option>
-										<option value="a">a</option>
-										<option value=b>b</option>
-										<option value="c">c</option>
-										<option value="d">d</option>
-										<option value="e">e</option>
-										<option value="f">f</option>
-										<option value="g">g</option>
-										<option value="h">h</option>
+										<option value="{{hospital.hospital_name}}" ng-repeat="hospital in hospitals">{{hospital.hospital_name}}</option>
 									</select>
 								</div>
 							</div>
@@ -69,8 +62,7 @@
 									<select class="browser-default" ng-model="data.city">
 										<option value="" disabled selected>City</option>
 										<option value="Delhi">Delhi</option>
-										<option value="Gurugram">Gurugram</option>
-										<option value="Noida">Noida</option>
+										<option value="NCR">NCR</option>
 									</select>
 								</div> 
 							</div>
