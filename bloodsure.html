@@ -20,7 +20,7 @@
 									<!--<option ng-repeat="value in select.choices">{{value}}</option>-->
 									
 										<option value="" disabled selected > Required Blood Group</option>
-										<option value="Whole HUman Blood IP">Whole HUman Blood IP</option>
+										<option value="Whole HUman Blood IP">Whole Human Blood IP</option>
 										<option value="Concentrated Human Red Blood Corpuscles IP (Packed Red Cells)">Concentrated Human Red Blood Corpuscles IP (Packed Red Cells)</option>
 										<option value="Platelet Concentrate BP">Platelet Concentrate BP</option>
 										<option value="Fresh Frozen Plasma">Fresh Frozen Plasma</option>
@@ -68,14 +68,9 @@
 								<div class="input-field col s6">
 									<select class="browser-default" ng-model="data.city">
 										<option value="" disabled selected>City</option>
-										<option value="a">a</option>
-										<option value="b">b</option>
-										<option value="c">c</option>
-										<option value="d">d</option>
-										<option value="e">e</option>
-										<option value="f">f</option>
-										<option value="g">g</option>
-										<option value="h">h</option>
+										<option value="Delhi">Delhi</option>
+										<option value="Gurugram">Gurugram</option>
+										<option value="Noida">Noida</option>
 									</select>
 								</div> 
 							</div>
@@ -110,11 +105,11 @@
 		  			<div class="col s12 m4">
 		  				<div class="card medium">
 						    <div class="card-image">
-						        <img ng-model="presImage" ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview"/>
+						        <img src="../img/download.png" style="width: 100%;height:100%">
 						    </div>  
 						            
 						    <div class="card-action center">
-						    	<input type="file" fileinput="file" filepreview="filepreview"/>
+						    	
 						        <button class="btn waves-effect waves-light upload_photo" style="background-color:#c62828" type="submit" name="action">UPLOAD PHOTO</button>
 						    </div>
 						</div>					
